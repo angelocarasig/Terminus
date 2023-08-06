@@ -5,6 +5,7 @@ import { NgIconsModule } from '@ng-icons/core';
 import { featherSun, featherMoon } from '@ng-icons/feather-icons';
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,10 +13,12 @@ import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.com
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     NgIconsModule.withIcons({ featherSun, featherMoon })
   ],
   exports: [
     ThemeSwitchComponent
-  ]
+  ],
+  providers: []
 })
 export class SharedModule { }

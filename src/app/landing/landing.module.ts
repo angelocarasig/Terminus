@@ -1,6 +1,8 @@
 // Other Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 // Icons
@@ -19,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     TooltipModule.forRoot(),
     NgIconsModule.withIcons({ featherKey, featherX, featherLogIn }),
     SharedModule
