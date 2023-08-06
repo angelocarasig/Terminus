@@ -1,0 +1,84 @@
+.login-container {
+  width: 692px;
+  height: 100vh;
+
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 4rem;
+
+  color: var(--paragraph-color);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  transition: all 0.5s ease-in-out;
+}
+
+@media (prefers-color-scheme: light) {
+  .login-container {
+    background-image: url('/assets/login-wave--light.svg');
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    background-image: url('/assets/login-wave--dark.svg');
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .login-container {
+    width: 100% !important;
+    max-width: unset;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.header, .content, .footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer {
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.auth, .auth-token-input {
+  width: 100%;
+}
+
+.auth {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.auth-token-button, .auth-token-button--close {
+  width: 46px;
+  height: 54px;
+}
+
+.login, .btn-login {
+  width: 100%;
+}
+
+.theme-switch {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

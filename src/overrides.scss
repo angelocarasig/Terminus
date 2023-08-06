@@ -1,0 +1,38 @@
+/*
+-------------------------------------
+  Overrides:
+  - Overwrites theme colors from bootstrap
+-------------------------------------
+ */
+.btn {
+  font-weight: 700;
+}
+
+.btn-primary {
+  color: var(--button-text-color);
+  background-color: var(--button-color);
+  border-color: var(--stroke-color);
+}
+.btn-primary:hover, .btn-primary:active {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+
+.btn-secondary {
+  background-color: var(--button-secondary-color);
+  border-color: var(--button-secondary-color);
+}
+.btn-secondary:hover, .btn-secondary:active {
+  background-color: var(--button-primary-color) !important;
+  border-color: var(--button-primary-color) !important;
+}
+
+.btn-warning {
+  background-color: var(--button-warning-color);
+  border-color: var(--button-warning-color);
+}
+.btn-warning:hover, .btn-warning:active {
+  background-color: var(--button-warning-color) !important;
+  border-color: var(--button-warning-color) !important;
+}
