@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {AlertModule} from 'ngx-bootstrap/alert';
 
 // Icons
 import { NgIconsModule } from '@ng-icons/core';
-import { featherKey, featherX, featherLogIn } from '@ng-icons/feather-icons';
+import { featherKey, featherX, featherLogIn, featherAlertCircle } from '@ng-icons/feather-icons';
 
 // Components
 import { LandingComponent } from './landing/landing.component';
@@ -23,8 +24,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     ReactiveFormsModule,
     TooltipModule.forRoot(),
-    NgIconsModule.withIcons({ featherKey, featherX, featherLogIn }),
-    SharedModule
+    NgIconsModule.withIcons({ featherKey, featherX, featherLogIn, featherAlertCircle }),
+    SharedModule,
+    AlertModule
   ],
   exports: [
     LandingComponent

@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, effect} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {LoginHelper} from '../../shared/helpers/login/login.helper';
 import {UserService} from '../../shared/services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +10,35 @@ import {UserService} from '../../shared/services/user/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  username = new FormControl('', [Validators.required]);
   authToken = new FormControl('');
+  errorMessage = '';
+  loading = false;
 
-  constructor(private loginHelper: LoginHelper, private userService: UserService) {  }
+  constructor(private loginHelper: LoginHelper, private userService: UserService, private router: Router) {  }
 
-  processUser(): void {
-    if (!this.username.valid || this.username.value == null) {
-      console.log('Empty username!');
+  async processUser(): Promise<void> {
+    this.loading = true;
+
+    if (this.username.pristine || !this.username.valid) {
+      this.errorMessage = 'Username must not be blank!';
+      this.loading = false;
       return;
     }
 
     let validUser: boolean;
 
-    this.loginHelper.verifyUser(this.username.value!, this.authToken.value!).then(
-      value => validUser = value
+    await this.loginHelper.verifyUser(this.username.value!, this.authToken.value!).then(
+      response => {
+        validUser = response;
+      },
+      error => {
+        this.errorMessage = error.message;
+      }
     );
 
-    console.log(`Set active user to: ${this.userService.getCurrentUser()?.username}`);
+    this.loading = false;
+
+    console.log(`Active user set to '${this.userService.getCurrentUser()?.username}'`);
   }
 }

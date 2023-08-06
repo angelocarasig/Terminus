@@ -25,11 +25,19 @@
   .login-container {
     background-image: url('/assets/login-wave--light.svg');
   }
+
+  .loading-spinner {
+    background-image: url('/assets/spinner--light.svg');
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .login-container {
     background-image: url('/assets/login-wave--dark.svg');
+  }
+
+  .loading-spinner {
+    background-image: url('/assets/spinner--dark.svg');
   }
 }
 
@@ -81,4 +89,12 @@
   position: absolute;
   right: 1rem;
   top: 1rem;
+}
+
+.warning-toaster {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  margin-right: 2rem;
 }

@@ -1,8 +1,10 @@
-import {LoginService} from '../../services/login/login.service';
 import {Injectable} from '@angular/core';
-import {UserService} from '../../services/user/user.service';
-import {User} from '../../models/user/user';
+
 import {firstValueFrom} from 'rxjs';
+
+import {User} from '../../models/user/user';
+import {LoginService} from '../../services/login/login.service';
+import {UserService} from '../../services/user/user.service';
 
 @Injectable({providedIn: 'root'})
 export class LoginHelper {
@@ -15,9 +17,20 @@ export class LoginHelper {
 
     const validUser = await firstValueFrom(this.loginService.getUser(username, authToken)).then(
       value => {
-        if (Object.keys(value).length !== 1) return false;
-        if (value[`${username}`] == null) return false;
-        return value[`${username}`].username === username;
+        console.log(value);
+        if (Object.keys(value).length !== 1) {
+          throw new Error('Length not equal to 1');
+        }
+
+        if (value[`${username}`] == null) {
+          throw new Error('User doesn\'t exist');
+        }
+
+        if (value[`${username}`].username !== username) {
+          throw new Error('Username in VNDB does not match what was provided.');
+        }
+
+        return true;
       },
       reason => {
         console.log(reason);
@@ -26,8 +39,6 @@ export class LoginHelper {
     );
 
     if (validUser) {
-      console.log('Finished execution successfully.');
-      console.log('Updating current user...');
       this.userService.setCurrentUser(new User(username));
     }
 

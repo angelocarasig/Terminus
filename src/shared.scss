@@ -5,3 +5,7 @@
   - All custom styling should include a comment detailing the use-cases
 -------------------------------------
  */
+
+.invalid-form {
+  border-color: var(--danger-color);
+}

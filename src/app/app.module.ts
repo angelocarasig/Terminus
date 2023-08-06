@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LandingModule } from './landing/landing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import {BookshelfModule} from './bookshelf/bookshelf.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     // Modules
     SharedModule,
     LandingModule,
+    BookshelfModule,
   ],
   providers: [],
   exports: [

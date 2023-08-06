@@ -1,3 +1,10 @@
+<div class="warning-toaster" *ngIf="errorMessage !== ''">
+  <alert [dismissible]="true" type="warning">
+    <ng-icon name="featherAlertCircle"></ng-icon>
+    Warning! {{errorMessage}}
+  </alert>
+</div>
+
 <div class='login-container'>
   <app-theme-switch class='theme-switch'></app-theme-switch>
   <div class='header'>
@@ -5,7 +12,10 @@
   </div>
 
   <div class='content'>
-    <input type='text' placeholder='Username' [formControl]="username">
+    <input type='text'
+           placeholder='Username'
+           [formControl]="username"
+           [ngClass]="errorMessage !== '' ? 'invalid-form' : ''">
   </div>
 
   <div class='footer'>
@@ -18,6 +28,7 @@
         type="button"
         class="btn btn-primary btn-login"
         (click)="processUser()"
+        [disabled]="loading"
       >
         <ng-icon name='featherLogIn'></ng-icon>
         Login
