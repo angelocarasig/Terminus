@@ -1,19 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-theme-switch',
   templateUrl: './theme-switch.component.html',
   styleUrls: ['./theme-switch.component.scss']
 })
-export class ThemeSwitchComponent {
-  currentTheme = 'dark';
+export class ThemeSwitchComponent implements  OnInit {
+  themeIcon: 'featherSun' | 'featherMoon' = 'featherMoon';
 
-  changeTheme(): void {
-    this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    this.updateThemeAndIcon();
   }
 
-  getThemeName(): string {
-    return this.currentTheme === 'dark' ? 'featherSun' : 'featherMoon';
+  toggleTheme(): void {
+    this.themeService.toggleActiveTheme();
+    this.updateThemeAndIcon();
+  }
+
+  private updateThemeAndIcon(): void {
+    if (this.themeService.getActiveThemeName() === 'dark') {
+      this.themeIcon = 'featherMoon';
+    }
+    else {
+      this.themeIcon = 'featherSun';
+    }
   }
 }
 

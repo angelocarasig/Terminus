@@ -10,16 +10,12 @@
   background-size: cover;
 }
 
-@media (prefers-color-scheme: light) {
-  .landing-container {
-    background-color: #e6e0c9;
-  }
+.light-container {
+  background-color: #e6e0c9;
 }
 
-@media (prefers-color-scheme: dark) {
-  .landing-container {
-    background-color: #1a1a1a;
-  }
+.dark-container {
+  background-color: #1a1a1a;
 }
 
 .landing-hero {
@@ -32,12 +28,13 @@
 
 .landing-heading {
   font-size: 8rem;
+  line-height: 8rem;
   text-align: center;
-  line-height: 15rem;
 }
 
 .landing-subheading-container {
   width: min-content;
+  margin-left: 1rem;
 }
 
 .landing-subheading {

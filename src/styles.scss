@@ -1,6 +1,5 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 
-@import 'theme.scss';
 @import 'shared.scss';
 @import 'overrides.scss';
 
@@ -13,7 +12,7 @@
 
 ::placeholder {
   font-size: 18px;
-  color: var(--sub-headline-color);
+  color: var(--paragraph-color);
   filter: opacity(35%);
 }
 
@@ -37,7 +36,7 @@ body {
 }
 
 input {
-  color: var(--background-color);
+  color: var(--secondary-color);
   padding: 0.5rem;
   border: 3px solid var(--stroke-color);
   border-radius: 0.5rem;

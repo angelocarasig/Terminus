@@ -28,3 +28,8 @@ import {BookshelfModule} from './bookshelf/bookshelf.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+/** TODO:
+ * - Adjust color palettes
+ * - Signal redirect to other routes
+ */

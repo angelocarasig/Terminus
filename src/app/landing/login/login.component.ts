@@ -1,8 +1,8 @@
-import {Component, effect} from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {LoginHelper} from '../../shared/helpers/login/login.helper';
 import {UserService} from '../../shared/services/user/user.service';
-import {Router} from '@angular/router';
+import { ThemeService } from '../../shared/services/theme/theme.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +15,15 @@ export class LoginComponent {
   errorMessage = '';
   loading = false;
 
-  constructor(private loginHelper: LoginHelper, private userService: UserService, private router: Router) {  }
+  constructor(private loginHelper: LoginHelper, private userService: UserService, private themeService: ThemeService) {  }
+
+  getActiveTheme(): string {
+    return this.themeService.getActiveThemeName();
+  }
 
   async processUser(): Promise<void> {
     this.loading = true;
+    this.errorMessage = '';
 
     if (this.username.pristine || !this.username.valid) {
       this.errorMessage = 'Username must not be blank!';

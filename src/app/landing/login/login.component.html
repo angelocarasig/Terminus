@@ -5,7 +5,7 @@
   </alert>
 </div>
 
-<div class='login-container'>
+<div class='login-container' [ngClass]="getActiveTheme() === 'dark' ? 'dark-container' : 'light-container'">
   <app-theme-switch class='theme-switch'></app-theme-switch>
   <div class='header'>
     <h1 class='header'>Get Started</h1>

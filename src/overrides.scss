@@ -14,10 +14,15 @@
   border-color: var(--stroke-color);
 }
 .btn-primary:hover, .btn-primary:active {
+  color: var(--button-text-color);
   background-color: var(--secondary-color) !important;
-  border-color: var(--secondary-color) !important;
+  border-color: var(--background-lighter-color) !important;
 }
-
+.btn-primary:disabled {
+  color: var(--button-text-color);
+  background-color: var(--tertiary-color) !important;
+  border-color: var(--stroke-color) !important;
+}
 
 .btn-secondary {
   background-color: var(--button-secondary-color);
