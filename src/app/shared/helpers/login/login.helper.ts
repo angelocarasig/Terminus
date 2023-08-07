@@ -13,8 +13,6 @@ export class LoginHelper {
   }
 
   async verifyUser(username: string, authToken?: string): Promise<boolean> {
-    console.log(`Verifying for ${username} with authToken: ${authToken}`);
-
     const validUser = await firstValueFrom(this.loginService.getUser(username, authToken)).then(
       value => {
         console.log(value);
@@ -38,9 +36,7 @@ export class LoginHelper {
       }
     );
 
-    if (validUser) {
-      this.userService.setCurrentUser(new User(username));
-    }
+    validUser ? this.userService.setCurrentUser(new User(username)) : this.userService.removeCurrentUser();
 
     return validUser;
   }

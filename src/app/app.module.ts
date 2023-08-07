@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { LandingModule } from './landing/landing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import {BookshelfModule} from './bookshelf/bookshelf.module';
+import { BookshelfModule } from './bookshelf/bookshelf.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -20,16 +20,17 @@ import {BookshelfModule} from './bookshelf/bookshelf.module';
     // Modules
     SharedModule,
     LandingModule,
-    BookshelfModule,
+    BookshelfModule
   ],
   providers: [],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 /** TODO:
+ * - Validate auth token
  * - Adjust color palettes
  * - Signal redirect to other routes
  */

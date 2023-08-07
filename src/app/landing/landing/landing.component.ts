@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ThemeService } from '../../shared/services/theme/theme.service';
 
 @Component({
@@ -6,13 +7,13 @@ import { ThemeService } from '../../shared/services/theme/theme.service';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements  OnInit {
+export class LandingComponent implements OnInit {
   subheadingTexts: string[] = [
-    "A VNDB Uplift.",
-    "Umineko no Naku Koro Ni.",
-    "Ao no Kanata no Four Rhythm.",
-    "The House in Fata Morgana.",
-    "STEINS;GATE 0."
+    'A VNDB Uplift.',
+    'Umineko no Naku Koro Ni.',
+    'Ao no Kanata no Four Rhythm.',
+    'The House in Fata Morgana.',
+    'STEINS;GATE 0.'
   ];
 
   currentTextIndex: number = 0;
@@ -27,7 +28,7 @@ export class LandingComponent implements  OnInit {
       this.currentText = this.subheadingTexts[this.currentTextIndex];
     }, 4000);
   }
-  
+
   getActiveTheme(): string {
     return this.themeService.getActiveThemeName();
   }

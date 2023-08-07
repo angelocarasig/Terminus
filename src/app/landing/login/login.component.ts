@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import {LoginHelper} from '../../shared/helpers/login/login.helper';
-import {UserService} from '../../shared/services/user/user.service';
+import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
+
+import { UserService } from '../../shared/services/user/user.service';
 import { ThemeService } from '../../shared/services/theme/theme.service';
+import { LoginHelper } from '../../shared/helpers/login/login.helper';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,8 @@ export class LoginComponent {
   errorMessage = '';
   loading = false;
 
-  constructor(private loginHelper: LoginHelper, private userService: UserService, private themeService: ThemeService) {  }
+  constructor(private loginHelper: LoginHelper, private userService: UserService, private themeService: ThemeService, private router: Router) {
+  }
 
   getActiveTheme(): string {
     return this.themeService.getActiveThemeName();
@@ -31,19 +34,15 @@ export class LoginComponent {
       return;
     }
 
-    let validUser: boolean;
-
     await this.loginHelper.verifyUser(this.username.value!, this.authToken.value!).then(
-      response => {
-        validUser = response;
+      () => {
       },
-      error => {
-        this.errorMessage = error.message;
-      }
+      error => this.errorMessage = error.message
     );
 
     this.loading = false;
 
     console.log(`Active user set to '${this.userService.getCurrentUser()?.username}'`);
+    await this.router.navigate(['/bookshelf']);
   }
 }

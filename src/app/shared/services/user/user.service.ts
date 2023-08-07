@@ -1,6 +1,6 @@
-import {Injectable, signal, WritableSignal} from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
-import {User} from '../../models/user/user';
+import { User } from '../../models/user/user';
 
 @Injectable({
   providedIn: 'root'
