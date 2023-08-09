@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
+import {UserAuthToken} from '../../../../types';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class LoginService {
   }
 
   getUser(username: string, authToken?: string): Observable<any> {
-    const options = {
-      params: new HttpParams().set('q', username)
-    };
+    return this.http.get<any>(this.BASE_URL + '/user', {params:  new HttpParams().set('q', username)});
+  }
 
-    return this.http.get<any>(this.BASE_URL + '/user', options);
+  getAuthInfo(authToken: string): Observable<any> {
+    return this.http.get<any>(this.BASE_URL + 'authinfo', new HttpHeaders({Authorization: authToken}));
   }
 }

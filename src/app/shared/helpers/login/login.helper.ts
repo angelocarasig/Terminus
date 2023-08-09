@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 
 import {firstValueFrom} from 'rxjs';
-
-import {User} from '../../models/user/user';
 import {LoginService} from '../../services/login/login.service';
 import {UserService} from '../../services/user/user.service';
+import {User} from '../../models/user/user';
 
 @Injectable({providedIn: 'root'})
 export class LoginHelper {
@@ -12,32 +11,38 @@ export class LoginHelper {
   constructor(private loginService: LoginService, private userService: UserService) {
   }
 
-  async verifyUser(username: string, authToken?: string): Promise<boolean> {
-    const validUser = await firstValueFrom(this.loginService.getUser(username, authToken)).then(
-      value => {
-        console.log(value);
-        if (Object.keys(value).length !== 1) {
-          throw new Error('Length not equal to 1');
+  async createUser(username: string, authToken?: string): Promise<any> {
+    try {
+      const userDetails = authToken
+        ? await this.validateAuthToken(authToken)
+        : await this.validateUsername(username);
+
+      return {
+        username: userDetails.username,
+        authToken: {
+          token: authToken,
+          permissions: userDetails.authToken.permissions;
         }
+      };
+    }
+    catch (error) {
+      throw new Error(error.message);
+    }
+  }
 
-        if (value[`${username}`] == null) {
-          throw new Error('User doesn\'t exist');
-        }
+  private async validateAuthToken(authToken: string): Promise<User> {
+    const response = await firstValueFrom(this.loginService.getAuthInfo(authToken));
+    if (response && response.username === authToken) {
+      return response;
+    }
+    throw new Error(`Invalid username or token`);
+  }
 
-        if (value[`${username}`].username !== username) {
-          throw new Error('Username in VNDB does not match what was provided.');
-        }
-
-        return true;
-      },
-      reason => {
-        console.log(reason);
-        return false;
-      }
-    );
-
-    validUser ? this.userService.setCurrentUser(new User(username)) : this.userService.removeCurrentUser();
-
-    return validUser;
+  private async validateUsername(username: string): Promise<User> {
+    const response = await firstValueFrom(this.loginService.getUser(username));
+    if (response && response[username]) {
+      return response[username];
+    }
+    throw new Error(`User '${username}' not found`);
   }
 }
