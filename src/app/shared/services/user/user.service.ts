@@ -1,27 +1,34 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
-
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../models/user/user';
+import {LOCAL_STORAGE_KEYS} from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private readonly currentUser: WritableSignal<User | undefined>;
+  private currentUserSubject: BehaviorSubject<User | undefined>;
 
   constructor() {
-
-    this.currentUser = signal(undefined);
+    const storedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.currentUser);
+    this.currentUserSubject = new BehaviorSubject<User | undefined>(storedUser ? JSON.parse(storedUser) : undefined);
   }
 
   getCurrentUser(): User | undefined {
-    return this.currentUser.asReadonly()();
+    return this.currentUserSubject.getValue();
   }
 
   setCurrentUser(newUserDetails: User): void {
-    this.currentUser.set(newUserDetails);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(newUserDetails));
+    this.currentUserSubject.next(newUserDetails);
   }
 
   removeCurrentUser(): void {
-    this.currentUser.set(undefined);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.currentUser);
+    this.currentUserSubject.next(undefined);
+  }
+
+  get currentUser$(): Observable<User | undefined> {
+    return this.currentUserSubject.asObservable();
   }
 }
