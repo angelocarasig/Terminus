@@ -6,10 +6,12 @@ import { NgIconsModule } from '@ng-icons/core';
 import { featherSun, featherMoon } from '@ng-icons/feather-icons';
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
-    ThemeSwitchComponent
+    ThemeSwitchComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.com
     NgIconsModule.withIcons({ featherSun, featherMoon })
   ],
   exports: [
-    ThemeSwitchComponent
+    ThemeSwitchComponent,
+    LoadingComponent
   ],
   providers: []
 })
