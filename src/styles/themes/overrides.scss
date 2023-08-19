@@ -4,19 +4,24 @@
   - Overwrites theme colors from bootstrap
 -------------------------------------
  */
+// Placeholder text in things like select form
+::placeholder {
+  font-size: 18px;
+  filter: opacity(35%);
+}
+
 .btn {
   font-weight: 700;
 }
 
 .btn-primary {
   color: var(--button-text-color);
-  background-color: var(--button-color);
-  border-color: var(--stroke-color);
+  background-color: var(--button-background-color);
+  border-color: var(--button-border-color);
 }
 .btn-primary:hover, .btn-primary:active {
   color: var(--button-text-color);
-  background-color: var(--secondary-color) !important;
-  border-color: var(--background-lighter-color) !important;
+  background-color: var(--button-background-color--hover) !important;
 }
 .btn-primary:disabled {
   color: var(--button-text-color);
@@ -40,6 +45,10 @@
 .btn-warning:hover, .btn-warning:active {
   background-color: var(--button-warning-color) !important;
   border-color: var(--button-warning-color) !important;
+}
+
+input {
+  border-color: var(--form-input-border-color);
 }
 
 .alert {

@@ -1,0 +1,28 @@
+$dark-theme: (
+  // Card and Surfaces
+  background-color: #242629,
+  card-background-color: #16161a,
+  card-heading-color: #fffffe,
+  card-paragraph-color: #94a1b2,
+  headline-color: #fffffe,
+  sub-headline-color: #94a1b2,
+
+  // Buttons
+  button-icon-color: white,
+  button-text-color: #201f1f,
+  button-border-color: #242629,
+  button-background-color: #b8c1ec,
+  button-background-color--hover: #5472ff,
+
+  theme-switch-background-color: #232946,
+
+  // Forms
+  form-input-border-color: #242629,
+
+  // Utilities
+  stroke-color: #010101,
+  primary-color: #fffffe,
+  highlight-color: #7f5af0,
+  secondary-color: #72757e,
+  tertiary-color: #2cb67d,
+);

@@ -8,14 +8,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.light-container {
-  background-color: #e6e0c9;
-}
-
-.dark-container {
-  background-color: #1a1a1a;
+  background-color: var(--background-color);
 }
 
 .landing-hero {
@@ -44,9 +37,8 @@
   border-right: .15em solid var(--highlight-color);
   white-space: nowrap;
   overflow: hidden;
-  animation:
-    forward-backward 2s steps(25, end) infinite alternate,
-    blink-caret .65s step-end infinite;
+  animation: forward-backward 2s steps(25, end) infinite alternate,
+  blink-caret .65s step-end infinite;
 }
 
 @keyframes forward-backward {
@@ -59,6 +51,10 @@
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--highlight-color); }
+  from, to {
+    border-color: transparent
+  }
+  50% {
+    border-color: var(--highlight-color);
+  }
 }

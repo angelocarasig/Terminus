@@ -13,20 +13,12 @@
 
   padding: 4rem;
 
-  color: var(--paragraph-color);
+  color: var(--card-paragraph-color);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
   transition: width 0.5s ease-in-out;
-}
-
-.light-container {
-  background-image: url('/assets/login-wave--light.svg');
-}
-
-.dark-container {
-  background-image: url('/assets/login-wave--dark.svg');
 }
 
 @media screen and (max-width: 1366px) {
@@ -47,7 +39,7 @@
 }
 
 .header {
-  color: var(--stroke-color);
+  color: var(--headline-color);
 }
 
 .footer {

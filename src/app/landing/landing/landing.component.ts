@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ThemeService } from '../../shared/services/theme/theme.service';
-
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -19,17 +17,10 @@ export class LandingComponent implements OnInit {
   currentTextIndex: number = 0;
   currentText: string = this.subheadingTexts[0];
 
-  constructor(private themeService: ThemeService) {
-  }
-
   ngOnInit() {
     setInterval(() => {
       this.currentTextIndex = (this.currentTextIndex + 1) % this.subheadingTexts.length;
       this.currentText = this.subheadingTexts[this.currentTextIndex];
     }, 4000);
-  }
-
-  getActiveTheme(): string {
-    return this.themeService.getActiveThemeName();
   }
 }

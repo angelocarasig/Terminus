@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 
+import { Theme } from '../../../../types';
+
 @Component({
   selector: 'app-theme-switch',
   templateUrl: './theme-switch.component.html',
@@ -16,17 +18,12 @@ export class ThemeSwitchComponent implements  OnInit {
   }
 
   toggleTheme(): void {
-    this.themeService.toggleActiveTheme();
+    this.themeService.toggleTheme();
     this.updateThemeAndIcon();
   }
 
   private updateThemeAndIcon(): void {
-    if (this.themeService.getActiveThemeName() === 'dark') {
-      this.themeIcon = 'featherMoon';
-    }
-    else {
-      this.themeIcon = 'featherSun';
-    }
+    this.themeIcon = this.themeService.currentTheme === Theme.Dark ? 'featherMoon' : 'featherSun';
   }
 }
 

@@ -1,0 +1,24 @@
+@import 'themes/overrides';
+
+@import 'themes/light';
+@import 'themes/dark';
+
+@mixin light() {
+  @each $key, $value in $light-theme {
+    --#{$key}: #{$value};
+  }
+
+  .login-container {
+    background-image: url('/assets/login-wave--light.svg');
+  }
+}
+
+@mixin dark() {
+  @each $key, $value in $dark-theme {
+    --#{$key}: #{$value};
+  }
+
+  .login-container {
+    background-image: url('/assets/login-wave--dark.svg');
+  }
+}

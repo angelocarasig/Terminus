@@ -1,3 +1,8 @@
+.btn-theme {
+  color: var(--button-icon-color);
+  background-color: var(--theme-switch-background-color);
+}
+
 .btn-theme:hover, .btn-theme:active {
-  background-color: var(--button-color) !important;
+  background-color: var(--theme-switch-background-color) !important;
 }

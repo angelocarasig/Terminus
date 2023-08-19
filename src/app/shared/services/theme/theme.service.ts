@@ -1,43 +1,44 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
-import { DarkTheme, LightTheme, Theme } from './theme';
+import { Theme } from '../../../../types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private activeThemeSubject = new BehaviorSubject<Theme>(DarkTheme);
+  private activeTheme: Theme;
 
-  constructor() {
-    this.setActiveTheme(this.activeThemeSubject.getValue());
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    this.activeTheme = this.initThemeFromLocalStorage() ?? this.initThemeFromBrowser();
+    this.document.body.classList.add(this.activeTheme);
+    localStorage.setItem('theme', this.activeTheme);
   }
 
-  getAvailableThemes(): Theme[] {
-    return [LightTheme, DarkTheme];
+  get currentTheme(): Theme {
+    return this.activeTheme;
   }
 
-  getActiveTheme(): Theme {
-    return this.activeThemeSubject.getValue();
+  toggleTheme(): void {
+    this.activeTheme = this.activeTheme === Theme.Light ? Theme.Dark : Theme.Light;
+
+    /* If support for multiple themes in future */
+    // for (const theme of Object.values(Theme)) {
+    //   this.document.body.classList.toggle(theme);
+    // }
+
+    this.document.body.classList.remove(Theme.Light, Theme.Dark);
+    this.document.body.classList.add(this.activeTheme);
+
+    localStorage.setItem('theme', this.activeTheme);
   }
 
-  getActiveThemeName(): string {
-    return this.getActiveTheme().name;
+  private initThemeFromBrowser(): Theme {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.Dark : Theme.Light;
   }
 
-  toggleActiveTheme(): void {
-    const newTheme = this.activeThemeSubject.getValue().name === 'dark' ? LightTheme : DarkTheme;
-    this.setActiveTheme(newTheme);
-  }
-
-  setActiveTheme(theme: Theme): void {
-    this.activeThemeSubject.next(theme);
-    this.applyThemeColors(theme);
-  }
-
-  private applyThemeColors(theme: Theme): void {
-    Object.keys(theme.colors).forEach((property) => {
-      document.documentElement.style.setProperty(property, theme.colors[property]);
-    });
+  private initThemeFromLocalStorage(): Theme | null {
+    const storedTheme = localStorage.getItem('theme') as Theme;
+    return storedTheme && Object.values(Theme).includes(storedTheme) ? storedTheme : null;
   }
 }
