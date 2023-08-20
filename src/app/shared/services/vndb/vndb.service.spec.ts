@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VNDBService } from './v-n-d-b.service';
+import { VndbService } from './vndb.service';
 
 describe('VndbService', () => {
-  let service: VNDBService;
+  let service: VndbService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VNDBService);
+    service = TestBed.inject(VndbService);
   });
 
   it('should be created', () => {

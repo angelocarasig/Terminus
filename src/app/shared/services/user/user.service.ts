@@ -19,8 +19,13 @@ export class UserService {
   }
 
   setCurrentUser(newUserDetails: User): void {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(newUserDetails));
     this.currentUserSubject.next(newUserDetails);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(this.currentUserSubject.value));
+  }
+
+  updateCurrentUser(properties: any): void {
+    this.currentUserSubject.next({ ...this.currentUserSubject.value, ...properties });
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(this.currentUserSubject.value));
   }
 
   removeCurrentUser(): void {
