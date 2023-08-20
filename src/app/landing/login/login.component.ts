@@ -49,6 +49,8 @@ export class LoginComponent {
     this.loading = false;
     if (this.errorMessage !== '') return;
 
+    console.log(this.userService.getCurrentUser());
+
     await this.router.navigate(['/bookshelf']);
   }
 }

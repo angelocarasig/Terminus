@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../../models/user/user';
 import {LOCAL_STORAGE_KEYS} from '../../../../constants';
 
@@ -26,9 +26,5 @@ export class UserService {
   removeCurrentUser(): void {
     localStorage.removeItem(LOCAL_STORAGE_KEYS.currentUser);
     this.currentUserSubject.next(undefined);
-  }
-
-  get currentUser$(): Observable<User | undefined> {
-    return this.currentUserSubject.asObservable();
   }
 }

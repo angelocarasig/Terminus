@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { Theme } from '../../../../types';
+import {LOCAL_STORAGE_KEYS} from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ThemeService {
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.activeTheme = this.initThemeFromLocalStorage() ?? this.initThemeFromBrowser();
     this.document.body.classList.add(this.activeTheme);
-    localStorage.setItem('theme', this.activeTheme);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.theme, this.activeTheme);
   }
 
   get currentTheme(): Theme {
@@ -30,7 +31,7 @@ export class ThemeService {
     this.document.body.classList.remove(Theme.Light, Theme.Dark);
     this.document.body.classList.add(this.activeTheme);
 
-    localStorage.setItem('theme', this.activeTheme);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.theme, this.activeTheme);
   }
 
   private initThemeFromBrowser(): Theme {
@@ -38,7 +39,7 @@ export class ThemeService {
   }
 
   private initThemeFromLocalStorage(): Theme | null {
-    const storedTheme = localStorage.getItem('theme') as Theme;
+    const storedTheme = localStorage.getItem(LOCAL_STORAGE_KEYS.theme) as Theme;
     return storedTheme && Object.values(Theme).includes(storedTheme) ? storedTheme : null;
   }
 }

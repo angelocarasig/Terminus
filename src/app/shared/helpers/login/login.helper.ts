@@ -18,10 +18,11 @@ export class LoginHelper {
 
     return {
       username: userDetails.username,
+      uid: userDetails.id,
       authToken: {
         token: authToken,
         permissions: userDetails?.authToken?.permissions
-      }
+      },
     };
   }
 
@@ -36,7 +37,6 @@ export class LoginHelper {
   private async validateAuthToken(username: string, authToken: string): Promise<any> {
     return await firstValueFrom(this.loginService.getAuthInfo(authToken))
       .then(
-
         // Safe to assume that a response will contain at least a username
         (response): HttpResponse<any> => {
           if (response.username !== username) throw new Error(`Username and the respective auth token does not match!`);
