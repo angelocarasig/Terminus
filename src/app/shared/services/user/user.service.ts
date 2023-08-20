@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../models/user/user';
-import {LOCAL_STORAGE_KEYS} from '../../../../constants';
+import { LOCAL_STORAGE_KEYS } from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private currentUserSubject: BehaviorSubject<User | undefined>;
+  private readonly currentUserSubject: BehaviorSubject<User | undefined>;
 
   constructor() {
     const storedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.currentUser);
@@ -22,20 +22,25 @@ export class UserService {
     return this.currentUserSubject;
   }
 
-  setCurrentUser(newUserDetails: User): void {
-    newUserDetails.updatedAt = new Date();
-    this.currentUserSubject.next(newUserDetails);
-    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(this.currentUserSubject.value));
+  setCurrentUser(newUser: User): void {
+    newUser.updatedAt = new Date();
+    this.currentUserSubject.next(newUser);
+    this.updateLocalStorage(newUser);
   }
 
   updateCurrentUser(properties: any): void {
-    properties.updatedAt = new Date();
-    this.currentUserSubject.next({ ...this.currentUserSubject.value, ...properties });
-    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(this.currentUserSubject.value));
+    const updatedUser = { ...this.currentUserSubject.value, ...properties, updatedAt: new Date() };
+    this.currentUserSubject.next(updatedUser);
+    this.updateLocalStorage(updatedUser);
   }
 
   removeCurrentUser(): void {
     localStorage.removeItem(LOCAL_STORAGE_KEYS.currentUser);
     this.currentUserSubject.next(undefined);
+    this.updateLocalStorage(undefined);
+  }
+
+  private updateLocalStorage(user: User | undefined): void {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(user));
   }
 }

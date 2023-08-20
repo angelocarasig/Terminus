@@ -1,6 +1,6 @@
 export const LOCAL_STORAGE_KEYS = {
   currentUser: 'currentUser',
-  theme: 'Theme',
+  theme: 'theme',
 }
 
 export const VN_PROPS: Array<string> = [
