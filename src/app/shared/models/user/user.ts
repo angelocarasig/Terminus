@@ -6,6 +6,7 @@ export class User {
   uid: string;
   authToken: UserAuthToken;
 
+  updatedAt?: Date;
   ulist?: Array<UserNovel>;
 
   constructor(username: string, id: string, authToken: Partial<UserAuthToken> = {}) {
@@ -16,5 +17,6 @@ export class User {
       permissions: authToken.permissions || []
     };
     this.ulist = new Array<UserNovel>();
+    this.updatedAt = new Date();
   }
 }

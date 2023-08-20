@@ -1,1 +1,10 @@
-<app-loading></app-loading>
+<div class='bookshelf-container' *ngIf='currentUser | async as user'>
+  <app-loading *ngIf='user.ulist === undefined; else bookshelf'></app-loading>
+
+  <ng-template #bookshelf>
+    <app-theme-switch class='theme-switch'></app-theme-switch>
+    <p>Bookshelf!</p>
+  </ng-template>
+</div>
+
+

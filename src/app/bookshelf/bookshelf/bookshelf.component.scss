@@ -1,0 +1,12 @@
+.bookshelf-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  color: var(--primary-color);
+}
+
+.theme-switch {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

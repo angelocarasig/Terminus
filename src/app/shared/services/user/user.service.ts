@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../models/user/user';
 import {LOCAL_STORAGE_KEYS} from '../../../../constants';
 
@@ -18,12 +18,18 @@ export class UserService {
     return this.currentUserSubject.getValue();
   }
 
+  getCurrentUserAsObservable(): Observable<User | undefined> {
+    return this.currentUserSubject;
+  }
+
   setCurrentUser(newUserDetails: User): void {
+    newUserDetails.updatedAt = new Date();
     this.currentUserSubject.next(newUserDetails);
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(this.currentUserSubject.value));
   }
 
   updateCurrentUser(properties: any): void {
+    properties.updatedAt = new Date();
     this.currentUserSubject.next({ ...this.currentUserSubject.value, ...properties });
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(this.currentUserSubject.value));
   }
