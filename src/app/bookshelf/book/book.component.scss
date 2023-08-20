@@ -1,0 +1,28 @@
+.card {
+  color: var(--card-heading-color);
+  background-color: var(--card-background-color);
+  border-top-left-radius: 0;
+  border-top-right-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 10px 36px 0, rgba(0, 0, 0, 0.06) 0 0 0 1px;
+  max-width: 13.5rem;
+
+  .card-title {
+    font-size: 1rem;
+    white-space: nowrap; /* Prevents the text from wrapping to a new line */
+    overflow: hidden; /* Hides the text that overflows the container */
+    text-overflow: ellipsis;
+  }
+
+  .book-image {
+    border-top-left-radius: 0;
+    border-top-right-radius: 1rem;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    aspect-ratio: 12 / 16;
+  }
+}
+
+
+
