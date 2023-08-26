@@ -1,14 +1,19 @@
-<div class="card" style="width: 18rem;" (click)='printBook()'>
-  <div class='book-status'>
-  </div>
+<div class='book-container'>
+  <div class='book-background'></div>
 
-<!--  <div class='book-labels' *ngFor='let label of book.labels'>-->
-<!--    {{label.label}}-->
-<!--  </div>-->
+  <div class='book'>
+    <div class='book-image'>
+      <img [src]='book.vn.image.url' class='book-image card-img-top' alt='...'>
+    </div>
 
-  <img [src]='book.vn.image.url' class="book-image card-img-top" alt="...">
-
-  <div class="card-body">
-    <h5 class="card-title">{{book.vn.title}}</h5>
+    <div class='book-info'>
+      <div class='book-title'>
+        <span class='book-heading'> {{book.vn.title}} </span>
+        <span class='book-subheading'> {{book.vn.developers[0].name}} </span>
+      </div>
+      <div class='book-more'>
+        <app-icon-button [featherIconName]='"featherMoreVertical"'></app-icon-button>
+      </div>
+    </div>
   </div>
 </div>

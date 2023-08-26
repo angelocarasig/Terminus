@@ -7,11 +7,13 @@ import { featherSun, featherMoon } from '@ng-icons/feather-icons';
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { IconButtonComponent } from './components/icon-button/icon-button/icon-button.component';
 
 @NgModule({
   declarations: [
     ThemeSwitchComponent,
-    LoadingComponent
+    LoadingComponent,
+    IconButtonComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { LoadingComponent } from './components/loading/loading.component';
   ],
   exports: [
     ThemeSwitchComponent,
-    LoadingComponent
+    LoadingComponent,
+    IconButtonComponent
   ],
   providers: []
 })

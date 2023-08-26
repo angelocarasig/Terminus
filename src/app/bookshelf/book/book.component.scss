@@ -1,28 +1,80 @@
-.card {
-  color: var(--card-heading-color);
-  background-color: var(--card-background-color);
-  border-top-left-radius: 0;
-  border-top-right-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 10px 36px 0, rgba(0, 0, 0, 0.06) 0 0 0 1px;
-  max-width: 13.5rem;
+.book-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
-  .card-title {
-    font-size: 1rem;
-    white-space: nowrap; /* Prevents the text from wrapping to a new line */
-    overflow: hidden; /* Hides the text that overflows the container */
-    text-overflow: ellipsis;
+  .book-background {
+    width: 16rem;
+    aspect-ratio: 12/18;
+    border-radius: 1rem;
+    background-color: var(--card-background-color);
+    clip-path: inset(45px 25px 5px 10px round 1rem);
+    transform: translateX(25px);
+    transition: 0.5s;
   }
 
-  .book-image {
-    border-top-left-radius: 0;
-    border-top-right-radius: 1rem;
-    background-image: inherit;
-    background-size: cover;
-    background-position: center;
-    object-fit: cover;
-    aspect-ratio: 12 / 16;
+  &:hover .book-background {
+    height: 24rem;
+    width: 16rem;
+    aspect-ratio: unset;
+    clip-path: inset(25px 0 0 10px round 1rem);
+    transform: translateX(-1px);
+    transition: 0.5s;
+
+  }
+
+  .book-background {
+    position: absolute;
+  }
+
+  .book {
+    z-index: 1;
+
+    .book-image {
+      background-image: inherit;
+      background-size: cover;
+      background-position: center;
+      object-fit: cover;
+      aspect-ratio: 12/16;
+      width: 13rem;
+      border-radius: 1rem;
+    }
+
+    .book-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      transform: translate(20px, 15px);
+      transition: 0.5s;
+    }
+
+    .book-title {
+      display: flex;
+      flex-direction: column;
+      max-width: 10rem;
+
+      .book-heading, .book-subheading {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .book-heading {
+        font-size: 1rem;
+      }
+
+      .book-subheading {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  :hover .book-info {
+    transform: translate(10px, 10px);
+    transform-origin: bottom;
+    transition: 0.5s;
   }
 }
-
-
-

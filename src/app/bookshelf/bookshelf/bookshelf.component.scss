@@ -1,7 +1,7 @@
 .bookshelf-container {
-  display: flex;
   width: 100vw;
   height: 100vh;
+  overflow: scroll;
   color: var(--primary-color);
 }
 
@@ -11,12 +11,10 @@
   right: 0;
 }
 
-.card-container {
+.book-component-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin: 10px;
-  overflow-y: scroll;
+  justify-content: center;
+  padding: 2rem;
+  gap: 3rem;
 }

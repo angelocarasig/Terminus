@@ -15,7 +15,6 @@ export class BookshelfComponent implements  OnInit {
   currentUserNovelList: Array<UserNovel> = new Array<UserNovel>();
 
   constructor(private userService: UserService, themeService: ThemeService) {
-
   }
 
   ngOnInit(): void {
@@ -23,9 +22,5 @@ export class BookshelfComponent implements  OnInit {
     this.currentUser.subscribe(currentUser => {
       this.currentUserNovelList = currentUser?.ulist!;
     });
-
-    this.currentUserNovelList.forEach(currentNovel => {
-      console.log(JSON.stringify(currentNovel.labels));
-    })
   }
 }

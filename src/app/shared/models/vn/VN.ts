@@ -2,6 +2,7 @@ import {Tag} from '../tag/tag';
 import {Image} from '../image/image';
 import {Title} from '../title/title';
 import {Screenshot} from '../screenshot/screenshot';
+import { Developer } from '../developer/developer';
 
 export interface VN {
   image: Image;
@@ -9,6 +10,7 @@ export interface VN {
   description: string;
   released: string;
   alttitle: string | null;
+  developers: Developer[];
   devstatus: number;
   length_votes: number;
   votecount: number;

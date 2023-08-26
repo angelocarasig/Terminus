@@ -28,6 +28,7 @@ export const VN_PROPS: Array<string> = [
   'vn.length_minutes',
   'vn.length_votes',
   'vn.description',
+  'vn.developers.name',
   'vn.rating',
   'vn.popularity',
   'vn.votecount',

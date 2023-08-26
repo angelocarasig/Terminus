@@ -3,7 +3,7 @@
 
   <ng-template #bookshelf>
     <app-theme-switch class='theme-switch'></app-theme-switch>
-    <div class='card-container'>
+    <div class='book-component-container'>
       <app-book *ngFor='let book of currentUserNovelList' [book]='book'></app-book>
     </div>
   </ng-template>
