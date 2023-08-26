@@ -11,6 +11,7 @@
   pointer-events: all;
 
   &:hover {
-    background-color: red;
+    background-color: var(--icon-button-hover);
+    transition: 0.25s;
   }
 }
