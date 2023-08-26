@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgIconsModule } from '@ng-icons/core';
-import { featherMoreVertical } from '@ng-icons/feather-icons';
+import { featherMoreVertical, featherEdit2, featherLink,  } from '@ng-icons/feather-icons';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -17,7 +17,7 @@ import { BookComponent } from './book/book.component';
   imports: [
     CommonModule,
     SharedModule,
-    NgIconsModule.withIcons({ featherMoreVertical })
+    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink })
   ],
   exports: [
     BookshelfComponent
