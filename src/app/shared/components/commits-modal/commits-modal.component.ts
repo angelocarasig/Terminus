@@ -12,7 +12,6 @@ import { formattedDate } from '../../helpers/utilities.helper';
 export class CommitsModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();
 
-  loading = true;
   commits$: Observable<Array<GitHubCommit>>;
 
   constructor(public githubService: GithubService, private renderer: Renderer2) {
@@ -20,7 +19,6 @@ export class CommitsModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.commits$ = this.githubService.getCommits();
-    this.loading = false;
   }
 
   handleClickOutside(): void {
