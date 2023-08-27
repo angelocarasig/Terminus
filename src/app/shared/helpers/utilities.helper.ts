@@ -1,1 +1,1 @@
-
+export const formattedDate = (inputDate: Date | string | number) => new Date(inputDate).toLocaleString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'}).replace(',', '');

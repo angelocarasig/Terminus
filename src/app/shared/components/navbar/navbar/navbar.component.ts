@@ -6,20 +6,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements  OnInit {
-  showModal: boolean;
+  showSearchModal: boolean;
+  showChangelogModal: boolean;
 
   constructor() {}
 
   ngOnInit() {
-    this.showModal = false;
+    this.showSearchModal = false;
+    this.showChangelogModal = false;
   }
 
   displaySearchModal(event: Event): void {
-    this.showModal = true;
+    this.showSearchModal = true;
     event.stopPropagation();
   }
 
   closeSearchModal(): void {
-    this.showModal = false;
+    this.showSearchModal = false;
+  }
+
+  displayChangelogModal(event: Event): void {
+    this.showChangelogModal = true;
+    event.stopPropagation();
+  }
+
+  closeChangelogModal(): void {
+    this.showChangelogModal = false;
   }
 }

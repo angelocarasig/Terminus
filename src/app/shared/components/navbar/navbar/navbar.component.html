@@ -1,4 +1,6 @@
-<app-search-modal *ngIf='showModal' class='fade-in fade-out' (outsideClicked)='closeSearchModal()'></app-search-modal>
+<app-search-modal *ngIf='showSearchModal' class='fade-in fade-out' (outsideClicked)='closeSearchModal()'></app-search-modal>
+<app-commits-modal *ngIf='showChangelogModal' class='fade-in fade-out' (outsideClicked)='closeChangelogModal()'></app-commits-modal>
+
 
 <div class='navbar'>
   <div class='home'>
@@ -15,6 +17,7 @@
 
   <div class='settings'>
     <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
+    <app-icon-button featherIconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
     <app-icon-button featherIconName='featherSettings'></app-icon-button>
   </div>
 </div>
