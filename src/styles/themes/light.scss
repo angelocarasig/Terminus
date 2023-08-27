@@ -1,28 +1,26 @@
+$card-background: #b7c1c438;
+$main-background: #16161a;
+$main-color: #EFF7F9;
+
+$fairy-tale: #FECBD9;
+$fairy-tale-2: #FBC5D3;
+$cyclamen: #F47CAA;
+$rose-ebony: #614A50;
+$alice-blue: #EFF7F9;
+$tiffany-blue: #9BEBE2;
+$verdigris: #73B1AC;
+$myrtle-green: #3C6861;
+$dim-gray: #616F70;
+$outer-space: #324041;
+$pitch-black: #0A0A0A;
+
+
 $light-theme: (
-  // Card and Surfaces
-  background-color: #EEF1E6,
-  card-background-color: #E5A871,
-  card-heading-color: #6A5460,
-  card-paragraph-color: #211528,
-  headline-color: #BF638C,
-  sub-headline-color: #211528,
+  background-color: $main-color,
+  heading-color: $pitch-black,
+  carett-color: $pitch-black,
 
-  // Buttons
-  button-icon-color: black,
-  button-text-color: #201f1f,
-  button-border-color: #EEF1E6,
-  button-background-color: #f9bc60,
-  button-background-color--hover: #a7ffc0,
+  book-background-color: $card-background,
 
-  theme-switch-background-color: #f9bc60,
-
-  // Forms
-  form-input-border-color: #EEF1E6,
-
-  // Utilities
-  stroke-color: #BF638C,
-  primary-color: #211528,
-  highlight-color: #7f5af0,
-  secondary-color: #260a35,
-  tertiary-color: #71e5af,
-)
+  icon-button-hover: #595959C9,
+);

@@ -1,0 +1,20 @@
+<app-search-modal *ngIf='showModal' class='fade-in fade-out' (outsideClicked)='closeSearchModal()'></app-search-modal>
+
+<div class='navbar'>
+  <div class='home'>
+    <div class='icon-container'>
+      <div class='icon'></div>
+    </div>
+  </div>
+
+  <div class='search' (click)='displaySearchModal($event)'>
+    <div class='search-bar'>
+      <ng-icon class='search-icon' name='featherSearch'></ng-icon>
+    </div>
+  </div>
+
+  <div class='settings'>
+    <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
+    <app-icon-button featherIconName='featherSettings'></app-icon-button>
+  </div>
+</div>

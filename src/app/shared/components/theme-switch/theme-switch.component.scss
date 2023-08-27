@@ -1,8 +1,29 @@
-.btn-theme {
-  color: var(--button-icon-color);
-  background-color: var(--theme-switch-background-color);
+.theme-switch {
+  background-color: transparent;
+  border: 0;
+
+  &:hover, .theme-switch:active {
+    .theme-icon svg {
+      fill: var(--theme-switch-color--enabled);
+      stroke: var(--theme-switch-color--enabled);
+    }
+  }
 }
 
-.btn-theme:hover, .btn-theme:active {
-  background-color: var(--theme-switch-background-color) !important;
+.theme-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  color: var(--theme-switch-color);
+
+  svg {
+    transition: 0.5s;
+    width: 100%;
+    fill: transparent;
+  }
+
+  &.dark svg {
+    fill: var(--theme-switch-color--enabled);
+    stroke: var(--theme-switch-color--enabled);
+  }
 }

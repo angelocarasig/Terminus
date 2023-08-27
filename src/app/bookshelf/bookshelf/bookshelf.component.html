@@ -2,7 +2,7 @@
   <app-loading *ngIf='user.ulist === undefined || user.ulist === null; else bookshelf'></app-loading>
 
   <ng-template #bookshelf>
-    <app-theme-switch class='theme-switch'></app-theme-switch>
+    <app-navbar></app-navbar>
     <div class='book-component-container'>
       <app-book *ngFor='let book of currentUserNovelList' [book]='book'></app-book>
     </div>

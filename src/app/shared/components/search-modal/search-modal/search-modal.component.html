@@ -1,0 +1,14 @@
+<div class='modal'>
+  <div class='modal-box' (clickOutside)="handleClickOutside()">
+    <div class='input-field'>
+      <ng-icon class='search-icon' name='featherSearch'></ng-icon>
+      <input class='search-field' placeholder='Search'>
+    </div>
+    <div class='result-field'>
+      <div class='result-item' *ngFor='let resultItem of searchResultPlaceholder'>
+        <span class='heading'>{{resultItem.heading}}</span>
+        <span class='subheading'>{{resultItem.subHeading}}</span>
+      </div>
+    </div>
+  </div>
+</div>

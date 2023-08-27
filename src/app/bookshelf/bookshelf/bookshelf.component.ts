@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../../shared/services/theme/theme.service';
 import { UserService } from '../../shared/services/user/user.service';
 import { User } from '../../shared/models/user/user';
 import { Observable } from 'rxjs';
@@ -14,8 +13,7 @@ export class BookshelfComponent implements  OnInit {
   currentUser: Observable<User | undefined>;
   currentUserNovelList: Array<UserNovel> = new Array<UserNovel>();
 
-  constructor(private userService: UserService, themeService: ThemeService) {
-  }
+  constructor(private userService: UserService) {  }
 
   ngOnInit(): void {
     this.currentUser = this.userService.getCurrentUserAsObservable();

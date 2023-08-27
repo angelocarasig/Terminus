@@ -1,10 +1,16 @@
+@import "primeng/resources/primeng.css";
+
 @import 'common';
 @import 'theme';
 
-body.light {
-  @include light();
-}
+body {
+  @include common();
 
-body.dark {
-  @include dark();
+  &.light {
+    @include light();
+  }
+
+  &.dark {
+    @include dark();
+  }
 }

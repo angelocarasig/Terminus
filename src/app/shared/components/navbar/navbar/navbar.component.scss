@@ -1,0 +1,69 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #EFF7F9;
+  position: relative;
+
+  width: 100vw;
+  height: 3rem;
+
+  background-color: #242629;
+
+  .home, .search, .settings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 0.25rem;
+  }
+
+  .home {
+    .icon-container {
+      transition: 0.25s;
+
+      &:hover {
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+      }
+
+      .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        mask-image: url('/assets/icon.png');
+        mask-size: cover;
+        background-color: white;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .search {
+    width: 15rem;
+    cursor: text;
+
+    &:hover .search-bar {
+      box-shadow: inset 0 0 4px rgb(255 255 255 / 33%);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      max-width: 400px;
+      background-color: #16161a;
+      border-radius: 0.5rem;
+
+      .search-icon {
+        padding-left: 0.75rem;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.height-adjust {
+  margin-top: 3px;
+}
+
