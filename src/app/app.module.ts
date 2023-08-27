@@ -29,11 +29,5 @@ import { AppComponent } from './app.component';
   exports: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
 
-/** TODO:
- * - Validate auth token
- * - Adjust color palettes
- * - Signal redirect to other routes
- */
+export class AppModule {}
