@@ -3,7 +3,7 @@
 
 
 <div class='navbar'>
-  <div class='home'>
+  <div class='home' (click)='goToHome()'>
     <div class='icon-container'>
       <div class='icon'></div>
     </div>
@@ -17,6 +17,7 @@
 
   <div class='settings'>
     <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
+    <app-icon-button featherIconName='featherGithub' (click)='goToGithub()'></app-icon-button>
     <app-icon-button featherIconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
     <app-icon-button featherIconName='featherSettings'></app-icon-button>
   </div>

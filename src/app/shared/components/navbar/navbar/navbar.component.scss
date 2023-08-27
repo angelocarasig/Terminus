@@ -1,13 +1,11 @@
 .navbar {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   color: #EFF7F9;
-  position: relative;
-
-  width: 100vw;
+  position: sticky;
+  top: 0;
   height: 3rem;
+  z-index: 2;
 
   background-color: #242629;
 

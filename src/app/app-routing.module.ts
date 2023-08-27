@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UserGuard } from './shared/guards/user/userGuard';
+import { UserGuard } from './shared/guards/user/user.guard';
 
 import { LandingComponent } from './landing/landing/landing.component';
 import { BookshelfComponent } from './bookshelf/bookshelf/bookshelf.component';

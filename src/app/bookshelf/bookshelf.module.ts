@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { BookshelfComponent } from './bookshelf/bookshelf.component';
 import { BookComponent } from './book/book.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BookComponent } from './book/book.component';
   imports: [
     CommonModule,
     SharedModule,
-    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink })
+    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink }),
+    ProgressSpinnerModule
   ],
   exports: [
     BookshelfComponent

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { REPOSITORY } from '../../../../../constants';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +11,7 @@ export class NavbarComponent implements  OnInit {
   showSearchModal: boolean;
   showChangelogModal: boolean;
 
-  constructor() {}
+  constructor(private userService: UserService, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.showSearchModal = false;
@@ -32,5 +34,19 @@ export class NavbarComponent implements  OnInit {
 
   closeChangelogModal(): void {
     this.showChangelogModal = false;
+  }
+
+  goToHome(): void {
+    this.userService.removeCurrentUser();
+
+    // Guard handles the rest
+  }
+
+  goToGithub(): void {
+    const url = REPOSITORY.URL;
+    const link = this.renderer.createElement('a');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.setAttribute(link, 'target', '_blank');
+    link.click();
   }
 }

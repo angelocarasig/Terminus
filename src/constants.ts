@@ -3,6 +3,11 @@ export const LOCAL_STORAGE_KEYS = {
   theme: 'theme',
 }
 
+export class REPOSITORY {
+  public static readonly URL = 'https://github.com/angelocarasig/Terminus';
+  public static readonly COMMITS = 'https://api.github.com/repos/angelocarasig/Terminus/commits';
+}
+
 export const VN_PROPS: Array<string> = [
   'vn.id',
   'vn.title',

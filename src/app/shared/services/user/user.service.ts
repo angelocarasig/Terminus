@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
+
+import { environment } from '../../../../environments/environment.prod';
+
 import { User } from '../../models/user/user';
 import { LOCAL_STORAGE_KEYS } from '../../../../constants';
 
@@ -7,40 +12,104 @@ import { LOCAL_STORAGE_KEYS } from '../../../../constants';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly currentUserSubject: BehaviorSubject<User | undefined>;
+  private currentUserSubject: BehaviorSubject<User | null>;
+  currentUser$: Observable<User | null>;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const storedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.currentUser);
-    this.currentUserSubject = new BehaviorSubject<User | undefined>(storedUser ? JSON.parse(storedUser) : undefined);
+    this.currentUserSubject = new BehaviorSubject<User | null>(storedUser ? JSON.parse(storedUser) : null);
+    this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
-  getCurrentUser(): User | undefined {
-    return this.currentUserSubject.getValue();
+  /**
+   * Creates a user based on the given parameters.
+   *
+   * @param username The username of the user to be created.
+   * @param authToken The optional authentication token.
+   * @returns An observable emitting the created User object or null in case of error.
+   */
+  createUser(username: string, authToken?: string): Observable<User | null> {
+    return authToken ? this.createWithAuthToken(username, authToken) : this.createWithUsername(username);
   }
 
-  getCurrentUserAsObservable(): Observable<User | undefined> {
-    return this.currentUserSubject;
+  /**
+   * Gets the current user subject's value.
+   *
+   * @Returns either type User or type null
+   */
+  getUser(): User | null {
+    return this.currentUserSubject.value;
   }
 
-  setCurrentUser(newUser: User): void {
-    newUser.updatedAt = new Date();
-    this.currentUserSubject.next(newUser);
-    this.updateLocalStorage(newUser);
+  /**
+   * Updates the current user with the provided parameters.
+   *
+   * @param params The parameters to update the user with.
+   */
+  updateUser(params: any): void {
+    if (!this.currentUser$) {
+      console.error('User is currently unset.');
+      return;
+    }
+    this.updateUserWithParams(this.currentUserSubject.value!, params);
   }
 
-  updateCurrentUser(properties: any): void {
-    const updatedUser = { ...this.currentUserSubject.value, ...properties, updatedAt: new Date() };
+  /**
+   * Removes the current user.
+   */
+  removeCurrentUser(): void {
+    this.currentUserSubject.next(null);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.currentUser);
+  }
+
+  private createWithUsername(username: string): Observable<User | null> {
+    return this.http.get<any>(`${environment.apiUrl}${environment.endpoints.user}`, { params: new HttpParams().set('q', username) }).pipe(
+      switchMap((data: any) => {
+        const newUser = this.createUserFromData(data[username].username, data[username].id);
+        this.updateUserWithParams(newUser);
+        return of(newUser);
+      }),
+      catchError((error) => {
+        console.error('Error creating user:', error);
+        return of(null);
+      })
+    );
+  }
+
+  private createWithAuthToken(username: string, authToken: string): Observable<User | null> {
+    const headers = new HttpHeaders({ Authorization: `token ${authToken}` });
+    return this.http.get<any>(`${environment.apiUrl}${environment.endpoints.authinfo}`, { headers }).pipe(
+      switchMap((data: any) => {
+        if (data.username !== username) {
+          throw new Error('Username does not match the auth token provider');
+        }
+        const newUser = this.createUserFromData(data.username, data.id, data.permissions);
+        this.updateUserWithParams(newUser);
+        return of(newUser);
+      }),
+      catchError((error) => {
+        console.error('Error creating user with auth token:', error);
+        return of(null);
+      })
+    );
+  }
+
+  private createUserFromData(username: string, id: string, permissions?: Array<string>): User {
+    return {
+      username: username,
+      uid: id,
+      permissions: permissions ?? new Array<string>()
+    };
+  }
+
+  private updateUserWithParams(updatedUser: User, params?: any): void {
+    updatedUser = { ...updatedUser, ...(params || {}), updatedAt: new Date() };
+
     this.currentUserSubject.next(updatedUser);
     this.updateLocalStorage(updatedUser);
   }
 
-  removeCurrentUser(): void {
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.currentUser);
-    this.currentUserSubject.next(undefined);
-    this.updateLocalStorage(undefined);
-  }
-
-  private updateLocalStorage(user: User | undefined): void {
+  private updateLocalStorage(user: User): void {
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(user));
   }
 }

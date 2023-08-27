@@ -1,10 +1,13 @@
-<div class='bookshelf-container' *ngIf='currentUser | async as user'>
-  <app-loading *ngIf='user.ulist === undefined || user.ulist === null; else bookshelf'></app-loading>
+<ng-template #loadingIndicator>
+  <div class='spinner'>
+    <p-progressSpinner></p-progressSpinner>
+    <span>Loading Collection...</span>
+  </div>
+</ng-template>
 
-  <ng-template #bookshelf>
-    <app-navbar></app-navbar>
-    <div class='book-component-container'>
-      <app-book *ngFor='let book of currentUserNovelList' [book]='book'></app-book>
-    </div>
-  </ng-template>
+<div class='bookshelf-container'>
+  <app-navbar></app-navbar>
+  <div class='book-component-container' *ngIf='(userNovelList$ | async) as userNovelList; else loadingIndicator'>
+    <app-book *ngFor='let book of userNovelList' [book]='book'></app-book>
+  </div>
 </div>
