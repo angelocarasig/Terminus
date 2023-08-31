@@ -1,6 +1,5 @@
 <div class='modal'>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
-
     <div class='result-field' *ngIf='commits$ | async as commits; else loadingIndicator'>
       <div class='result-item' *ngFor='let commit of commits' (click)='openUrl(commit.html_url)'>
         <span class='heading'>{{formattedDate(commit.commit.author.date)}}</span>

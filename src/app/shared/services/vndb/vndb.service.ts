@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable, tap } from 'rxjs';
 import { catchError, concatMap, map, takeWhile } from 'rxjs/operators';
+
 import { environment } from '../../../../environments/environment.prod';
-import { User } from '../../models/user/user';
-import { ULIST_PROPS } from '../../../../constants';
-import { UListResponseType } from '../../../../types';
+
 import { UserService } from '../user/user.service';
+
+import { User } from '../../models/user/user';
 import { UserNovel } from '../../models/user-novel/user-novel';
+import { UListResponseType } from '../../../../types';
+import { ULIST_PROPS } from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'

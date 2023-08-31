@@ -41,16 +41,16 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.userService.createUser(this.username.value, this.authToken.value).subscribe(
-      () => {
+    this.userService.createUser(this.username.value, this.authToken.value).subscribe({
+      next: () => {
         this.loading = false;
         if (this.errorMessage !== '') return;
 
         this.router.navigate(['/bookshelf']).then();
       },
-      (error) => {
+      error: () => {
         this.loading = false;
       }
-    );
+    });
   }
 }

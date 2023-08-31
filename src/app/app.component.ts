@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { ThemeService } from './shared/services/theme/theme.service';
 
 @Component({
@@ -7,6 +8,6 @@ import { ThemeService } from './shared/services/theme/theme.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private themeService: ThemeService) {
-  }
+  // noinspection JSUnusedLocalSymbols
+  constructor(private themeService: ThemeService) {  }
 }

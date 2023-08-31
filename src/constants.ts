@@ -45,7 +45,6 @@ export const VN_PROPS: Array<string> = [
 ];
 
 export const ULIST_PROPS: Array<string> = [
-  // User Novel Stuff
   'id',
   'added',
   'voted',
@@ -57,6 +56,5 @@ export const ULIST_PROPS: Array<string> = [
   'labels.id',
   'labels.label',
 
-  // Visual Novel Stuff
   ...VN_PROPS,
 ];

@@ -9,10 +9,11 @@ import { featherGithub, featherList, featherSearch, featherSettings } from '@ng-
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
 import { IconButtonComponent } from './components/icon-button/icon-button/icon-button.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
-import { SearchModalComponent } from './components/search-modal/search-modal/search-modal.component';
+import { SearchModalComponent } from './components/search-modal/search-modal.component';
+import { CommitsModalComponent } from './components/commits-modal/commits-modal.component';
 
 import {NgClickOutsideDirective} from 'ng-click-outside2';
-import { CommitsModalComponent } from './components/commits-modal/commits-modal.component';
+
 @NgModule({
   declarations: [
     ThemeSwitchComponent,

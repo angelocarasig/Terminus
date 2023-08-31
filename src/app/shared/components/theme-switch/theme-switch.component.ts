@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
@@ -6,10 +7,9 @@ import { ThemeService } from '../../services/theme/theme.service';
   templateUrl: './theme-switch.component.html',
   styleUrls: ['./theme-switch.component.scss']
 })
-export class ThemeSwitchComponent implements  OnInit {
-  themeIcon: 'featherSun' | 'featherMoon' = 'featherMoon';
-
-  constructor(private themeService: ThemeService) {}
+export class ThemeSwitchComponent implements OnInit {
+  constructor(private themeService: ThemeService) {
+  }
 
   ngOnInit(): void {
   }
