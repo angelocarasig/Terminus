@@ -1,0 +1,11 @@
+<div class='profile'>
+  <div class='profile-info'>
+    <div class='profile-details'>
+      <span class='username' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.username}}</span>
+      <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
+    </div>
+    <div class='profile-graph'>
+      <p-chart type="line" [data]="data"></p-chart>
+    </div>
+  </div>
+</div>

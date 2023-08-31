@@ -1,0 +1,30 @@
+.profile {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: white;
+
+  .profile-info {
+    display: flex;
+    gap: 1rem;
+    margin: 2.5rem;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    background-color: #242629;
+    border-radius: 1rem;
+
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+
+      span:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-thickness: 3px;
+      }
+
+      span.username {
+        font-size: 5rem;
+      }
+    }
+  }
+}
