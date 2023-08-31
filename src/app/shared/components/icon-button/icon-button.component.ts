@@ -6,5 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./icon-button.component.scss']
 })
 export class IconButtonComponent {
-  @Input() featherIconName: string;
+  @Input() iconName: string;
+  @Input() iconType: 'featherIcon' | 'tablerIcon';
 }

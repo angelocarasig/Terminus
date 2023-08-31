@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
+import { VndbService } from '../../services/vndb/vndb.service';
+import { stripVNDBLink, stripNewline } from '../../helpers/utilities.helper';
+
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
@@ -7,16 +10,25 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SearchModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();
-  searchResultPlaceholder: any[];
+  protected readonly console = console;
+  searchQuery: string;
+
+  constructor(public vndbService: VndbService) {
+  }
 
   ngOnInit() {
-    this.searchResultPlaceholder = Array.from({ length: 20 }, (_, i) => ({
-      heading: `Placeholder ${i}`,
-      subHeading: `Sub-heading ${i}`
-    }));
+    this.searchQuery = '';
+  }
+
+  onSearchQueryChange(): void {
+    this.vndbService.updateSearchQuery(this.searchQuery);
   }
 
   handleClickOutside(): void {
     this.outsideClicked.emit();
+  }
+
+  formatDescription(inputString: string): string {
+    return !inputString || inputString === '' ? '' : stripNewline(stripVNDBLink(inputString));
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, tap } from 'rxjs';
-import { catchError, concatMap, map, takeWhile } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, Observable, of, Subject, tap } from 'rxjs';
+import { catchError, concatMap, map, switchMap, takeWhile } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment.prod';
 
@@ -10,14 +10,31 @@ import { UserService } from '../user/user.service';
 
 import { User } from '../../models/user/user';
 import { UserNovel } from '../../models/user-novel/user-novel';
-import { UListResponseType } from '../../../../types';
-import { ULIST_PROPS } from '../../../../constants';
+import { UListResponseType, VNResponseType } from '../../../../types';
+import { ULIST_PROPS, VN_PROPS } from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VndbService {
-  constructor(private http: HttpClient, private userService: UserService) {}
+  private searchQuerySubject = new Subject<string>();
+
+  constructor(private http: HttpClient, private userService: UserService) {
+  }
+
+  searchResult$: Observable<VNResponseType | null> = this.searchQuerySubject.pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
+    switchMap(query => query.trim() === '' ? of(null) : this.searchVisualNovelByQuery(query)),
+    catchError(error => {
+      console.error(error);
+      return of(null);
+    })
+  );
+
+  updateSearchQuery(query: string): void {
+    this.searchQuerySubject.next(query);
+  }
 
   updateUserNovels(user: User): void {
     let userNovels: Array<UserNovel> = [];
@@ -42,6 +59,19 @@ export class VndbService {
     ).subscribe();
   }
 
+  private searchVisualNovelByQuery(query: string): Observable<VNResponseType> {
+    const url = `${environment.apiUrl}${environment.endpoints.vn}`;
+    const filters = ['search', '=', `${query}`];
+    const body = { filters: filters, results: 100, fields: VN_PROPS.map(item => item.replace('vn.', '')).join(', ') };
+
+    return this.http.post<VNResponseType>(url, body).pipe(
+      map(response => ({ results: response.results, more: response.more })),
+      catchError(error => {
+        throw new Error(`Failed to retrieve user novels: ${error}`);
+      })
+    );
+  }
+
   private getUserNovelByPage(user: User, page: number): Observable<UListResponseType> {
     const url = `${environment.apiUrl}${environment.endpoints.ulist}`;
     const body = { user: user.uid, results: 100, page, fields: ULIST_PROPS.join(', ') };
@@ -49,7 +79,7 @@ export class VndbService {
     return this.http.post<UListResponseType>(url, body).pipe(
       map(response => ({ results: response.results, more: response.more })),
       catchError(error => {
-        throw new Error(`Failed to retrieve user novels: ${error}`);
+        throw new Error(error);
       })
     );
   }

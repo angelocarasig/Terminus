@@ -1,14 +1,51 @@
 <div class='modal'>
-  <div class='modal-box' (clickOutside)="handleClickOutside()">
+  <div class='modal-box' (clickOutside)='handleClickOutside()'>
     <div class='input-field'>
       <ng-icon class='search-icon' name='featherSearch'></ng-icon>
-      <input class='search-field' placeholder='Search'>
+      <input pAutoFocus [autofocus]='true' class='search-field' placeholder='Search' [(ngModel)]='searchQuery' (ngModelChange)='onSearchQueryChange()'>
     </div>
-    <div class='result-field'>
-      <div class='result-item' *ngFor='let resultItem of searchResultPlaceholder'>
-        <span class='heading'>{{resultItem.heading}}</span>
-        <span class='subheading'>{{resultItem.subHeading}}</span>
+    <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else loadingIndicator'>
+      <div class='result-item' *ngFor='let result of searchResult.results' (click)='console.log(result)'>
+        <div class='cover'>
+          <img [src]='result.image.url' alt='vn image'>
+        </div>
+
+        <div class='details'>
+          <div class='title'>
+            <div class='heading'>
+              <span>{{result.title}}</span>
+              <span>{{result.released}}</span>
+            </div>
+            <div class='subheading'>
+              <span>{{result.developers[0]?.name}}</span>
+            </div>
+          </div>
+
+          <div class='description'>
+            <span>{{formatDescription(result.description)}}</span>
+          </div>
+        </div>
+
+        <div class='links'>
+          <app-icon-button iconType='tablerIcon' iconName='heart-plus'></app-icon-button>
+          <app-icon-button iconType='featherIcon' iconName='featherEdit2'></app-icon-button>
+          <app-icon-button iconType='featherIcon' iconName='featherLink'></app-icon-button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #loadingIndicator>
+  <div class='result-field'>
+    <div class='result-item no-result'>
+      <div class='details'>
+        <div class='title'>
+          <div class='heading'>
+            <span>No Results Found.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
