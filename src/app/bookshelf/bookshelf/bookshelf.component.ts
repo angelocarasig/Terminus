@@ -31,4 +31,8 @@ export class BookshelfComponent implements OnInit {
       })
     );
   }
+
+  triggerRefreshUserNovels(): void {
+    this.vndbService.updateUserNovels((this.userService.getUser()!));
+  }
 }
