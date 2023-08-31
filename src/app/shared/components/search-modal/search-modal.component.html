@@ -4,7 +4,14 @@
       <ng-icon class='search-icon' name='featherSearch'></ng-icon>
       <input pAutoFocus [autofocus]='true' class='search-field' placeholder='Search' [(ngModel)]='searchQuery' (ngModelChange)='onSearchQueryChange()'>
     </div>
-    <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else loadingIndicator'>
+    <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else emptySearchField'>
+
+      <!--2nd failsafe to render if service had no results-->
+      <ng-container *ngIf='searchResult.results.length === 0'>
+        <ng-container *ngTemplateOutlet='emptySearchField'></ng-container>
+      </ng-container>
+
+      <!--Otherwise results are present and just render them as normal-->
       <div class='result-item' *ngFor='let result of searchResult.results' (click)='console.log(result)'>
         <div class='cover'>
           <img [src]='result.image.url' alt='vn image'>
@@ -36,7 +43,7 @@
   </div>
 </div>
 
-<ng-template #loadingIndicator>
+<ng-template #emptySearchField>
   <div class='result-field'>
     <div class='result-item no-result'>
       <div class='details'>

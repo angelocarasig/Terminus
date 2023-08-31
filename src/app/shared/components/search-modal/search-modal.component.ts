@@ -29,6 +29,8 @@ export class SearchModalComponent implements OnInit {
   }
 
   formatDescription(inputString: string): string {
-    return !inputString || inputString === '' ? '' : stripNewline(stripVNDBLink(inputString));
+    return !inputString || inputString === ''
+      ? 'No Description Provided.'
+      : stripNewline(stripVNDBLink(inputString));
   }
 }
