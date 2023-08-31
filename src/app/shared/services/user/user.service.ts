@@ -18,7 +18,9 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     const storedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.currentUser);
-    this.currentUserSubject = new BehaviorSubject<User | null>(storedUser ? JSON.parse(storedUser) : null);
+    const currentUser = storedUser ? JSON.parse(localStorage.getItem(storedUser) || 'null') : null;
+
+    this.currentUserSubject = new BehaviorSubject<User | null>(currentUser);
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
@@ -30,6 +32,14 @@ export class UserService {
    * @returns An observable emitting the created User object or null in case of error.
    */
   createUser(username: string, authToken?: string): Observable<User | null> {
+    // If user already exists, just update localStorage to currentUser
+    const storedUserData = localStorage.getItem(username);
+
+    if (storedUserData) {
+      this.updateUserWithParams(JSON.parse(storedUserData));
+      return of(null);
+    }
+
     return authToken ? this.createWithAuthToken(username, authToken) : this.createWithUsername(username);
   }
 
@@ -60,19 +70,18 @@ export class UserService {
    */
   removeCurrentUser(): void {
     this.currentUserSubject.next(null);
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.currentUser);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, 'null');
   }
 
   private createWithUsername(username: string): Observable<User | null> {
     return this.http.get<any>(`${environment.apiUrl}${environment.endpoints.user}`, { params: new HttpParams().set('q', username) }).pipe(
       switchMap((data: any) => {
+        if (!data[username]) {
+          throw new Error('Username does not exist.');
+        }
         const newUser = this.createUserFromData(data[username].username, data[username].id);
         this.updateUserWithParams(newUser);
         return of(newUser);
-      }),
-      catchError((error) => {
-        console.error('Error creating user:', error);
-        return of(null);
       })
     );
   }
@@ -111,6 +120,7 @@ export class UserService {
   }
 
   private updateLocalStorage(user: User): void {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, JSON.stringify(user));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, user.username);
+    localStorage.setItem(user.username, JSON.stringify(user));
   }
 }

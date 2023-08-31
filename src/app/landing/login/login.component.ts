@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
 
         this.router.navigate(['/bookshelf']).then();
       },
-      error: () => {
+      error: (error) => {
+        window.alert(error);
         this.loading = false;
       }
     });

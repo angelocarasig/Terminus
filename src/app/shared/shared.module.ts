@@ -8,7 +8,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NgIconsModule } from '@ng-icons/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { featherGithub, featherList, featherSearch, featherSettings } from '@ng-icons/feather-icons';
-import { IconHeartPlus } from 'angular-tabler-icons/icons';
+import { IconHeartPlus, IconPlaylistAdd } from 'angular-tabler-icons/icons';
 
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
@@ -33,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     NgIconsModule.withIcons({ featherSettings, featherSearch, featherList, featherGithub }),
-    TablerIconsModule.pick({ IconHeartPlus }),
+    TablerIconsModule.pick({ IconHeartPlus, IconPlaylistAdd }),
     AutoFocusModule,
     ProgressSpinnerModule,
     NgClickOutsideDirective,

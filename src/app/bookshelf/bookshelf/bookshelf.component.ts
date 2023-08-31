@@ -20,12 +20,15 @@ export class BookshelfComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser$ = this.userService.currentUser$;
     this.userNovelList$ = this.currentUser$.pipe(
-      map(currentUser => currentUser?.ulist)
-    );
+      map(currentUser => {
+        if (!currentUser) return;
 
-    if (!this.userService.getUser()?.ulist) {
-      console.log("Searching for ulist...");
-      this.vndbService.updateUserNovels(this.userService.getUser()!);
-    }
+        if (!this.userService.getUser()?.ulist) {
+          this.vndbService.updateUserNovels(this.userService.getUser()!);
+        }
+
+        return currentUser?.ulist;
+      })
+    );
   }
 }
