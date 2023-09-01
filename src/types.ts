@@ -3,7 +3,7 @@ import {
   ApexTitleSubtitle,
   ApexDataLabels,
   ApexChart,
-  ApexPlotOptions
+  ApexPlotOptions, ApexTooltip
 } from 'ng-apexcharts';
 
 import { UserNovel } from './app/shared/models/user-novel/user-novel';
@@ -33,6 +33,7 @@ export type ChartOptions = {
   chart: ApexChart;
   series: ApexAxisChartSeries;
   colors: Array<string>;
+  tooltip: ApexTooltip;
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
 };

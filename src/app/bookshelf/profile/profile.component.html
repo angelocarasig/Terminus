@@ -1,20 +1,19 @@
-<div class='profile'>
-  <div class='profile-info'>
-    <div class='profile-details'>
-      <span class='username' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.username}}</span>
-      <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
+<div class='profile-container'>
+  <div class='profile'>
+    <div class='profile-banner'>
+      <ng-container *ngFor='let userNovel of highestRatedNovels; let i = index'>
+        <div
+          class='image-entry' [style.background-image]='getBackgroundImage(userNovel)'></div>
+      </ng-container>
     </div>
-    <div class='profile-graph'>
-      <div id='heatmapChart'>
-        <apx-chart
-          [series]='chartOptions.series'
-          [chart]='chartOptions.chart'
-          [stroke]='chartOptions.stroke'
-          [grid]='chartOptions.grid'
-          [dataLabels]='chartOptions.dataLabels'
-          [plotOptions]='chartOptions.plotOptions'
-          [tooltip]='chartOptions.tooltip'
-        ></apx-chart>
+
+    <div class='profile-details'>
+      <div class='info'>
+        <img class='profile-icon' src='assets/base-icon.jpg' alt='profile-icon'>
+        <div class='text'>
+          <span class='username' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.username}}</span>
+          <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
+        </div>
       </div>
     </div>
   </div>

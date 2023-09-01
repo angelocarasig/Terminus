@@ -18,6 +18,8 @@ import { SearchModalComponent } from './components/search-modal/search-modal.com
 import { CommitsModalComponent } from './components/commits-modal/commits-modal.component';
 
 import {NgClickOutsideDirective} from 'ng-click-outside2';
+import { HeatmapComponent } from './components/heatmap/heatmap.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {NgClickOutsideDirective} from 'ng-click-outside2';
     IconButtonComponent,
     NavbarComponent,
     SearchModalComponent,
-    CommitsModalComponent
+    CommitsModalComponent,
+    HeatmapComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,7 @@ import {NgClickOutsideDirective} from 'ng-click-outside2';
     AutoFocusModule,
     ProgressSpinnerModule,
     NgClickOutsideDirective,
+    NgApexchartsModule
   ],
   exports: [
     ThemeSwitchComponent,
