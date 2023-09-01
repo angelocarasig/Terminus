@@ -5,7 +5,17 @@
       <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
     </div>
     <div class='profile-graph'>
-      <p-chart type="line" [data]="data"></p-chart>
+      <div id='heatmapChart'>
+        <apx-chart
+          [series]='chartOptions.series'
+          [chart]='chartOptions.chart'
+          [stroke]='chartOptions.stroke'
+          [grid]='chartOptions.grid'
+          [dataLabels]='chartOptions.dataLabels'
+          [plotOptions]='chartOptions.plotOptions'
+          [tooltip]='chartOptions.tooltip'
+        ></apx-chart>
+      </div>
     </div>
   </div>
 </div>

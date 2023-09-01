@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ChartModule } from 'primeng/chart';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NgIconsModule } from '@ng-icons/core';
 import { featherMoreVertical, featherEdit2, featherLink, } from '@ng-icons/feather-icons';
@@ -20,7 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     CommonModule,
-    ChartModule,
+    NgApexchartsModule,
     SharedModule,
     NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink }),
     ProgressSpinnerModule
