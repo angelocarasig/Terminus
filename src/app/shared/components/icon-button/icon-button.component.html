@@ -1,4 +1,4 @@
-<div class='terminus-icon-button'>
+<div class='terminus-icon-button' [ngClass]='cssClass'>
   <ng-container *ngIf="iconType === 'featherIcon'; else tablerIconTemplate">
     <ng-icon [name]='iconName'></ng-icon>
   </ng-container>

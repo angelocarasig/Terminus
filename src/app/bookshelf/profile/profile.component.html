@@ -9,12 +9,35 @@
 
     <div class='profile-details'>
       <div class='info'>
-        <img class='profile-icon' src='assets/base-icon.jpg' alt='profile-icon'>
+        <img class='profile-icon' src='/assets/base-profile-icon.jpg' alt='profile-icon'>
         <div class='text'>
           <span class='username' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.username}}</span>
           <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
         </div>
+        <div class='refresh' (click)='doRefreshNovels()'>
+          <div class='refresh-text'>
+            <span class='updated'>Updated:</span>
+            <span class='updated-at'>{{formattedDate(this.userService.getUser()?.updatedAt)}}</span>
+          </div>
+          <app-icon-button cssClass='refresh-icon' iconName='featherRefreshCw' iconType='featherIcon'></app-icon-button>
+        </div>
       </div>
     </div>
+
+    <div class='profile-charts'>
+      <div class='pies'>Pies</div>
+      <div class='heatmap'>Heatmap</div>
+      <div class='stats'>Stats</div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class='columns-container'>
+  <div class='columns'>
+    <div class='recent'>Recent</div>
+    <div class='current'>Current</div>
+    <div class='favorites'>Favorites</div>
   </div>
 </div>

@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class IconButtonComponent {
   @Input() iconName: string;
   @Input() iconType: 'featherIcon' | 'tablerIcon';
+  @Input() cssClass: string;
 }

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {CarouselModule} from 'primeng/carousel';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NgIconsModule } from '@ng-icons/core';
-import { featherMoreVertical, featherEdit2, featherLink, } from '@ng-icons/feather-icons';
+import { featherMoreVertical, featherEdit2, featherLink, featherRefreshCw } from '@ng-icons/feather-icons';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -22,7 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
     CommonModule,
     CarouselModule,
     SharedModule,
-    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink }),
+    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink, featherRefreshCw }),
     ProgressSpinnerModule
   ],
   exports: [

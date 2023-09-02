@@ -1,14 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
-import { UserNovel } from '../../shared/models/user-novel/user-novel';
+
 import { UserService } from '../../shared/services/user/user.service';
+
 import { getHighestRatedUserNovels } from '../../shared/helpers/ulist.helper';
+import { formattedDate } from '../../shared/helpers/utilities.helper';
+
+import { UserNovel } from '../../shared/models/user-novel/user-novel';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   @Input() userNovelList: Array<UserNovel>;
   @Output() refreshNovelsTrigger = new EventEmitter<void>();
 
@@ -33,7 +37,13 @@ export class ProfileComponent implements OnInit{
   }
 
   getBackgroundImage(userNovel: UserNovel): string {
-
     return `url(${userNovel.vn.screenshots[0]?.thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf')})`;
   }
+
+  doRefreshNovels(): void {
+    console.log('Refreshing novels...');
+    this.refreshNovelsTrigger.emit();
+  }
+
+  protected readonly formattedDate = formattedDate;
 }
