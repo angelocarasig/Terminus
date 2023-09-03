@@ -1,26 +1,24 @@
-$card-background: #242629;
-$main-background: #16161a;
-$main-color: #EFF7F9;
-
-$fairy-tale: #FECBD9;
-$fairy-tale-2: #FBC5D3;
-$cyclamen: #F47CAA;
-$rose-ebony: #614A50;
-$alice-blue: #EFF7F9;
-$tiffany-blue: #9BEBE2;
-$verdigris: #73B1AC;
-$myrtle-green: #3C6861;
-$dim-gray: #616F70;
-$outer-space: #324041;
-$pitch-black: #0A0A0A;
-
+@import 'common';
 
 $dark-theme: (
-  background-color: $main-background,
-  heading-color: $main-color,
-  carett-color: $main-color,
+  // Common
+  background: $black-color-background,
+  card-background: $black-color-card,
+  input-color: $black-color-text,
+  input-border-color: $black-color-text,
+  input-background-color: #0c0c0c38,
+  input-placeholder-color: grey,
+  text-button-color: $secondary-color-200,
+  text-button-background: $secondary-color-700,
+  text-button-background--hover: $secondary-color-900,
 
-  book-background-color: $card-background,
-
+  // Shared Module
   icon-button-hover: #595959C9,
+
+  // Landing / Login
+  heading-color: $black-color-text,
+  carett-color: $black-color-text,
+
+  // Book
+  book-background-color: $black-color-card,
 );

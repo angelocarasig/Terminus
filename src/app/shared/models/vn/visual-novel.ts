@@ -1,10 +1,10 @@
-import {Tag} from '../tag/tag';
-import {Image} from '../image/image';
-import {Title} from '../title/title';
-import {Screenshot} from '../screenshot/screenshot';
-import { Developer } from '../developer/developer';
+import { Tag } from './tag';
+import { Image } from './image';
+import { Title } from './title';
+import { Screenshot } from './screenshot';
+import { Developer } from './developer';
 
-export interface VN {
+export interface VisualNovel {
   image: Image;
   length: number;
   description: string;

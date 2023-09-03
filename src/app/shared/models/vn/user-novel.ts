@@ -1,5 +1,5 @@
-import {VN} from '../vn/VN';
-import {Label} from '../label/label';
+import { VisualNovel } from './visual-novel';
+import { Label } from './label';
 
 export interface UserNovel {
   id: string;
@@ -11,6 +11,6 @@ export interface UserNovel {
   lastmod: number;
   notes: string | null;
 
-  vn: VN;
+  vn: VisualNovel;
   labels: Array<Label>;
 }

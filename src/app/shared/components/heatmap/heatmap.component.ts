@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserNovel } from '../../models/user-novel/user-novel';
+import { UserNovel } from '../../models/vn/user-novel';
 import { ChartOptions } from '../../../../types';
 import { convertToHeatmap } from '../../helpers/heatmap.helper';
 

@@ -4,28 +4,57 @@
     <h1 class='header'>Get Started</h1>
   </div>
 
-  <div class='content'>
-    <input type='text'
-           placeholder='Username'
-           [formControl]="username"
-           [ngClass]="errorMessage !== '' ? 'invalid-form' : ''">
-  </div>
+  <form [formGroup]='form' (ngSubmit)='processUser()'>
 
-  <div class='footer'>
-    <div class='auth'>
-      <input type='text' class='auth-token-input' placeholder='Auth Token (Optional)' [formControl]="authToken">
+    <div class='content'>
+      <div class='p-field p-input-icon-left'>
+        <i class='pi pi-user'></i>
+        <input
+          pInputText
+          type='text'
+          id='username'
+          formControlName='username'
+          placeholder='Username'
+          [class]="{'p-invalid': form.get('username')?.invalid && form.get('username')?.touched}"
+        />
+      </div>
+
+      <div *ngIf="submitted || form.get('username')?.invalid && form.get('username')?.touched" class='p-error'>
+        Username is required.
+      </div>
+
+      <div class='p-field p-input-icon-left'>
+        <i class='pi pi-key'></i>
+        <input
+          pInputText
+          type='text'
+          id='authToken'
+          formControlName='authToken'
+          placeholder='Auth Token (Optional)'
+        />
+      </div>
     </div>
-
-    <div class='login'>
+    <div class='footer'>
       <button
-        type="button"
-        class="btn btn-primary btn-login"
-        (click)="processUser()"
-        [disabled]="loading"
+        pButton
+        type='button'
+        class='btn btn-primary btn-submit'
+        (click)='processUser()'
+        [disabled]='loading'
+        label='Login'
       >
         <ng-icon name='featherLogIn'></ng-icon>
-        Login
+      </button>
+
+      <button
+        pButton
+        type='submit'
+        class='btn btn-primary btn-submit'
+        [disabled]='loading'
+        label='Guest Login'
+      >
       </button>
     </div>
-  </div>
+
+  </form>
 </div>

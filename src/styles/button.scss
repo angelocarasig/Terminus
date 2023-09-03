@@ -1,0 +1,16 @@
+.p-button {
+  color: var(--text-button-color);
+  background: var(--text-button-background);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  transition: all 0.08s;
+  border-radius: 0.5rem;
+
+  &:enabled:hover {
+    background: var(--text-button-background--hover);
+    color: var(--text-button-background);;
+    border: none;
+  }
+}

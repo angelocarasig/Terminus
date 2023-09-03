@@ -1,3 +1,10 @@
+<ng-particles
+  [id]='particles.id'
+  [options]='particles.particleOptions'
+  [particlesInit]='particlesInit'
+  (particlesLoaded)='particlesLoaded($event)'>
+</ng-particles>
+
 <div class='landing-container'>
   <div class='landing-hero'>
     <span class='landing-heading'>Terminus.</span>
@@ -6,7 +13,6 @@
         {{ currentText }}
       </span>
     </div>
-
   </div>
-  <app-login class='login'></app-login>
+  <app-login class='footer'></app-login>
 </div>
