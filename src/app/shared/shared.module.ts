@@ -28,7 +28,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     NavbarComponent,
     SearchModalComponent,
     CommitsModalComponent,
-    HeatmapComponent
+    HeatmapComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +39,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     AutoFocusModule,
     ProgressSpinnerModule,
     NgClickOutsideDirective,
-    NgApexchartsModule
+    NgApexchartsModule,
   ],
   exports: [
     ThemeSwitchComponent,

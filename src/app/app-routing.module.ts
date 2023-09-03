@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UserGuard } from './shared/guards/user/user.guard';
 
-import { LandingComponent } from './landing/landing/landing.component';
-import { BookshelfComponent } from './bookshelf/bookshelf/bookshelf.component';
+import { LandingComponent } from './landing/components/landing/landing.component';
+import { BookshelfComponent } from './bookshelf/components/bookshelf/bookshelf.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },

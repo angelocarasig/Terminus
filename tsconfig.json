@@ -30,6 +30,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
+    "allowSyntheticDefaultImports": true,
     "extendedDiagnostics": {
       "checks": {
         "optionalChainNotNullable": "suppress"

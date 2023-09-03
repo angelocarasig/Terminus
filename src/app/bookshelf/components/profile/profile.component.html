@@ -25,19 +25,29 @@
     </div>
 
     <div class='profile-charts'>
-      <div class='pies'>Pies</div>
+      <div class='pies'>
+        Pies
+      </div>
+
       <div class='heatmap'>Heatmap</div>
+
       <div class='stats'>Stats</div>
     </div>
   </div>
-
-
 </div>
 
 <div class='columns-container'>
   <div class='columns'>
-    <div class='recent'>Recent</div>
-    <div class='current'>Current</div>
-    <div class='favorites'>Favorites</div>
+    <div class='recent'>
+      <app-profile-novel-container title='Recent' [novelsContainerWrapper]='recent'></app-profile-novel-container>
+    </div>
+
+    <div class='playing'>
+      <app-profile-novel-container title='Playing' [novelsContainerWrapper]='playing'></app-profile-novel-container>
+    </div>
+
+    <div class='favorites'>
+      <app-profile-novel-container title='Favourites' [novelsContainerWrapper]='favourites'></app-profile-novel-container>
+    </div>
   </div>
 </div>
