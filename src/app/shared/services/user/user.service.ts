@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment.prod';
 
 import { User } from '../../models/user/user';
 import { LOCAL_STORAGE_KEYS } from '../../../../constants';
+import { UserNovel } from '../../models/vn/user-novel';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,15 @@ export class UserService {
    */
   getUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  /**
+   * Gets the current user subjects user novels as an observable.
+   *
+   * @Returns the User's ulist property
+   */
+  getUserNovels(): Observable<Array<UserNovel>> {
+    return this.currentUser$.pipe(map(user => user?.ulist!));
   }
 
   /**

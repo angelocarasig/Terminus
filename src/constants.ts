@@ -60,5 +60,3 @@ export const ULIST_PROPS: Array<string> = [
 ];
 
 export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-export const MAX_VISIBLE_PROFILE_NOVELS = 60; // divisible by 1, 2, 3, 4, 5 (let's hope this isn't used by anyone with screen larger than 3480px lol)

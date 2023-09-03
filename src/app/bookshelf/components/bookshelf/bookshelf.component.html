@@ -8,7 +8,7 @@
 
 <div class='bookshelf-container' *ngIf='(userNovelList$ | async) as userNovelList; else loadingIndicator'>
   <app-navbar></app-navbar>
-  <app-profile [userNovelList]='userNovelList' (refreshNovelsTrigger)='triggerRefreshUserNovels()'></app-profile>
+  <app-profile (refreshNovelsTrigger)='triggerRefreshUserNovels()'></app-profile>
 
 <!--  <div class='book-component-container'>-->
 <!--    <app-book *ngFor='let book of userNovelList' [book]='book'></app-book>-->

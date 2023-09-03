@@ -19,7 +19,7 @@
             <span class='updated'>Updated:</span>
             <span class='updated-at'>{{formattedDate(this.userService.getUser()?.updatedAt)}}</span>
           </div>
-          <app-icon-button cssClass='refresh-icon' iconName='featherRefreshCw' iconType='featherIcon'></app-icon-button>
+          <app-icon-button [ngClass]='refreshing ? "rotate" : ""' cssClass='refresh-icon' iconName='featherRefreshCw' iconType='featherIcon'></app-icon-button>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
 <div class='columns-container'>
   <div class='columns'>
     <div class='recent'>
-      <app-profile-novel-container title='Recent' [novelsContainerWrapper]='recent'></app-profile-novel-container>
+      <app-profile-novel-container title='Recently Updated (30 days)' [novelsContainerWrapper]='recent'></app-profile-novel-container>
     </div>
 
     <div class='playing'>

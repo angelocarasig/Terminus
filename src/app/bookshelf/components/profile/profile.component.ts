@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, Renderer2 } from '@angular/core';
-
+import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { UserService } from '../../../shared/services/user/user.service';
-
-import { getFavouriteUserNovels, getHighestRatedUserNovels, getPlayingUserNovels, getRecentUserNovels } from '../../../shared/helpers/ulist.helper';
+import {
+  getFavouriteUserNovels, getHighestRatedUserNovels,
+  getPlayingUserNovels,
+  getRecentUserNovels
+} from '../../../shared/helpers/ulist.helper';
 import { formattedDate } from '../../../shared/helpers/utilities.helper';
-
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { NovelContainerWrapper } from '../../models/novel-container-wrapper';
 
@@ -14,11 +15,10 @@ import { NovelContainerWrapper } from '../../models/novel-container-wrapper';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  @Input() userNovelList: Array<UserNovel>;
   @Output() refreshNovelsTrigger = new EventEmitter<void>();
+  refreshing = false;
 
   highestRatedNovels: Array<UserNovel>;
-
   playing: NovelContainerWrapper;
   recent: NovelContainerWrapper;
   favourites: NovelContainerWrapper;
@@ -27,22 +27,15 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.highestRatedNovels = getHighestRatedUserNovels(this.userNovelList);
-
-    this.playing = {
-      novels: getPlayingUserNovels(this.userNovelList),
-      paginateNumber: 1,
-    };
-
-    this.recent = {
-      novels: getRecentUserNovels(this.userNovelList),
-      paginateNumber: 1,
-    }
-
-    this.favourites = {
-      novels: getFavouriteUserNovels(this.userNovelList),
-      paginateNumber: 1,
-    }
+    this.userService.getUserNovels().subscribe({
+      next: (updatedUserNovels: Array<UserNovel>) => {
+        this.refreshing = false;
+        this.highestRatedNovels = getHighestRatedUserNovels(updatedUserNovels);
+        this.playing = this.getNovelContainer(getPlayingUserNovels(updatedUserNovels));
+        this.recent = this.getNovelContainer(getRecentUserNovels(updatedUserNovels));
+        this.favourites = this.getNovelContainer(getFavouriteUserNovels(updatedUserNovels));
+      }
+    });
 
     this.printDetails();
   }
@@ -60,12 +53,18 @@ export class ProfileComponent implements OnInit {
   }
 
   doRefreshNovels(): void {
-    console.log('Refreshing novels...');
+    this.refreshing = true;
     this.refreshNovelsTrigger.emit();
   }
 
+  private getNovelContainer(novels: Array<UserNovel>): NovelContainerWrapper {
+    return {
+      novels,
+      paginateNumber: 1
+    };
+  }
+
   private printDetails(): void {
-    console.log('Ulist: ', this.userNovelList);
     console.log('Highest Rated: ', this.highestRatedNovels);
     console.log('Playing: ', this.playing.novels);
     console.log('Recent: ', this.recent.novels);
