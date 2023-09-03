@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment.prod';
 import { UserService } from '../user/user.service';
 
 import { User } from '../../models/user/user';
-import { UserNovel } from '../../models/user-novel/user-novel';
+import { UserNovel } from '../../models/vn/user-novel';
 import { UListResponseType, VNResponseType } from '../../../../types';
 import { ULIST_PROPS, VN_PROPS } from '../../../../constants';
 

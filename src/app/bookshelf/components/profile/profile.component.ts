@@ -5,7 +5,7 @@ import { UserService } from '../../../shared/services/user/user.service';
 import { getFavouriteUserNovels, getHighestRatedUserNovels, getPlayingUserNovels, getRecentUserNovels } from '../../../shared/helpers/ulist.helper';
 import { formattedDate } from '../../../shared/helpers/utilities.helper';
 
-import { UserNovel } from '../../../shared/models/user-novel/user-novel';
+import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { NovelContainerWrapper } from '../../models/novel-container-wrapper';
 
 @Component({

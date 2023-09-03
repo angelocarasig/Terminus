@@ -1,4 +1,35 @@
+$black-color-background: #16161a;
+$black-color-card: #242629;
+$black-color-text: #EFF7F9;
+
+$white-color-background: #ffffff;
+$white-color-card: #d5d5d5;
+$white-color-text: #16161a;
+
+$error-text-color: #e33939;
+
+$primary-color-100: #ffffff;
+$primary-color-200: #ffd5d9;
+$primary-color-300: #ffc4d0;
+$primary-color-400: #ffc9d9;
+$primary-color-500: #FECBD9;
+$primary-color-600: #d491a4;
+$primary-color-700: #b36a7d;
+$primary-color-800: #693c49;
+$primary-color-900: #42242b;
+
+$secondary-color-100: #e7fff7;
+$secondary-color-200: #c3f3e8;
+$secondary-color-300: #a8e3d7;
+$secondary-color-400: #a4e0d3;
+$secondary-color-500: #87ccbe;
+$secondary-color-600: #5fa394;
+$secondary-color-700: #417f73;
+$secondary-color-800: #32665c;
+$secondary-color-900: #122522;
+
 $common: (
+  error-text-color: $error-text-color,
   theme-switch-color: #d0d0d0,
   theme-switch-color--enabled: #FFCE45,
 )

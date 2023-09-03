@@ -6,13 +6,13 @@ import {
   ApexPlotOptions, ApexTooltip
 } from 'ng-apexcharts';
 
-import { UserNovel } from './app/shared/models/user-novel/user-novel';
-import { VN } from './app/shared/models/vn/VN';
+import { UserNovel } from './app/shared/models/vn/user-novel';
+import { VisualNovel } from './app/shared/models/vn/visual-novel';
 
 import { MONTHS } from './constants';
 
 export type VNResponseType = {
-  results: Array<VN>,
+  results: Array<VisualNovel>,
   more: boolean,
 }
 

@@ -1,3 +1,11 @@
+@media (max-width: 900px) {
+  .modal-box {
+    width: 100% !important;
+    margin: 1rem 0 !important;
+    transition: all 0.5s;
+  }
+}
+
 .modal {
   position: absolute;
   display: flex;

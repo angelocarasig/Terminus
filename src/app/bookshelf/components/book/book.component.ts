@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserNovel } from '../../../shared/models/user-novel/user-novel';
+import { UserNovel } from '../../../shared/models/vn/user-novel';
 
 @Component({
   selector: 'app-book',

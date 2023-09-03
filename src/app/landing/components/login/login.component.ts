@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserService } from '../../../shared/services/user/user.service';
 
@@ -10,12 +10,15 @@ import { UserService } from '../../../shared/services/user/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username = new FormControl('', [Validators.required]);
-  authToken = new FormControl('');
-  errorMessage = '';
+  form: FormGroup;
   loading = false;
+  submitted = false;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      username: ['', Validators.required],
+      authToken: ['']
+    });
   }
 
   ngOnInit() {
@@ -25,32 +28,18 @@ export class LoginComponent implements OnInit {
   }
 
   processUser(): void {
-    console.log('Processing user.');
-    this.loading = true;
-    this.errorMessage = '';
+    this.submitted = true;
+    if (this.form.invalid) return;
 
-    if (this.username.pristine || !this.username.valid) {
-      this.errorMessage = 'Username must not be blank!';
-      this.loading = false;
-      return;
-    }
+    const usernameValue = this.form.get('username')!.value;
+    const authTokenValue = this.form.get('authToken')!.value === '' ? null : this.form.get('authToken')!.value;
 
-    if (this.username.value == null || this.authToken.value == null) {
-      this.errorMessage = 'username or the provided auth token was somehow null.';
-      this.loading = false;
-      return;
-    }
-
-    this.userService.createUser(this.username.value, this.authToken.value).subscribe({
+    this.userService.createUser(usernameValue, authTokenValue).subscribe({
       next: () => {
-        this.loading = false;
-        if (this.errorMessage !== '') return;
-
         this.router.navigate(['/bookshelf']).then();
       },
       error: (error) => {
         window.alert(error);
-        this.loading = false;
       }
     });
   }

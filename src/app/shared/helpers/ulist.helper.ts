@@ -1,5 +1,5 @@
-import { UserNovel } from '../models/user-novel/user-novel';
-import { LabelType } from '../models/label/label';
+import { UserNovel } from '../models/vn/user-novel';
+import { LabelType } from '../models/vn/label';
 import { MAX_VISIBLE_PROFILE_NOVELS } from '../../../constants';
 
 export function getHighestRatedUserNovels(userNovels: Array<UserNovel>): Array<UserNovel> {

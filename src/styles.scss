@@ -1,8 +1,14 @@
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'primeng/resources/themes/bootstrap4-dark-purple/theme.css';
 
 @import 'common';
-@import 'scrollbar';
 @import 'theme';
+@import 'scrollbar';
+
+// Basically any primeNg component style
+@import 'button';
+@import 'input';
 
 body {
   @include common();

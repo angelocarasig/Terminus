@@ -1,0 +1,20 @@
+// Since we use primeNG input component (lazy) use ::ng-deep to pierce here
+input::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+.p-inputtext {
+  color: var(--input-color) !important;
+  border: 1px solid var(--input-border-color) !important;
+  background-color: var(--input-background-color) !important;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0.5rem;
+}
+
+.p-error {
+  color: var(--error-text-color);
+}

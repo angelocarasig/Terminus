@@ -1,4 +1,4 @@
-import {UserNovel} from '../user-novel/user-novel';
+import { UserNovel } from '../vn/user-novel';
 
 export interface User {
   username: string;
