@@ -6,8 +6,8 @@ import { NgIconsModule } from '@ng-icons/core';
 import { featherKey, featherX, featherLogIn, featherAlertCircle } from '@ng-icons/feather-icons';
 
 import { SharedModule } from '../shared/shared.module';
-import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [

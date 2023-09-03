@@ -1,0 +1,53 @@
+<div class='profile-container'>
+  <div class='profile'>
+    <div class='profile-banner'>
+      <ng-container *ngFor='let userNovel of highestRatedNovels; let i = index'>
+        <div
+          class='image-entry' [style.background-image]='getBackgroundImage(userNovel)'></div>
+      </ng-container>
+    </div>
+
+    <div class='profile-details'>
+      <div class='info'>
+        <img class='profile-icon' src='/assets/base-profile-icon.jpg' alt='profile-icon'>
+        <div class='text'>
+          <span class='username' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.username}}</span>
+          <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
+        </div>
+        <div class='refresh' (click)='doRefreshNovels()'>
+          <div class='refresh-text'>
+            <span class='updated'>Updated:</span>
+            <span class='updated-at'>{{formattedDate(this.userService.getUser()?.updatedAt)}}</span>
+          </div>
+          <app-icon-button cssClass='refresh-icon' iconName='featherRefreshCw' iconType='featherIcon'></app-icon-button>
+        </div>
+      </div>
+    </div>
+
+    <div class='profile-charts'>
+      <div class='pies'>
+        Pies
+      </div>
+
+      <div class='heatmap'>Heatmap</div>
+
+      <div class='stats'>Stats</div>
+    </div>
+  </div>
+</div>
+
+<div class='columns-container'>
+  <div class='columns'>
+    <div class='recent'>
+      <app-profile-novel-container title='Recent' [novelsContainerWrapper]='recent'></app-profile-novel-container>
+    </div>
+
+    <div class='playing'>
+      <app-profile-novel-container title='Playing' [novelsContainerWrapper]='playing'></app-profile-novel-container>
+    </div>
+
+    <div class='favorites'>
+      <app-profile-novel-container title='Favourites' [novelsContainerWrapper]='favourites'></app-profile-novel-container>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AutoFocusModule } from 'primeng/autofocus';
@@ -10,7 +11,6 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { featherGithub, featherList, featherSearch, featherSettings } from '@ng-icons/feather-icons';
 import { IconHeartPlus, IconPlaylistAdd } from 'angular-tabler-icons/icons';
 
-
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
@@ -18,7 +18,8 @@ import { SearchModalComponent } from './components/search-modal/search-modal.com
 import { CommitsModalComponent } from './components/commits-modal/commits-modal.component';
 
 import {NgClickOutsideDirective} from 'ng-click-outside2';
-import { FormsModule } from '@angular/forms';
+import { HeatmapComponent } from './components/heatmap/heatmap.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     IconButtonComponent,
     NavbarComponent,
     SearchModalComponent,
-    CommitsModalComponent
+    CommitsModalComponent,
+    HeatmapComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     AutoFocusModule,
     ProgressSpinnerModule,
     NgClickOutsideDirective,
+    NgApexchartsModule,
   ],
   exports: [
     ThemeSwitchComponent,

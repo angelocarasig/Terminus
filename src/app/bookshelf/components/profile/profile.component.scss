@@ -1,0 +1,180 @@
+@import '../../../../styles/mixins';
+
+@media (max-width: 900px) {
+  .profile-icon {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+
+  .profile-details .info {
+    padding: 0 1rem !important;
+  }
+
+  .refresh {
+    border: none !important;
+    padding: 0 !important;
+
+    .refresh-text {
+      display: none !important;
+    }
+  }
+
+  .columns {
+    flex-direction: column !important;
+
+    .recent, .playing, .favorites {
+      width: unset !important;
+    }
+  }
+}
+
+.profile-container, .columns-container {
+  position: relative;
+  width: 100%;
+  color: white;
+
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  margin: 2.5rem;
+  background-color: #242629;
+  border-radius: 1rem;
+
+  .profile-banner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50%;
+
+    .image-entry {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      &:first-of-type {
+        border-top-left-radius: 1rem;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 1rem;
+      }
+    }
+  }
+
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .info {
+      display: flex;
+      flex-direction: row;
+      padding: 0 3.25rem;
+
+      align-items: center;
+      position: relative;
+      height: 6rem;
+      background-color: black;
+
+      img.profile-icon {
+        @include imageStyle();
+
+        width: 8rem;
+        height: 8rem;
+        transform: translateZ(0);
+        flex: none;
+        border-radius: 1rem;
+        overflow: hidden;
+        align-self: flex-end;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+        transition: all 0.25s;
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
+        margin-left: 2rem;
+        align-items: flex-start;
+        flex: 1;
+
+        span.username {
+          font-size: 2rem;
+        }
+
+        span.uid {
+          font-size: 0.9rem;
+        }
+
+        span:hover {
+          cursor: pointer;
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
+
+    .refresh {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem;
+      border: 1px solid var(--icon-button-hover);
+      border-radius: 1rem;
+      transition: all 0.25s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: var(--icon-button-hover);
+      }
+
+      .refresh-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      ::ng-deep .refresh-icon:hover {
+        background-color: transparent !important;
+      }
+    }
+  }
+
+  .profile-charts {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+
+    .pies, .heatmap, .stats {
+      padding: 1rem;
+      text-align: center;
+      vertical-align: middle;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 2.5rem;
+  gap: 2rem;
+
+  .recent, .playing, .favorites {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #242629;
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+}

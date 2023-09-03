@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../shared/services/user/user.service';
-import { User } from '../../shared/models/user/user';
+import { UserService } from '../../../shared/services/user/user.service';
+import { User } from '../../../shared/models/user/user';
 import { Observable } from 'rxjs';
-import { UserNovel } from '../../shared/models/user-novel/user-novel';
-import { VndbService } from '../../shared/services/vndb/vndb.service';
+import { UserNovel } from '../../../shared/models/user-novel/user-novel';
+import { VndbService } from '../../../shared/services/vndb/vndb.service';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -30,5 +30,9 @@ export class BookshelfComponent implements OnInit {
         return currentUser?.ulist;
       })
     );
+  }
+
+  triggerRefreshUserNovels(): void {
+    this.vndbService.updateUserNovels((this.userService.getUser()!));
   }
 }

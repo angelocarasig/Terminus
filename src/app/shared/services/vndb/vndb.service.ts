@@ -49,6 +49,12 @@ export class VndbService {
       }),
       tap({
         next: response => {
+          userNovels = userNovels.map(userNovel => {
+            userNovel.vn.screenshots.forEach(screenshotItem => {
+              screenshotItem.thumbnail = this._InternalReplaceScreenshotWithHD(screenshotItem.thumbnail);
+            });
+            return userNovel;
+          });
           userNovels = userNovels.concat(response.results);
           this.userService.updateUser({ ulist: userNovels });
         },
@@ -82,5 +88,9 @@ export class VndbService {
         throw new Error(error);
       })
     );
+  }
+
+  private _InternalReplaceScreenshotWithHD(url: string): string {
+    return url.replace('t.vndb.org/st', 't.vndb.org/sf');
   }
 }

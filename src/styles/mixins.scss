@@ -1,0 +1,6 @@
+@mixin imageStyle {
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
