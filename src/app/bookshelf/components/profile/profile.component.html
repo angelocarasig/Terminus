@@ -3,7 +3,9 @@
     <div class='profile-banner'>
       <ng-container *ngFor='let userNovel of highestRatedNovels; let i = index'>
         <div
-          class='image-entry' [style.background-image]='getBackgroundImage(userNovel)'></div>
+          class='image-entry'
+          [style.background-image]="(getBackgroundImage | memoize:userNovel)">
+        </div>
       </ng-container>
     </div>
 

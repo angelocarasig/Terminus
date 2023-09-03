@@ -20,6 +20,7 @@ import { CommitsModalComponent } from './components/commits-modal/commits-modal.
 import {NgClickOutsideDirective} from 'ng-click-outside2';
 import { HeatmapComponent } from './components/heatmap/heatmap.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MemoizePipe } from './pipes/memoize.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     SearchModalComponent,
     CommitsModalComponent,
     HeatmapComponent,
+    MemoizePipe,
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ThemeSwitchComponent,
     IconButtonComponent,
     NavbarComponent,
+    MemoizePipe,
   ],
   providers: []
 })

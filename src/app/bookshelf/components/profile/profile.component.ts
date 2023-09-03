@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getBackgroundImage(userNovel: UserNovel): string {
-    return `url(${userNovel.vn.screenshots[0]?.thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf')})`;
+    return `url(${userNovel.vn.screenshots[Math.floor(Math.random() * userNovel.vn.screenshots!.length - 1) || 0]?.thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf')})`;
   }
 
   doRefreshNovels(): void {
