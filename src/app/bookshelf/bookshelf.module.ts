@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { NgIconsModule } from '@ng-icons/core';
 import {
@@ -15,6 +15,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SkeletonModule } from 'primeng/skeleton';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -43,7 +44,9 @@ import { ProfileNovelContainerComponent } from './components/profile-novel-conta
     ChartModule,
     TableModule,
     PaginatorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SkeletonModule,
+    NgOptimizedImage
   ],
   exports: [
     BookshelfComponent

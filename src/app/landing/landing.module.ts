@@ -11,6 +11,8 @@ import { SharedModule } from '../shared/shared.module';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgParticlesModule } from 'ng-particles';
+import { SpinnerModule } from 'primeng/spinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { NgParticlesModule } from 'ng-particles';
     NgIconsModule.withIcons({ featherKey, featherX, featherLogIn, featherAlertCircle }),
     SharedModule,
     NgParticlesModule,
+    SpinnerModule,
+    ProgressSpinnerModule
   ],
   exports: [
     LandingComponent

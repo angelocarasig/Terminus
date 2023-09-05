@@ -8,3 +8,7 @@ export function isPlaying(userNovel: UserNovel): boolean {
 export function modifiedInLastThirtyDays(novel: UserNovel): boolean {
   return novel.lastmod > Math.floor((Date.now() - 30 * 24 * 60 * 60 * 1000) / 1000);
 }
+
+export function isFinished(userNovel: UserNovel): boolean {
+  return userNovel.labels.some(label => label.label === LabelType.Finished);
+}

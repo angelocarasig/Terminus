@@ -11,11 +11,10 @@ import { UserService } from '../../../shared/services/user/user.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  loading = false;
   submitted = false;
   errorMessage = 'Username is required.';
 
-  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(public userService: UserService, private router: Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       authToken: ['']
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
       error: (error) => {
         this.submitted = true;
         this.errorMessage = error.message;
-        window.alert(error);
       }
     });
   }

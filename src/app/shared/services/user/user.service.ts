@@ -17,6 +17,9 @@ export class UserService {
   private currentUserSubject: BehaviorSubject<User | null>;
   currentUser$: Observable<User | null>;
 
+  private loadingIndicatorSubject = new BehaviorSubject<boolean>(false);
+  loadingIndicator$ = this.loadingIndicatorSubject.asObservable();
+
   constructor(private http: HttpClient) {
     const storedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.currentUser);
     const currentUser = storedUser ? JSON.parse(localStorage.getItem(storedUser) || 'null') : null;
@@ -33,6 +36,8 @@ export class UserService {
    * @returns An observable emitting the created User object or null in case of error.
    */
   createUser(username: string, authToken?: string): Observable<User | null> {
+    this.loadingIndicatorSubject.next(true);
+
     // If user already exists, just update localStorage to currentUser
     const storedUserData = localStorage.getItem(username);
 
@@ -87,6 +92,7 @@ export class UserService {
     return this.http.get<any>(`${environment.apiUrl}${environment.endpoints.user}`, { params: new HttpParams().set('q', username) }).pipe(
       switchMap((data: any) => {
         if (!data[username]) {
+          this.loadingIndicatorSubject.next(false);
           throw new Error('Username does not exist.');
         }
         const newUser = this.createUserFromData(data[username].username, data[username].id);
@@ -101,6 +107,7 @@ export class UserService {
     return this.http.get<any>(`${environment.apiUrl}${environment.endpoints.authinfo}`, { headers }).pipe(
       switchMap((data: any) => {
         if (data.username !== username) {
+          this.loadingIndicatorSubject.next(false);
           throw new Error('Username does not match the auth token provider');
         }
         const newUser = this.createUserFromData(data.username, data.id, data.permissions);
@@ -109,6 +116,7 @@ export class UserService {
       }),
       catchError((error) => {
         console.error('Error creating user with auth token:', error);
+        this.loadingIndicatorSubject.next(false);
         return of(null);
       })
     );
@@ -132,5 +140,6 @@ export class UserService {
   private updateLocalStorage(user: User): void {
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, user.username);
     localStorage.setItem(user.username, JSON.stringify(user));
+    this.loadingIndicatorSubject.next(false);
   }
 }

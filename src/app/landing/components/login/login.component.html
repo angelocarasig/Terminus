@@ -40,7 +40,6 @@
         type='button'
         class='btn btn-primary btn-submit'
         (click)='processUser()'
-        [disabled]='loading'
         label='Login'
       >
         <ng-icon name='featherLogIn'></ng-icon>
@@ -50,11 +49,12 @@
         pButton
         type='submit'
         class='btn btn-primary btn-submit'
-        [disabled]='loading'
         label='Guest Login'
       >
       </button>
     </div>
-
   </form>
+  <div class='loading-spinner'>
+    <p-progressSpinner *ngIf='userService.loadingIndicator$ | async'></p-progressSpinner>
+  </div>
 </div>

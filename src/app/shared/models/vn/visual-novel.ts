@@ -5,6 +5,7 @@ import { Screenshot } from './screenshot';
 import { Developer } from './developer';
 
 export interface VisualNovel {
+  id: string;
   image: Image;
   length: number;
   description: string;

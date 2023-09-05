@@ -7,7 +7,6 @@
       >
         <div
           class='image-entry'
-          (click)='console.log(userNovel);'
           [style.background-image]='(getBackgroundImage | memoize:userNovel)'>
         </div>
       </ng-container>
@@ -67,7 +66,8 @@
       <app-profile-novel-container
         title='Favourites'
         [novels]='userService.getUserNovels() | async |
-        novelSort: sortByVoteScore'
+        novelSort: sortByVoteScore |
+        novelFilter: isFinished'
       >
       </app-profile-novel-container>
     </div>

@@ -15,7 +15,7 @@
       </ng-container>
 
       <!--Otherwise results are present and just render them as normal-->
-      <div class='result-item' *ngFor='let result of searchResult.results' (click)='console.log(result)'>
+      <div class='result-item' *ngFor='let result of searchResult.results | novelSort: sortByPopularity' (click)='console.log(result)'>
         <div class='cover'>
           <img [src]='result.image.url' alt='vn image'>
         </div>
@@ -39,7 +39,7 @@
         <div class='links'>
           <app-icon-button iconType='featherIcon' iconName='featherMoreVertical'></app-icon-button>
           <app-icon-button iconType='tablerIcon' iconName='playlist-add'></app-icon-button>
-          <app-icon-button iconType='featherIcon' iconName='featherExternalLink'></app-icon-button>
+          <app-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink(result)'></app-icon-button>
         </div>
       </div>
     </div>

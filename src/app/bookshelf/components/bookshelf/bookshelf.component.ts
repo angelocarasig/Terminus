@@ -19,6 +19,7 @@ export class BookshelfComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser$ = this.userService.currentUser$;
+    console.log("Final Ulist Size: ", this.userService.getUser()?.ulist?.length);
     this.userNovelList$ = this.currentUser$.pipe(
       map(currentUser => {
         if (!currentUser) return;

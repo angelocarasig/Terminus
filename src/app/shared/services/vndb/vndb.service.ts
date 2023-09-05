@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, of, Subject, tap } from 'rxjs';
-import { catchError, concatMap, map, switchMap, takeWhile } from 'rxjs/operators';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, of, Subject } from 'rxjs';
+import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment.prod';
 
@@ -45,33 +45,6 @@ export class VNDBService {
     this.searchQuerySubject.next(query);
   }
 
-  updateUserNovels(user: User): void {
-    let userNovels: Array<UserNovel> = [];
-    let pageNumber = 1;
-
-    this.getUserNovelByPage(user, pageNumber).pipe(
-      takeWhile(response => response.more),
-      concatMap(response => {
-        userNovels = userNovels.concat(response.results);
-        pageNumber++;
-        return this.getUserNovelByPage(user, pageNumber);
-      }),
-      tap({
-        next: response => {
-          userNovels = userNovels.concat(response.results);
-          userNovels.forEach((userNovel: UserNovel) => {
-            this.vnDataTransformer.transformUserNovel(userNovel);
-          })
-
-          this.userService.updateUser({ ulist: userNovels });
-        },
-        error: error => {
-          console.error(`Failed to retrieve user novels: ${error}`);
-        }
-      })
-    ).subscribe();
-  }
-
   private searchVisualNovelByQuery(query: string): Observable<VNResponseType> {
     this.loadingIndicatorSubject.next(true);
 
@@ -83,16 +56,49 @@ export class VNDBService {
       map(response => {
         response.results.forEach((visualNovel: VisualNovel) => {
           this.vnDataTransformer.transformVisualNovel(visualNovel);
-        })
+        });
 
         this.loadingIndicatorSubject.next(false);
-
         return ({ results: response.results, more: response.more });
       }),
       catchError(error => {
         this.loadingIndicatorSubject.next(false);
-
         throw new Error(`Failed to retrieve user novels: ${error}`);
+      })
+    );
+  }
+
+  updateUserNovels(user: User): void {
+    let pageNumber = 1;
+
+    this.fetchUserNovels(user, pageNumber, new Array<UserNovel>())
+      .subscribe({
+        next: (updatedUserNovels: Array<UserNovel>) => {
+          updatedUserNovels.forEach((userNovel: UserNovel) => {
+            this.vnDataTransformer.transformUserNovel(userNovel);
+          });
+
+          this.userService.updateUser({ ulist: updatedUserNovels });
+        },
+        error: (error: Error) => {
+          throw new Error(error.stack);
+        }
+      });
+  }
+
+  private fetchUserNovels(user: User, pageNumber: number, userNovels: Array<UserNovel>): Observable<Array<UserNovel>> {
+    return this.getUserNovelByPage(user, pageNumber).pipe(
+      concatMap(response => {
+        userNovels = userNovels.concat(response.results);
+        if (response.more) {
+          pageNumber++;
+          return this.fetchUserNovels(user, pageNumber, userNovels);
+        }
+
+        return of(userNovels);
+      }),
+      catchError(error => {
+        throw new Error(error);
       })
     );
   }
@@ -102,7 +108,9 @@ export class VNDBService {
     const body = { user: user.uid, results: 100, page, fields: ULIST_PROPS.join(', ') };
 
     return this.http.post<UListResponseType>(url, body).pipe(
-      map(response => ({ results: response.results, more: response.more })),
+      map(response => {
+        return ({ results: response.results, more: response.more });
+      }),
       catchError(error => {
         throw new Error(error);
       })

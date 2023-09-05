@@ -1,10 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import { VNDBService } from '../../services/vndb/vndb.service';
 
 import { replaceVNDBDescriptionLink } from '../../helpers/utilities.helper';
+import { sortByPopularity } from '../../pipes/novel-sort/novel-sort.helper';
+import { VisualNovel } from '../../models/vn/visual-novel';
 
 @Component({
   selector: 'app-search-modal',
@@ -25,7 +27,7 @@ export class SearchModalComponent implements OnInit {
   searchQuery: string;
   searchResultsLoaded: boolean;
 
-  constructor(public vndbService: VNDBService, private sanitizer: DomSanitizer) {
+  constructor(public vndbService: VNDBService, private sanitizer: DomSanitizer, private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -48,5 +50,14 @@ export class SearchModalComponent implements OnInit {
       : this.sanitizer.bypassSecurityTrustHtml(replaceVNDBDescriptionLink(description));
   }
 
+  openVNLink(book: VisualNovel): void {
+    const url = `https://vndb.org/${book.id}`;
+    const link = this.renderer.createElement('a');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.setAttribute(link, 'target', '_blank');
+    link.click();
+  }
+
   protected readonly console = console;
+  protected readonly sortByPopularity = sortByPopularity;
 }
