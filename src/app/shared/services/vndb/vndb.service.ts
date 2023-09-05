@@ -8,26 +8,27 @@ import { environment } from '../../../../environments/environment.prod';
 
 import { UserService } from '../user/user.service';
 
+import { NovelDataFormatterHelper } from '../../helpers/novel-data-formatter.helper';
+
 import { User } from '../../models/user/user';
 import { UserNovel } from '../../models/vn/user-novel';
 import { UListResponseType, VNResponseType } from '../../../../types';
-import { ULIST_PROPS, VN_PROPS } from '../../../../constants';
-import { VNDataPipe } from '../../helpers/new-vn-pipe.helper';
 import { VisualNovel } from '../../models/vn/visual-novel';
+import { ULIST_PROPS, VN_PROPS } from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VndbService {
+export class VNDBService {
   private searchQuerySubject = new Subject<string>();
 
   private loadingIndicatorSubject = new BehaviorSubject<boolean>(false);
   loadingIndicator$ = this.loadingIndicatorSubject.asObservable();
 
-  private vnDataPipe: VNDataPipe;
+  private vnDataTransformer: NovelDataFormatterHelper;
 
   constructor(private http: HttpClient, private userService: UserService) {
-    this.vnDataPipe = new VNDataPipe();
+    this.vnDataTransformer = new NovelDataFormatterHelper();
   }
 
   searchResult$: Observable<VNResponseType | null> = this.searchQuerySubject.pipe(
@@ -59,7 +60,7 @@ export class VndbService {
         next: response => {
           userNovels = userNovels.concat(response.results);
           userNovels.forEach((userNovel: UserNovel) => {
-            this.vnDataPipe.transformUserNovel(userNovel);
+            this.vnDataTransformer.transformUserNovel(userNovel);
           })
 
           this.userService.updateUser({ ulist: userNovels });
@@ -81,7 +82,7 @@ export class VndbService {
     return this.http.post<VNResponseType>(url, body).pipe(
       map(response => {
         response.results.forEach((visualNovel: VisualNovel) => {
-          this.vnDataPipe.transformVisualNovel(visualNovel);
+          this.vnDataTransformer.transformVisualNovel(visualNovel);
         })
 
         this.loadingIndicatorSubject.next(false);

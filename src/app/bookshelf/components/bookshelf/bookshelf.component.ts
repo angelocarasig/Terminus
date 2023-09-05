@@ -3,7 +3,7 @@ import { UserService } from '../../../shared/services/user/user.service';
 import { User } from '../../../shared/models/user/user';
 import { Observable } from 'rxjs';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
-import { VndbService } from '../../../shared/services/vndb/vndb.service';
+import { VNDBService } from '../../../shared/services/vndb/vndb.service';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -15,7 +15,7 @@ export class BookshelfComponent implements OnInit {
   currentUser$: Observable<User | null>;
   userNovelList$: Observable<Array<UserNovel> | undefined>;
 
-  constructor(private userService: UserService, private vndbService: VndbService) { }
+  constructor(private userService: UserService, private vndbService: VNDBService) { }
 
   ngOnInit(): void {
     this.currentUser$ = this.userService.currentUser$;

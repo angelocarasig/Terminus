@@ -1,6 +1,6 @@
 <span>{{title}} </span>
-<span>{{'(' + novelsContainerWrapper.novels.length + ' novels)'}}</span>
+<span>{{'(' + novels!.length + ' novels)'}}</span>
 <pagination-controls class='pagination' [id]='title' (pageChange)='handlePageChange($event)'></pagination-controls>
 <div class='profile-novel-container'>
-  <app-book *ngFor='let book of novelsContainerWrapper.novels | paginate: { id: title, itemsPerPage: 12, currentPage: novelsContainerWrapper.paginateNumber }' [book]='book'></app-book>
+  <app-book *ngFor='let book of novels! | paginate: { id: title, itemsPerPage: 12, currentPage: paginateNumber }' [book]='book'></app-book>
 </div>

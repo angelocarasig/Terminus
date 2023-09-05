@@ -1,8 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 
-import { UserService } from '../../../services/user/user.service';
+import { UserService } from '../../services/user/user.service';
 
-import { REPOSITORY } from '../../../../../constants';
+import { REPOSITORY } from '../../../../constants';
 
 @Component({
   selector: 'app-navbar',

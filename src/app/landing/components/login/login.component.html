@@ -20,7 +20,7 @@
       </div>
 
       <div *ngIf="submitted || form.get('username')?.invalid && form.get('username')?.touched" class='p-error'>
-        Username is required.
+        {{errorMessage}}
       </div>
 
       <div class='p-field p-input-icon-left'>

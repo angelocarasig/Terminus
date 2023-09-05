@@ -6,20 +6,19 @@ import {
   ApexPlotOptions, ApexTooltip
 } from 'ng-apexcharts';
 
-import { UserNovel } from './app/shared/models/vn/user-novel';
 import { VisualNovel } from './app/shared/models/vn/visual-novel';
+import { UserNovel } from './app/shared/models/vn/user-novel';
 
 import { MONTHS } from './constants';
 
-export type VNResponseType = {
-  results: Array<VisualNovel>,
-  more: boolean,
+interface BaseResponseType<T> {
+  results: Array<T>;
+  more: boolean;
 }
 
-export type UListResponseType = {
-  results: Array<UserNovel>,
-  more: boolean,
-}
+export type VNResponseType = BaseResponseType<VisualNovel>;
+
+export type UListResponseType = BaseResponseType<UserNovel>;
 
 export enum Theme {
   Light = 'light',
@@ -37,11 +36,6 @@ export type ChartOptions = {
 };
 
 export type Month = typeof MONTHS[number];
-
-export interface InputEntry {
-  date: Date;
-  frequency: number;
-}
 
 export interface HeatmapEntry {
   name: Month;

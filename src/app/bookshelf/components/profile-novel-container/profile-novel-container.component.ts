@@ -1,20 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NovelContainerWrapper } from '../../models/novel-container-wrapper';
+import { Component, Input } from '@angular/core';
+import { UserNovel } from '../../../shared/models/vn/user-novel';
 
 @Component({
   selector: 'app-profile-novel-container',
   templateUrl: './profile-novel-container.component.html',
   styleUrls: ['./profile-novel-container.component.scss']
 })
-export class ProfileNovelContainerComponent implements  OnInit {
+export class ProfileNovelContainerComponent {
   @Input() title: string;
-  @Input() novelsContainerWrapper: NovelContainerWrapper;
+  @Input() novels: Array<UserNovel> | null;
 
-  ngOnInit() {
-    this.novelsContainerWrapper.paginateNumber = 1;
-  }
+  paginateNumber = 1;
 
   handlePageChange(page: number): void {
-    this.novelsContainerWrapper.paginateNumber = page;
+    this.paginateNumber = page;
   }
 }

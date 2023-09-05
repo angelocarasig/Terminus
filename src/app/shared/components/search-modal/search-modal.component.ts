@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
-import { VndbService } from '../../services/vndb/vndb.service';
-import { replaceVNDBDescriptionLink } from '../../helpers/utilities.helper';
 import { animate, style, transition, trigger } from '@angular/animations';
+
+import { VNDBService } from '../../services/vndb/vndb.service';
+
+import { replaceVNDBDescriptionLink } from '../../helpers/utilities.helper';
 
 @Component({
   selector: 'app-search-modal',
@@ -24,7 +25,7 @@ export class SearchModalComponent implements OnInit {
   searchQuery: string;
   searchResultsLoaded: boolean;
 
-  constructor(public vndbService: VndbService, private sanitizer: DomSanitizer) {
+  constructor(public vndbService: VNDBService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {

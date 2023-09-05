@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgIconsModule } from '@ng-icons/core';
-import { featherMoreVertical, featherEdit2, featherExternalLink, featherRefreshCw } from '@ng-icons/feather-icons';
-
+import {
+  featherMoreVertical,
+  featherEdit2,
+  featherExternalLink,
+  featherRefreshCw
+} from '@ng-icons/feather-icons';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
-// PrimeNG
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { SharedModule } from '../shared/shared.module';
@@ -30,7 +33,12 @@ import { ProfileNovelContainerComponent } from './components/profile-novel-conta
   imports: [
     CommonModule,
     SharedModule,
-    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherExternalLink, featherRefreshCw }),
+    NgIconsModule.withIcons({
+      featherMoreVertical,
+      featherEdit2,
+      featherExternalLink,
+      featherRefreshCw
+    }),
     ProgressSpinnerModule,
     ChartModule,
     TableModule,

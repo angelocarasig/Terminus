@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Container, Engine } from 'tsparticles-engine';
 
+import { Container, Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
-import { getParticleOptions } from '../../helpers/particles';
+
+import { getParticleOptions } from '../../helpers/particles.helper';
 
 @Component({
   selector: 'app-landing',

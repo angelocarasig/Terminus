@@ -7,7 +7,7 @@ import { formattedDate, GetSexualRating, GetViolenceRating } from './utilities.h
 import { Screenshot } from '../models/vn/screenshot';
 import { VisualNovel } from '../models/vn/visual-novel';
 
-export class VNDataPipe {
+export class NovelDataFormatterHelper {
   constructor() {
   }
 
@@ -19,8 +19,6 @@ export class VNDataPipe {
 
     return userNovel;
   }
-
-
 
   transformVisualNovel(visualNovel: VisualNovel): VisualNovel {
     // VisualNovel specific

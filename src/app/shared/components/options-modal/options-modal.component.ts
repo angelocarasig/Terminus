@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+
 import { MenuItem } from 'primeng/api';
+
 import { OptionTabs } from '../../models/options/optionTabs';
 
 @Component({

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
 
 import { GithubService } from '../../services/github/github.service';
 
 import { GitHubCommit } from '../../models/github-commit/github-commit';
 import { formattedDate } from '../../helpers/utilities.helper';
-import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-commits-modal',

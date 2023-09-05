@@ -1,13 +1,10 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { UserService } from '../../../shared/services/user/user.service';
-import {
-  getFavouriteUserNovels, getHighestRatedUserNovels,
-  getPlayingUserNovels,
-  getRecentUserNovels
-} from '../../../shared/helpers/vndb.helper';
+
 import { formattedDate } from '../../../shared/helpers/utilities.helper';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
-import { NovelContainerWrapper } from '../../models/novel-container-wrapper';
+import { modifiedInLastThirtyDays, isPlaying } from '../../../shared/pipes/novel-filter/novel-filter.helper';
+import { sortByPopularity, sortByRecentlyModified, sortByVoteScore } from '../../../shared/pipes/novel-sort/novel-sort.helper';
 
 @Component({
   selector: 'app-profile',
@@ -18,26 +15,15 @@ export class ProfileComponent implements OnInit {
   @Output() refreshNovelsTrigger = new EventEmitter<void>();
   refreshing = false;
 
-  highestRatedNovels: Array<UserNovel>;
-  playing: NovelContainerWrapper;
-  recent: NovelContainerWrapper;
-  favourites: NovelContainerWrapper;
-
   constructor(public userService: UserService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
     this.userService.getUserNovels().subscribe({
-      next: (updatedUserNovels: Array<UserNovel>) => {
-        this.refreshing = false;
-        this.highestRatedNovels = getHighestRatedUserNovels(updatedUserNovels);
-        this.playing = this.getNovelContainer(getPlayingUserNovels(updatedUserNovels));
-        this.recent = this.getNovelContainer(getRecentUserNovels(updatedUserNovels));
-        this.favourites = this.getNovelContainer(getFavouriteUserNovels(updatedUserNovels));
+      next: () => {
+        this.refreshing = false
       }
-    });
-
-    this.printDetails();
+    })
   }
 
   openProfileInVNDB(): void {
@@ -61,20 +47,11 @@ export class ProfileComponent implements OnInit {
     this.refreshNovelsTrigger.emit();
   }
 
-  private getNovelContainer(novels: Array<UserNovel>): NovelContainerWrapper {
-    return {
-      novels,
-      paginateNumber: 1
-    };
-  }
-
-  private printDetails(): void {
-    console.log('Highest Rated: ', this.highestRatedNovels);
-    console.log('Playing: ', this.playing.novels);
-    console.log('Recent: ', this.recent.novels);
-    console.log('Favourites: ', this.favourites.novels);
-  }
-
   protected readonly formattedDate = formattedDate;
   protected readonly console = console;
+  protected readonly isPlaying = isPlaying;
+  protected readonly sortByRecentlyModified = sortByRecentlyModified;
+  protected readonly filterModByLastThirtyDays = modifiedInLastThirtyDays;
+  protected readonly sortByVoteScore = sortByVoteScore;
+  protected readonly sortByPopularity = sortByPopularity;
 }

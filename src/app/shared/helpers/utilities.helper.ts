@@ -4,8 +4,6 @@ export const formattedDate = (inputDate: Date | string | number | undefined) => 
 
 export const unixTimestampToDate = (inputTimestamp: number) => new Date(inputTimestamp * 1000);
 
-export const stripNewline = (inputString: string) => inputString.replace(/\n/g, ' ');
-
 export const stripVNDBLink = (input: string): string =>
   input.replace(/\[url=([^\]]+)\]([^\[]+)\[\/url\]/g, '$2');
 

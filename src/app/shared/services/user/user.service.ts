@@ -7,8 +7,8 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment.prod';
 
 import { User } from '../../models/user/user';
-import { LOCAL_STORAGE_KEYS } from '../../../../constants';
 import { UserNovel } from '../../models/vn/user-novel';
+import { LOCAL_STORAGE_KEYS } from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'

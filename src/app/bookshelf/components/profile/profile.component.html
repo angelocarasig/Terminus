@@ -1,7 +1,10 @@
 <div class='profile-container'>
   <div class='profile'>
     <div class='profile-banner'>
-      <ng-container *ngFor='let userNovel of highestRatedNovels'>
+      <ng-container
+        *ngFor='let userNovel of userService.getUserNovels() | async |
+        highestVote: "vote"'
+      >
         <div
           class='image-entry'
           (click)='console.log(userNovel);'
@@ -26,7 +29,6 @@
         </div>
       </div>
     </div>
-
     <div class='profile-charts'>
       <div class='pies'>
         Pies
@@ -42,15 +44,32 @@
 <div class='columns-container'>
   <div class='columns'>
     <div class='recent'>
-      <app-profile-novel-container title='Recently Updated (30 days)' [novelsContainerWrapper]='recent'></app-profile-novel-container>
+      <app-profile-novel-container
+        title='Recently Updated (30 days)'
+        [novels]='userService.getUserNovels() | async |
+        novelSort: sortByRecentlyModified |
+        novelFilter: filterModByLastThirtyDays'
+      >
+      </app-profile-novel-container>
     </div>
 
     <div class='playing'>
-      <app-profile-novel-container title='Playing' [novelsContainerWrapper]='playing'></app-profile-novel-container>
+      <app-profile-novel-container
+        title='Playing'
+        [novels]='userService.getUserNovels() | async |
+        novelSort: sortByPopularity |
+        novelFilter: isPlaying'
+      >
+      </app-profile-novel-container>
     </div>
 
     <div class='favorites'>
-      <app-profile-novel-container title='Favourites' [novelsContainerWrapper]='favourites'></app-profile-novel-container>
+      <app-profile-novel-container
+        title='Favourites'
+        [novels]='userService.getUserNovels() | async |
+        novelSort: sortByVoteScore'
+      >
+      </app-profile-novel-container>
     </div>
   </div>
 </div>

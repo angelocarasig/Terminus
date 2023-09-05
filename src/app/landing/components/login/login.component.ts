@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
+  errorMessage = 'Username is required.';
 
   constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -28,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   processUser(): void {
-    this.submitted = true;
     if (this.form.invalid) return;
 
     const usernameValue = this.form.get('username')!.value;
@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/bookshelf']).then();
       },
       error: (error) => {
+        this.submitted = true;
+        this.errorMessage = error.message;
         window.alert(error);
       }
     });
