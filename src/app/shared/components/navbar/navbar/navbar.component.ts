@@ -12,6 +12,7 @@ import { REPOSITORY } from '../../../../../constants';
 export class NavbarComponent implements  OnInit {
   showSearchModal: boolean;
   showChangelogModal: boolean;
+  showOptionsModal: boolean;
 
   constructor(private userService: UserService, private renderer: Renderer2) {}
 
@@ -36,6 +37,15 @@ export class NavbarComponent implements  OnInit {
 
   closeChangelogModal(): void {
     this.showChangelogModal = false;
+  }
+
+  displayOptionsModal(event: Event): void {
+    this.showOptionsModal = true;
+    event.stopPropagation();
+  }
+
+  closeOptionsModal(): void {
+    this.showOptionsModal = false;
   }
 
   goToHome(): void {

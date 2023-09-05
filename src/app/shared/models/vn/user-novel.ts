@@ -8,7 +8,9 @@ export interface UserNovel {
   vote: number | null;
   voted: number | null;
   added: number;
+  addedFormatted?: Date;
   lastmod: number;
+  lastmodFormatted?: Date;
   notes: string | null;
 
   vn: VisualNovel;

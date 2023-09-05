@@ -39,6 +39,8 @@ export const VN_PROPS: Array<string> = [
   'vn.votecount',
   'vn.screenshots.thumbnail',
   'vn.screenshots.thumbnail_dims',
+  'vn.screenshots.sexual',
+  'vn.screenshots.violence',
   'vn.tags.rating',
   'vn.tags.spoiler',
   'vn.tags.lie',

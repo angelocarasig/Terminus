@@ -21,6 +21,9 @@ import {NgClickOutsideDirective} from 'ng-click-outside2';
 import { HeatmapComponent } from './components/heatmap/heatmap.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MemoizePipe } from './pipes/memoize.pipe';
+import { OptionsModalComponent } from './components/options-modal/options-modal.component';
+import { ToastModule } from 'primeng/toast';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { MemoizePipe } from './pipes/memoize.pipe';
     CommitsModalComponent,
     HeatmapComponent,
     MemoizePipe,
+    OptionsModalComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +46,8 @@ import { MemoizePipe } from './pipes/memoize.pipe';
     ProgressSpinnerModule,
     NgClickOutsideDirective,
     NgApexchartsModule,
+    ToastModule,
+    MenuModule
   ],
   exports: [
     ThemeSwitchComponent,

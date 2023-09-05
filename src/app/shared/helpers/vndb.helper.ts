@@ -1,6 +1,11 @@
 import { UserNovel } from '../models/vn/user-novel';
 import { LabelType } from '../models/vn/label';
 
+/**
+ * About
+ * This helper section are for all general functions to be used in other components usernovel/visualnovel related
+ */
+
 export function getHighestRatedUserNovels(userNovels: Array<UserNovel>): Array<UserNovel> {
   const filteredArray = userNovels.filter((userNovel) => userNovel.vote !== null);
   const maxVote = Math.max(...filteredArray.map((entry) => entry.vote as number));

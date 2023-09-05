@@ -1,5 +1,6 @@
 <app-search-modal *ngIf='showSearchModal' (outsideClicked)='closeSearchModal()'></app-search-modal>
 <app-commits-modal *ngIf='showChangelogModal' (outsideClicked)='closeChangelogModal()'></app-commits-modal>
+<app-options-modal *ngIf='showOptionsModal' (outsideClicked)='closeOptionsModal()'></app-options-modal>
 
 <div class='navbar-container'>
   <div class='navbar'>
@@ -19,7 +20,7 @@
       <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
       <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()'></app-icon-button>
       <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
-      <app-icon-button iconType='featherIcon' iconName='featherSettings'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherSettings' (click)='displayOptionsModal($event)'></app-icon-button>
     </div>
   </div>
 </div>

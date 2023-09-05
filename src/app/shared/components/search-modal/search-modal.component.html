@@ -3,12 +3,15 @@
     <div class='input-field'>
       <ng-icon class='search-icon' name='featherSearch'></ng-icon>
       <input pAutoFocus [autofocus]='true' class='search-field' placeholder='Search' [(ngModel)]='searchQuery' (ngModelChange)='onSearchQueryChange()'>
+      <div class='spinner' *ngIf='vndbService.loadingIndicator$ | async'>
+        <p-progressSpinner styleClass='loading-spinner'></p-progressSpinner>
+      </div>
     </div>
-    <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else emptySearchField'>
+    <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else noResult'>
 
       <!--2nd failsafe to render if service had no results-->
       <ng-container *ngIf='searchResult.results.length === 0'>
-        <ng-container *ngTemplateOutlet='emptySearchField'></ng-container>
+        <ng-container *ngTemplateOutlet='noResult'></ng-container>
       </ng-container>
 
       <!--Otherwise results are present and just render them as normal-->
@@ -29,7 +32,7 @@
           </div>
 
           <div class='description'>
-            <span>{{formatDescription(result.description)}}</span>
+            <span [innerHTML]='getDescription(result.description)'></span>
           </div>
         </div>
 
@@ -43,7 +46,7 @@
   </div>
 </div>
 
-<ng-template #emptySearchField>
+<ng-template #noResult>
   <div class='result-field'>
     <div class='result-item no-result'>
       <div class='details'>

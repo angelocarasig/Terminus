@@ -4,7 +4,7 @@ import {
   getFavouriteUserNovels, getHighestRatedUserNovels,
   getPlayingUserNovels,
   getRecentUserNovels
-} from '../../../shared/helpers/ulist.helper';
+} from '../../../shared/helpers/vndb.helper';
 import { formattedDate } from '../../../shared/helpers/utilities.helper';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { NovelContainerWrapper } from '../../models/novel-container-wrapper';
@@ -51,8 +51,8 @@ export class ProfileComponent implements OnInit {
   getBackgroundImage(userNovel: UserNovel): string {
     return `url(${
       userNovel.vn.screenshots && userNovel.vn.screenshots.length
-        ? userNovel.vn.screenshots[Math.floor(Math.random() * userNovel.vn.screenshots!.length)].thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf')
-        : userNovel.vn.screenshots[0].thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf')
+        ? userNovel.vn.screenshots[Math.floor(Math.random() * userNovel.vn.screenshots!.length)].thumbnail
+        : userNovel.vn.screenshots[0].thumbnail
     })`;
   }
 
@@ -76,4 +76,5 @@ export class ProfileComponent implements OnInit {
   }
 
   protected readonly formattedDate = formattedDate;
+  protected readonly console = console;
 }

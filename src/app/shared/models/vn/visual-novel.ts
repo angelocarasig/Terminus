@@ -26,3 +26,15 @@ export interface VisualNovel {
   rating: number;
   popularity: number;
 }
+
+export enum SexualRating {
+  SAFE = 'Safe',
+  SUGGESTIVE = 'Suggestive',
+  EXPLICIT = 'Explicit'
+}
+
+export enum ViolenceRating {
+  TAME = 'Tame',
+  VIOLENT = 'Violent',
+  BRUTAL = 'Brutal'
+}

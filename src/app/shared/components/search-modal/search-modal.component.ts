@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { VndbService } from '../../services/vndb/vndb.service';
-import { stripVNDBLink, stripNewline } from '../../helpers/utilities.helper';
+import { replaceVNDBDescriptionLink } from '../../helpers/utilities.helper';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -12,25 +13,27 @@ import { animate, style, transition, trigger } from '@angular/animations';
     trigger('fadeAnimation', [
       transition('void => *', [
         style({ opacity: 0 }),
-        animate('0.1s', style({ opacity: 1 })),
-      ]),
+        animate('0.1s', style({ opacity: 1 }))
+      ])
       // Dismounts from *ngIf so no use for adding fadeOut
     ])
   ]
 })
 export class SearchModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();
-  protected readonly console = console;
   searchQuery: string;
+  searchResultsLoaded: boolean;
 
-  constructor(public vndbService: VndbService) {
+  constructor(public vndbService: VndbService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
     this.searchQuery = '';
+    this.searchResultsLoaded = true;
   }
 
   onSearchQueryChange(): void {
+    this.searchResultsLoaded = false;
     this.vndbService.updateSearchQuery(this.searchQuery);
   }
 
@@ -38,9 +41,11 @@ export class SearchModalComponent implements OnInit {
     this.outsideClicked.emit();
   }
 
-  formatDescription(inputString: string): string {
-    return !inputString || inputString === ''
+  getDescription(description: string): SafeHtml {
+    return !description || description === ''
       ? 'No Description Provided.'
-      : stripNewline(stripVNDBLink(inputString));
+      : this.sanitizer.bypassSecurityTrustHtml(replaceVNDBDescriptionLink(description));
   }
+
+  protected readonly console = console;
 }

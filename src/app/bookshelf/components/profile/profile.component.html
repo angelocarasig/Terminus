@@ -1,9 +1,10 @@
 <div class='profile-container'>
   <div class='profile'>
     <div class='profile-banner'>
-      <ng-container *ngFor='let userNovel of highestRatedNovels; let i = index'>
+      <ng-container *ngFor='let userNovel of highestRatedNovels'>
         <div
           class='image-entry'
+          (click)='console.log(userNovel);'
           [style.background-image]='(getBackgroundImage | memoize:userNovel)'>
         </div>
       </ng-container>
