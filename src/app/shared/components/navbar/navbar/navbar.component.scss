@@ -1,13 +1,17 @@
+.navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 2px solid #7e7e7e;
+  padding: 0.5rem 0;
+  background-color: #242629;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   color: #EFF7F9;
-  position: sticky;
-  top: 0;
   height: 3rem;
-  z-index: 2;
-
-  background-color: #242629;
 
   .home, .search, .settings {
     display: flex;

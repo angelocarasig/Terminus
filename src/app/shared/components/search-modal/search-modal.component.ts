@@ -2,11 +2,21 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { VndbService } from '../../services/vndb/vndb.service';
 import { stripVNDBLink, stripNewline } from '../../helpers/utilities.helper';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
-  styleUrls: ['./search-modal.component.scss']
+  styleUrls: ['./search-modal.component.scss'],
+  animations: [
+    trigger('fadeAnimation', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate('0.1s', style({ opacity: 1 })),
+      ]),
+      // Dismounts from *ngIf so no use for adding fadeOut
+    ])
+  ]
 })
 export class SearchModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();

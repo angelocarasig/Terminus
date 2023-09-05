@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer2 } from '@angular/core';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 
 @Component({
@@ -9,9 +9,17 @@ import { UserNovel } from '../../../shared/models/vn/user-novel';
 export class BookComponent {
   @Input() book: UserNovel;
 
-  constructor() {  }
+  constructor(private renderer: Renderer2) {  }
 
   printBook(): void {
     console.log(this.book);
+  }
+
+  openVNLink(): void {
+    const url = `https://vndb.org/${this.book.id}`;
+    const link = this.renderer.createElement('a');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.setAttribute(link, 'target', '_blank');
+    link.click();
   }
 }

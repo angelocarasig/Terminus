@@ -5,11 +5,21 @@ import { GithubService } from '../../services/github/github.service';
 
 import { GitHubCommit } from '../../models/github-commit/github-commit';
 import { formattedDate } from '../../helpers/utilities.helper';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-commits-modal',
   templateUrl: './commits-modal.component.html',
-  styleUrls: ['./commits-modal.component.scss']
+  styleUrls: ['./commits-modal.component.scss'],
+  animations: [
+    trigger('fadeAnimation', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate('0.1s', style({ opacity: 1 }))
+      ])
+      // Dismounts from *ngIf so no use for adding fadeOut
+    ])
+  ]
 })
 export class CommitsModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();

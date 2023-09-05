@@ -1,23 +1,25 @@
-<app-search-modal *ngIf='showSearchModal' class='fade-in fade-out' (outsideClicked)='closeSearchModal()'></app-search-modal>
-<app-commits-modal *ngIf='showChangelogModal' class='fade-in fade-out' (outsideClicked)='closeChangelogModal()'></app-commits-modal>
+<app-search-modal *ngIf='showSearchModal' (outsideClicked)='closeSearchModal()'></app-search-modal>
+<app-commits-modal *ngIf='showChangelogModal' (outsideClicked)='closeChangelogModal()'></app-commits-modal>
 
-<div class='navbar'>
-  <div class='home' (click)='goToHome()'>
-    <div class='icon-container'>
-      <div class='icon'></div>
+<div class='navbar-container'>
+  <div class='navbar'>
+    <div class='home' (click)='goToHome()'>
+      <div class='icon-container'>
+        <div class='icon'></div>
+      </div>
     </div>
-  </div>
 
-  <div class='search' (click)='displaySearchModal($event)'>
-    <div class='search-bar'>
-      <ng-icon class='search-icon' name='featherSearch'></ng-icon>
+    <div class='search' (click)='displaySearchModal($event)'>
+      <div class='search-bar'>
+        <ng-icon class='search-icon' name='featherSearch'></ng-icon>
+      </div>
     </div>
-  </div>
 
-  <div class='settings'>
-    <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
-    <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()'></app-icon-button>
-    <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
-    <app-icon-button iconType='featherIcon' iconName='featherSettings'></app-icon-button>
+    <div class='settings'>
+      <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
+      <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherSettings'></app-icon-button>
+    </div>
   </div>
 </div>

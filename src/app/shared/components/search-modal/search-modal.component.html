@@ -1,4 +1,4 @@
-<div class='modal'>
+<div class='modal' [@fadeAnimation]>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
     <div class='input-field'>
       <ng-icon class='search-icon' name='featherSearch'></ng-icon>
@@ -36,7 +36,7 @@
         <div class='links'>
           <app-icon-button iconType='featherIcon' iconName='featherMoreVertical'></app-icon-button>
           <app-icon-button iconType='tablerIcon' iconName='playlist-add'></app-icon-button>
-          <app-icon-button iconType='featherIcon' iconName='featherLink'></app-icon-button>
+          <app-icon-button iconType='featherIcon' iconName='featherExternalLink'></app-icon-button>
         </div>
       </div>
     </div>

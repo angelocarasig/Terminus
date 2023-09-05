@@ -2,7 +2,7 @@ export function getParticleOptions(): any {
   return {
     fps_limit: 30,
     background: {
-      color: "#000000"
+      color: '#000000'
     },
     particles: {
       color: { value: '#ffffff' },
@@ -51,7 +51,7 @@ export function getParticleOptions(): any {
       draw: { enable: false, lineColor: '#ffffff', lineWidth: 0.5 },
       move: { radius: 10 },
       scale: 1,
-      type: 'none',
-    },
+      type: 'none'
+    }
   };
 }

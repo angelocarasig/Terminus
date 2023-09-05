@@ -4,7 +4,7 @@
       <ng-container *ngFor='let userNovel of highestRatedNovels; let i = index'>
         <div
           class='image-entry'
-          [style.background-image]="(getBackgroundImage | memoize:userNovel)">
+          [style.background-image]='(getBackgroundImage | memoize:userNovel)'>
         </div>
       </ng-container>
     </div>

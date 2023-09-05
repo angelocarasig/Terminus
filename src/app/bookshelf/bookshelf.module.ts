@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgIconsModule } from '@ng-icons/core';
-import { featherMoreVertical, featherEdit2, featherLink, featherRefreshCw } from '@ng-icons/feather-icons';
+import { featherMoreVertical, featherEdit2, featherExternalLink, featherRefreshCw } from '@ng-icons/feather-icons';
 
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -30,7 +30,7 @@ import { ProfileNovelContainerComponent } from './components/profile-novel-conta
   imports: [
     CommonModule,
     SharedModule,
-    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherLink, featherRefreshCw }),
+    NgIconsModule.withIcons({ featherMoreVertical, featherEdit2, featherExternalLink, featherRefreshCw }),
     ProgressSpinnerModule,
     ChartModule,
     TableModule,
