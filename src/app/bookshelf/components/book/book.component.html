@@ -3,7 +3,8 @@
 
   <div class='book'>
     <div class='book-image'>
-      <img [ngSrc]='book.vn.image.url' class='book-image' alt='...' priority fill>
+        <p-skeleton styleClass="skeleton-image" *ngIf="!imageLoaded"></p-skeleton>
+        <img #imageElement [src]='book.vn.image.url' class='book-image' alt='...' (load)="onImageLoad()" [ngClass]="!imageLoaded ? 'book-image--loading' : ''">
     </div>
 
     <div class='book-info'>

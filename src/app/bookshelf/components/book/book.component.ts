@@ -8,6 +8,7 @@ import { UserNovel } from '../../../shared/models/vn/user-novel';
 })
 export class BookComponent {
   @Input() book: UserNovel;
+  imageLoaded: boolean = false;
 
   constructor(private renderer: Renderer2) {  }
 
@@ -21,5 +22,9 @@ export class BookComponent {
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.setAttribute(link, 'target', '_blank');
     link.click();
+  }
+
+  onImageLoad() {
+    this.imageLoaded = true;
   }
 }

@@ -110,3 +110,15 @@
   }
 }
 
+::ng-deep .skeleton-image {
+  width: 13rem !important;
+  height: max-content !important;
+  aspect-ratio: 12/18;
+  border-radius: 1rem;
+
+  background-color: #212121 !important;
+}
+
+.book-image--loading {
+  display: none !important;
+}
