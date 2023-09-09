@@ -1,0 +1,14 @@
+<div class='book-image' [ngClass]="{'list-view': styleClass === 'list-view'}">
+  <p-skeleton styleClass='skeleton-image' *ngIf='!imageLoaded'></p-skeleton>
+  <img
+    class='book-image'
+    [ngClass]="{
+      'book-image--loading': !imageLoaded,
+      'list-view': styleClass === 'list-view',
+    }"
+    [ngSrc]='imageSource'
+    (load)='onImageLoad()'
+    priority=''
+    alt='...'
+    fill=''>
+</div>

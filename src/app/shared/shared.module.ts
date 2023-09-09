@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -27,6 +27,8 @@ import { MenuModule } from 'primeng/menu';
 import { NovelFilterPipe } from './pipes/novel-filter/novel-filter.pipe';
 import { NovelSortPipe } from './pipes/novel-sort/novel-sort.pipe';
 import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
+import { BookImageComponent } from './components/book-image/book-image.component';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
     NovelFilterPipe,
     NovelSortPipe,
     HighestVotePipe,
+    BookImageComponent,
   ],
   imports: [
     // Angular Modules
@@ -61,7 +64,9 @@ import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
     AutoFocusModule,
     NgApexchartsModule,
     ToastModule,
-    MenuModule
+    MenuModule,
+    SkeletonModule,
+    NgOptimizedImage
   ],
   exports: [
     // Shared Components
@@ -73,7 +78,8 @@ import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
     MemoizePipe,
     NovelFilterPipe,
     NovelSortPipe,
-    HighestVotePipe
+    HighestVotePipe,
+    BookImageComponent
   ],
   providers: []
 })

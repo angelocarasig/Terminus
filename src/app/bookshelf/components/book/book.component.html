@@ -2,10 +2,7 @@
   <div class='book-background'></div>
 
   <div class='book'>
-    <div class='book-image'>
-        <p-skeleton styleClass="skeleton-image" *ngIf="!imageLoaded"></p-skeleton>
-        <img #imageElement [src]='book.vn.image.url' class='book-image' alt='...' (load)="onImageLoad()" [ngClass]="!imageLoaded ? 'book-image--loading' : ''">
-    </div>
+    <app-book-image [imageSource]='book.vn.image.url'></app-book-image>
 
     <div class='book-info'>
       <div class='book-title'>

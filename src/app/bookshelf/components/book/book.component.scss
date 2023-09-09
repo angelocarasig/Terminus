@@ -30,10 +30,6 @@
     }
 
     .book {
-      .book-image {
-        scale: 1.02;
-      }
-
       .book-info, .book-tools {
         transform: translate(10px, 15px);
         transform-origin: bottom;
@@ -53,18 +49,6 @@
 
   .book {
     z-index: 1;
-
-    .book-image {
-      transition: 0.5s, color 0s;
-      background-image: inherit;
-      background-size: cover;
-      background-position: center;
-      object-fit: cover;
-      aspect-ratio: 12/16;
-      width: 13rem;
-      border-radius: 1rem;
-      position: relative;
-    }
 
     .book-info, .book-tools {
       display: flex;
@@ -108,17 +92,4 @@
       opacity: 0;
     }
   }
-}
-
-::ng-deep .skeleton-image {
-  width: 13rem !important;
-  height: max-content !important;
-  aspect-ratio: 12/18;
-  border-radius: 1rem;
-
-  background-color: #212121 !important;
-}
-
-.book-image--loading {
-  display: none !important;
 }

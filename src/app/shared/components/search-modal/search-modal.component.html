@@ -17,7 +17,7 @@
       <!--Otherwise results are present and just render them as normal-->
       <div class='result-item' *ngFor='let result of searchResult.results | novelSort: sortByPopularity' (click)='console.log(result)'>
         <div class='cover'>
-          <img [src]='result.image.url' alt='vn image'>
+          <app-book-image [imageSource]='result.image.url' styleClass='list-view'></app-book-image>
         </div>
 
         <div class='details'>

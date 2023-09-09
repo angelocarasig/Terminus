@@ -1,0 +1,33 @@
+.book-image {
+  transition: 0.5s, color 0s;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  aspect-ratio: 12/16;
+  width: 13rem !important;
+  border-radius: 1rem;
+  position: relative;
+
+  &:hover {
+    scale: 1.02;
+  }
+}
+
+::ng-deep .skeleton-image {
+  width: 13rem !important;
+  height: max-content !important;
+  aspect-ratio: 12/16;
+  border-radius: 1rem;
+
+  background-color: #212121 !important;
+}
+
+.book-image--loading {
+  display: none !important;
+}
+
+.list-view, .list-view ::ng-deep .skeleton-image {
+  width: 10rem !important;
+  height: fit-content !important;
+}
