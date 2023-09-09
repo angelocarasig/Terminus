@@ -7,10 +7,11 @@ import { GitHubCommit } from '../../models/github-commit/github-commit';
 import { REPOSITORY } from '../../../../constants';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GithubService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getCommits(): Observable<Array<GitHubCommit>> {
     return this.http.get<Array<GitHubCommit>>(REPOSITORY.COMMITS);

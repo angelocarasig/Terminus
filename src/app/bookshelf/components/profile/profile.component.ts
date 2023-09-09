@@ -44,8 +44,8 @@ export class ProfileComponent implements OnInit {
       const vValue = userNovel.vn.screenshots[selectedThumbnailIndex].violenceFormatted;
 
       if (sValue !== SexualRating.EXPLICIT && sValue !== SexualRating.SUGGESTIVE &&
-          vValue !== ViolenceRating.BRUTAL && vValue !== ViolenceRating.VIOLENT) {
-        return `url(${userNovel.vn.screenshots[selectedThumbnailIndex].thumbnail}`
+        vValue !== ViolenceRating.BRUTAL && vValue !== ViolenceRating.VIOLENT) {
+        return `url(${userNovel.vn.screenshots[selectedThumbnailIndex].thumbnail}`;
       }
 
       selectedThumbnailIndex++;

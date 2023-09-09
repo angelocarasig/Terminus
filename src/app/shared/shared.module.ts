@@ -40,13 +40,13 @@ import { SkeletonModule } from 'primeng/skeleton';
     CommitsModalComponent,
     HeatmapComponent,
     OptionsModalComponent,
+    BookImageComponent,
 
     // Pipes
     MemoizePipe,
     NovelFilterPipe,
     NovelSortPipe,
     HighestVotePipe,
-    BookImageComponent,
   ],
   imports: [
     // Angular Modules

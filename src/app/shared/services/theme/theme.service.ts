@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { Theme } from '../../../../types';
-import {LOCAL_STORAGE_KEYS} from '../../../../constants';
+import { LOCAL_STORAGE_KEYS } from '../../../../constants';
 
 @Injectable({
   providedIn: 'root'

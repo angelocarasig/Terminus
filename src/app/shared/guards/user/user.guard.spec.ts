@@ -5,7 +5,7 @@ import { UserGuard } from './user.guard';
 
 describe('userGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) =>
-      TestBed.runInInjectionContext(() => UserGuard(...guardParameters));
+    TestBed.runInInjectionContext(() => UserGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

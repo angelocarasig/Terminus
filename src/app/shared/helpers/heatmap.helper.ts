@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { MONTHS } from '../../../constants';
 
 export function convertToHeatmap(userNovelList: Array<any>): HeatmapEntry[] {
-  const entries = userNovelList.map(userNovel => ({date: unixTimestampToDate(userNovel.added),frequency: 1}));
+  const entries = userNovelList.map(userNovel => ({ date: unixTimestampToDate(userNovel.added), frequency: 1 }));
 
   const heatmapMap: Map<string, Map<string, number>> = new Map();
   const months = MONTHS;

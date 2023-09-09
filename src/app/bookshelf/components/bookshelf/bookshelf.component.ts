@@ -15,11 +15,12 @@ export class BookshelfComponent implements OnInit {
   currentUser$: Observable<User | null>;
   userNovelList$: Observable<Array<UserNovel> | undefined>;
 
-  constructor(private userService: UserService, private vndbService: VNDBService) { }
+  constructor(private userService: UserService, private vndbService: VNDBService) {
+  }
 
   ngOnInit(): void {
     this.currentUser$ = this.userService.currentUser$;
-    console.log("Final Ulist Size: ", this.userService.getUser()?.ulist?.length);
+    console.log('Final Ulist Size: ', this.userService.getUser()?.ulist?.length);
     this.userNovelList$ = this.currentUser$.pipe(
       map(currentUser => {
         if (!currentUser) return;

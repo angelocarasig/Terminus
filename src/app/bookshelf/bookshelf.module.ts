@@ -2,12 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { NgIconsModule } from '@ng-icons/core';
-import {
-  featherMoreVertical,
-  featherEdit2,
-  featherExternalLink,
-  featherRefreshCw
-} from '@ng-icons/feather-icons';
+import { featherEdit2, featherExternalLink, featherMoreVertical, featherRefreshCw } from '@ng-icons/feather-icons';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -29,7 +24,7 @@ import { ProfileNovelContainerComponent } from './components/profile-novel-conta
     BookshelfComponent,
     BookComponent,
     ProfileComponent,
-    ProfileNovelContainerComponent,
+    ProfileNovelContainerComponent
   ],
   imports: [
     CommonModule,
@@ -52,4 +47,5 @@ import { ProfileNovelContainerComponent } from './components/profile-novel-conta
     BookshelfComponent
   ]
 })
-export class BookshelfModule { }
+export class BookshelfModule {
+}

@@ -44,8 +44,8 @@ export class OptionsModalComponent implements OnInit {
           console.log('Appearance');
           this.handleSwitchTab(event);
         }
-      },
-    ]
+      }
+    ];
   }
 
   ngOnInit(): void {

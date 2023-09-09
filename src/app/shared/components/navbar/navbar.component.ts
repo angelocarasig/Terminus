@@ -9,12 +9,13 @@ import { REPOSITORY } from '../../../../constants';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements  OnInit {
+export class NavbarComponent implements OnInit {
   showSearchModal: boolean;
   showChangelogModal: boolean;
   showOptionsModal: boolean;
 
-  constructor(private userService: UserService, private renderer: Renderer2) {}
+  constructor(private userService: UserService, private renderer: Renderer2) {
+  }
 
   ngOnInit() {
     this.showSearchModal = false;

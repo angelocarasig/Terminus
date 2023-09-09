@@ -34,8 +34,8 @@ export class NovelDataFormatterHelper {
 
   private formatVisualNovelScreenshotResolution(visualNovel: VisualNovel): void {
     visualNovel.screenshots.forEach((screenshot: Screenshot) => {
-      screenshot.thumbnail = screenshot.thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf')
-    })
+      screenshot.thumbnail = screenshot.thumbnail.replace('t.vndb.org/st', 't.vndb.org/sf');
+    });
   }
 
   private formatVisualNovelRatingDistribution(visualNovel: VisualNovel): void {
@@ -45,6 +45,6 @@ export class NovelDataFormatterHelper {
     visualNovel.screenshots.forEach((screenshot: Screenshot) => {
       screenshot.sexualFormatted = GetSexualRating(screenshot.sexual);
       screenshot.violenceFormatted = GetViolenceRating(screenshot.violence);
-    })
+    });
   }
 }

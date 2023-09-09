@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit {
   particles: {
     id: string;
     particleOptions: any;
-  }
+  };
 
   currentTextIndex: number = 0;
   currentText: string = this.subheadingTexts[0];
@@ -31,8 +31,8 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     this.particles = {
       id: 'tsparticles',
-      particleOptions: getParticleOptions(),
-    }
+      particleOptions: getParticleOptions()
+    };
 
     setInterval(() => {
       this.currentTextIndex = (this.currentTextIndex + 1) % this.subheadingTexts.length;

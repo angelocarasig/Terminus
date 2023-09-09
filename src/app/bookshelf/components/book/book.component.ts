@@ -10,7 +10,8 @@ export class BookComponent {
   @Input() book: UserNovel;
   imageLoaded: boolean = false;
 
-  constructor(private renderer: Renderer2) {  }
+  constructor(private renderer: Renderer2) {
+  }
 
   printBook(): void {
     console.log(this.book);

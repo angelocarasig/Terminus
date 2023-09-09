@@ -1,7 +1,7 @@
 <div class='modal' [@fadeAnimation]>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
     <h1>Options</h1>
-    <p-menu [model]="items"></p-menu>
+    <p-menu [model]='items'></p-menu>
     <ng-container [ngSwitch]='activeTab'>
       <ng-template [ngSwitchCase]='OptionTabs.PROFILE'>Profile</ng-template>
       <ng-template [ngSwitchCase]='OptionTabs.APPEARANCE'>Appearance</ng-template>
