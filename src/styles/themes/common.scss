@@ -1,12 +1,17 @@
 $black-color-background: #16161a;
 $black-color-card: #242629;
+$black-color-border: #3e3e3e;
 $black-color-text: #EFF7F9;
 
 $white-color-background: #ffffff;
 $white-color-card: #d5d5d5;
+$white-color-border: #bcbcbc;
 $white-color-text: #16161a;
 
 $error-text-color: #e33939;
+
+$accept-color: #0fcd0f;
+$cancel-color: $error-text-color;
 
 $primary-color-100: #ffffff;
 $primary-color-200: #ffd5d9;
@@ -29,6 +34,9 @@ $secondary-color-800: #32665c;
 $secondary-color-900: #122522;
 
 $common: (
+  accept-color: $accept-color,
+  cancel-color: $cancel-color,
+
   error-text-color: $error-text-color,
   theme-switch-color: #d0d0d0,
   theme-switch-color--enabled: #FFCE45,

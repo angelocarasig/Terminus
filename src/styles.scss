@@ -10,6 +10,7 @@
 // Basically any primeNg component style
 @import 'button';
 @import 'input';
+@import 'confirm';
 
 body {
   @include common();

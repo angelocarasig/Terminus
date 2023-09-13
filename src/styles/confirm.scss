@@ -1,0 +1,23 @@
+.p-dialog {
+  border: inherit;
+}
+
+.p-confirm-dialog {
+  .p-dialog-header, .p-dialog-content, .p-dialog-footer {
+    background: var(--card-background);
+    color: var(--input-color);
+    border: 1px solid var(--border-color);
+  }
+
+  .p-dialog-header-icon {
+    color: var(--input-color) !important;
+  }
+}
+
+.p-dialog-accept {
+  background-color: var(--accept-color);
+}
+
+.p-dialog-cancel {
+  background-color: var(--cancel-color);
+}

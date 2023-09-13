@@ -8,7 +8,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { NgIconsModule } from '@ng-icons/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { featherGithub, featherList, featherSearch, featherSettings } from '@ng-icons/feather-icons';
+import { featherGithub, featherHome, featherList, featherLogOut, featherMenu, featherSearch, featherSettings } from '@ng-icons/feather-icons';
 import { IconHeartPlus, IconPlaylistAdd } from 'angular-tabler-icons/icons';
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
@@ -29,6 +29,8 @@ import { NovelSortPipe } from './pipes/novel-sort/novel-sort.pipe';
 import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
 import { BookImageComponent } from './components/book-image/book-image.component';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     MemoizePipe,
     NovelFilterPipe,
     NovelSortPipe,
-    HighestVotePipe,
+    HighestVotePipe
   ],
   imports: [
     // Angular Modules
@@ -55,7 +57,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     FormsModule,
 
     // Icon Modules
-    NgIconsModule.withIcons({ featherSettings, featherSearch, featherList, featherGithub }),
+    NgIconsModule.withIcons({ featherSettings, featherSearch, featherList, featherGithub, featherHome, featherLogOut, featherMenu }),
     TablerIconsModule.pick({ IconHeartPlus, IconPlaylistAdd }),
 
     // External NPM Modules
@@ -66,6 +68,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     ToastModule,
     MenuModule,
     SkeletonModule,
+    ConfirmDialogModule,
     NgOptimizedImage
   ],
   exports: [
@@ -81,7 +84,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     HighestVotePipe,
     BookImageComponent
   ],
-  providers: []
+  providers: [ConfirmationService]
 })
 export class SharedModule {
 }

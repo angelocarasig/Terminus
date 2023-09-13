@@ -4,10 +4,9 @@
 
 <div class='navbar-container'>
   <div class='navbar'>
-    <div class='home' (click)='goToHome()'>
-      <div class='icon-container'>
-        <div class='icon'></div>
-      </div>
+    <div class='home'>
+      <app-icon-button iconType='featherIcon' iconName='featherMenu'></app-icon-button>
+
     </div>
 
     <div class='search' (click)='displaySearchModal($event)'>
@@ -21,6 +20,16 @@
       <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()'></app-icon-button>
       <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
       <app-icon-button iconType='featherIcon' iconName='featherSettings' (click)='displayOptionsModal($event)'></app-icon-button>
+
+      <p-confirmDialog header='Logout' [style]="{width: '50vw'}" acceptButtonStyleClass='p-dialog-accept' rejectButtonStyleClass='p-dialog-cancel'></p-confirmDialog>
+      <app-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)'></app-icon-button>
     </div>
   </div>
 </div>
+
+
+<!--    Logo Icon, use whenever needed-->
+<!--<div class='home' (click)='goToHome()'>-->
+<!--  <div class='icon-container'>-->
+<!--    <div class='icon'></div>-->
+<!--  </div>-->

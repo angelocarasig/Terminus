@@ -3,6 +3,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { UserService } from '../../services/user/user.service';
 
 import { REPOSITORY } from '../../../../constants';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   showChangelogModal: boolean;
   showOptionsModal: boolean;
 
-  constructor(private userService: UserService, private renderer: Renderer2) {
+  constructor(private userService: UserService, private confirmationService: ConfirmationService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -49,8 +50,17 @@ export class NavbarComponent implements OnInit {
     this.showOptionsModal = false;
   }
 
-  goToHome(): void {
-    this.userService.removeCurrentUser();
+  goToHome(event: Event): void {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want to proceed?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.userService.removeCurrentUser();
+      },
+      reject: () => {
+      }
+    });
 
     // Guard handles the rest
   }
