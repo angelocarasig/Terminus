@@ -2,15 +2,17 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  border-bottom: 2px solid #7e7e7e;
+  border-bottom: 2.5px solid var(--navbar-bottom-border);
   padding: 0.5rem 0;
-  background-color: #242629;
+  background-color: var(--navbar-background);
+
+  transition: background-color 0.25s, color 0.25s;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
-  color: #EFF7F9;
+  color: var(--text-color);
   height: 3rem;
 
   .home, .search, .settings {
@@ -44,18 +46,19 @@
     width: 25rem;
     cursor: text;
 
-    &:hover .search-bar {
-      box-shadow: inset 0 0 4px rgb(255 255 255 / 33%);
-    }
-
     .search-bar {
       display: flex;
       align-items: center;
       width: 100%;
       height: 40px;
       max-width: 400px;
-      background-color: #16161a;
+      background-color: var(--navbar-search-background);
       border-radius: 0.5rem;
+      transition: 0.25s;
+
+      &:hover {
+        background-color: var(--navbar-search-hover-border);
+      }
 
       .search-icon {
         padding-left: 0.75rem;

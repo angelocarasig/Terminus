@@ -6,7 +6,6 @@
   <div class='navbar'>
     <div class='home'>
       <app-icon-button iconType='featherIcon' iconName='featherMenu'></app-icon-button>
-
     </div>
 
     <div class='search' (click)='displaySearchModal($event)'>
@@ -17,12 +16,12 @@
 
     <div class='settings'>
       <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
-      <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()'></app-icon-button>
-      <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)'></app-icon-button>
-      <app-icon-button iconType='featherIcon' iconName='featherSettings' (click)='displayOptionsModal($event)'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()' cssClass='external-link-icon' pTooltip="GitHub" tooltipPosition='bottom'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)' pTooltip="Changelog" tooltipPosition='bottom'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherSettings' (click)='displayOptionsModal($event)' pTooltip="Settings" tooltipPosition='bottom'></app-icon-button>
 
       <p-confirmDialog header='Logout' [style]="{width: '50vw'}" acceptButtonStyleClass='p-dialog-accept' rejectButtonStyleClass='p-dialog-cancel'></p-confirmDialog>
-      <app-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)' pTooltip="Logout" tooltipPosition='bottom'></app-icon-button>
     </div>
   </div>
 </div>

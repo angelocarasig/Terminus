@@ -6,6 +6,10 @@
 }
 
 @media (max-width: 900px) {
+  ::ng-deep .exit-modal {
+    display: flex !important;
+  }
+
   .modal-box {
     width: 100% !important;
     margin: 1rem 0 !important;
@@ -18,9 +22,9 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #16161aeb;
+  background-color: #16161aeb; // Don't touch
   z-index: 999;
-  color: white;
+  color: var(--text-color);
 
   .modal-box {
     position: relative;
@@ -31,9 +35,7 @@
     height: max-content;
     max-height: 75%;
     border-radius: 0.5rem;
-    background-color: #16161a;
-    box-shadow: 10px 10px 5px -5px #21232240;
-
+    background-color: var(--modal-box-background-color);
 
     ::ng-deep .p-progress-spinner {
       position: absolute;
@@ -62,9 +64,9 @@
         border: 0;
         box-sizing: border-box;
 
-        color: white;
+        color: inherit;
         font-weight: 400;
-        background-color: rgb(26, 27, 30);
+        background-color: var(--modal-search-background-color);
       }
     }
 
@@ -88,7 +90,7 @@
 
         &:not(.no-result):hover {
           cursor: pointer;
-          background-color: #242629;
+          background-color: var(--modal-result-hover-background-color);
         }
 
         .cover img {
@@ -119,6 +121,13 @@
                 font-weight: 450;
                 line-height: 1.7;
                 @include overflow-handler();
+
+                &.result-title {
+                  flex: 1;
+                  overflow: hidden;
+                  white-space: break-spaces;
+                  text-overflow: ellipsis;
+                }
               }
             }
 

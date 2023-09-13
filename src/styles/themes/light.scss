@@ -1,25 +1,49 @@
 @import 'common';
 
+/**
+General Color Formula:
+  Main: dark-value - 300
+  Contrast: flip dark value
+  Primary: dark - 100
+*/
+
 $light-theme: (
-    // Common
-    background: $white-color-background,
-    card-background: $white-color-card,
-    border-color: $white-color-border,
-    input-color: $white-color-text,
-    input-border-color: #a1a1a1,
-    input-background-color: #9e9e9e38,
-    input-placeholder-color: #707070,
-    text-button-color: $primary-color-200,
-    text-button-background: $primary-color-700,
-    text-button-background--hover: $primary-color-900,
+  // Common
+  background: $white-color-background,
+  card-background: $light-color-200,
+  border-color: $light-color-400,
+  text-color: $dark-color-700,
+  text-sub-color: $dark-color-500,
+  tooltip-background-color: $light-color-300,
+  input-color: $dark-color-700,
+  input-border-color: $light-color-700,
+  input-active-border-color: $light-primary-color-500,
+  input-background-color: #5e5e5e26,
+  input-placeholder-color: #6b6b6b,
+  text-button-color: $dark-color-800,
+  text-button-background: $light-primary-color-600,
+  text-button-background--hover: $light-primary-color-700,
 
-    // Shared Module
-    icon-button-hover: #595959C9,
+  // Shared Module
+  icon-button-hover: #CBCBCBC9,
+  navbar-background: $light-color-200,
+  navbar-search-background: $light-color-300,
+  navbar-search-hover-border: $light-color-400,
+  navbar-bottom-border: #cdcdcd,
 
-    // Landing / Login
-    heading-color: $white-color-text,
-    carett-color: $white-color-text,
+  // Landing / Login
+  heading-color: $dark-color-800,
+  carett-color: $dark-color-800,
 
-    // Book
-    book-background-color: $white-color-card,
+  // Book
+  book-background-color: #a8a8a866,
+
+  // Profile
+  profile-background-color: $light-color-200,
+  profile-info-background-color: $light-color-400,
+
+  // Modal
+  modal-box-background-color: #bababa,
+  modal-search-background-color: #bababa,
+  modal-result-hover-background-color: $light-color-800,
 );

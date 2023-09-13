@@ -7,3 +7,11 @@
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+.exit-modal {
+  position: absolute;
+  display: none !important;
+  top: -1rem;
+  right: 0;
+  background-color: var(--modal-result-hover-background-color);
+}

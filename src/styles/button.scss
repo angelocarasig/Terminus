@@ -10,7 +10,11 @@
 
   &:enabled:hover {
     background: var(--text-button-background--hover);
-    color: var(--text-button-background);;
+    color: var(--text-button-background);
     border: none;
   }
+}
+
+.external-link-icon:hover {
+  cursor: alias !important;
 }

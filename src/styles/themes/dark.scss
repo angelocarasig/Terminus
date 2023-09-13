@@ -3,23 +3,41 @@
 $dark-theme: (
   // Common
   background: $black-color-background,
-  card-background: $black-color-card,
-  border-color: $black-color-border,
-  input-color: $black-color-text,
-  input-border-color: $black-color-text,
+  card-background: $dark-color-500,
+  border-color: $dark-color-700,
+  text-color: $light-color-100,
+  text-sub-color: $light-color-300,
+  tooltip-background-color: $dark-color-800,
+  input-color: $light-color-100,
+  input-border-color: $dark-color-700,
+  input-active-border-color: $dark-primary-color-800,
   input-background-color: #0c0c0c38,
   input-placeholder-color: grey,
-  text-button-color: $secondary-color-200,
-  text-button-background: $secondary-color-700,
-  text-button-background--hover: $secondary-color-900,
+  text-button-color: $light-color-100,
+  text-button-background: $dark-primary-color-700,
+  text-button-background--hover: $dark-primary-color-800,
 
   // Shared Module
   icon-button-hover: #595959C9,
+  navbar-background: $dark-color-600,
+  navbar-search-background: $dark-color-800,
+  navbar-search-hover-border: $dark-color-300,
+  navbar-bottom-border: #414141,
 
   // Landing / Login
-  heading-color: $black-color-text,
-  carett-color: $black-color-text,
+  heading-color: $light-color-100,
+  carett-color: $light-color-100,
+
 
   // Book
   book-background-color: #50555966,
+
+  // Profile
+  profile-background-color: $dark-color-600,
+  profile-info-background-color: $dark-color-200,
+
+  // Modal
+  modal-box-background-color: $dark-color-800,
+  modal-search-background-color: $dark-color-800,
+  modal-result-hover-background-color: $dark-color-700,
 );

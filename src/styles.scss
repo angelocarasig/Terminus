@@ -11,6 +11,7 @@
 @import 'button';
 @import 'input';
 @import 'confirm';
+@import 'tooltip';
 
 body {
   @include common();

@@ -8,7 +8,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { NgIconsModule } from '@ng-icons/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { featherGithub, featherHome, featherList, featherLogOut, featherMenu, featherSearch, featherSettings } from '@ng-icons/feather-icons';
+import { featherGithub, featherHome, featherList, featherLogOut, featherMenu, featherSearch, featherSettings, featherX } from '@ng-icons/feather-icons';
 import { IconHeartPlus, IconPlaylistAdd } from 'angular-tabler-icons/icons';
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
@@ -31,6 +31,7 @@ import { BookImageComponent } from './components/book-image/book-image.component
 import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormsModule,
 
     // Icon Modules
-    NgIconsModule.withIcons({ featherSettings, featherSearch, featherList, featherGithub, featherHome, featherLogOut, featherMenu }),
+    NgIconsModule.withIcons({ featherSettings, featherSearch, featherList, featherGithub, featherHome, featherLogOut, featherMenu, featherX }),
     TablerIconsModule.pick({ IconHeartPlus, IconPlaylistAdd }),
 
     // External NPM Modules
@@ -69,7 +70,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MenuModule,
     SkeletonModule,
     ConfirmDialogModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    TooltipModule
   ],
   exports: [
     // Shared Components

@@ -1,8 +1,9 @@
 ::ng-deep .pagination {
   background-color: transparent;
+  transition: 0.25s;
 
   .ngx-pagination a {
-    color: white;
+    color: var(--text-color);
     border-radius: 0.25rem;
 
     &:hover {
@@ -13,7 +14,7 @@
   .ngx-pagination .current {
     padding: .1875rem .625rem;
     background: #6e6e6e52;
-    color: #fefefe;
+    color: var(--text-color);
     cursor: default;
   }
 

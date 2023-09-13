@@ -21,3 +21,21 @@
 .p-dialog-cancel {
   background-color: var(--cancel-color);
 }
+
+checkicon, timesicon {
+  margin-top: 3px;
+}
+
+.p-dialog .p-dialog-header {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.p-dialog .p-dialog-footer {
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+
+  button {
+    width: 7.5rem;
+  }
+}

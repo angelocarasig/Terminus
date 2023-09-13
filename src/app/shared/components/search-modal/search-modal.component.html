@@ -1,5 +1,6 @@
 <div class='modal' [@fadeAnimation]>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
+    <app-icon-button iconType='featherIcon' iconName='featherX' cssClass='exit-modal' (click)='handleClickOutside()'></app-icon-button>
     <div class='input-field'>
       <ng-icon class='search-icon' name='featherSearch'></ng-icon>
       <input pAutoFocus [autofocus]='true' class='search-field' placeholder='Search' [(ngModel)]='searchQuery' (ngModelChange)='onSearchQueryChange()'>
@@ -7,6 +8,7 @@
         <p-progressSpinner styleClass='loading-spinner'></p-progressSpinner>
       </div>
     </div>
+
     <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else noResult'>
 
       <!--2nd failsafe to render if service had no results-->
@@ -23,8 +25,8 @@
         <div class='details'>
           <div class='title'>
             <div class='heading'>
-              <span>{{result.title}}</span>
-              <span>{{result.released}}</span>
+              <span class='result-title'>{{result.title}}</span>
+              <span class='result-date'>{{result.released}}</span>
             </div>
             <div class='subheading'>
               <span>{{result.developers[0]?.name}}</span>

@@ -22,6 +22,11 @@
     fill: transparent;
   }
 
+  &.light svg {
+    fill: transparent;
+    stroke: var(--theme-switch-color--disabled);
+  }
+
   &.dark svg {
     fill: var(--theme-switch-color--enabled);
     stroke: var(--theme-switch-color--enabled);
