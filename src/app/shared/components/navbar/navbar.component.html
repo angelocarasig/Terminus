@@ -1,3 +1,9 @@
+<app-sidebar
+  [showSidebar]='showSidebar'
+  (handleHome)='goToHome($event)'
+  (handleHideSidebar)='closeSidebar()'>
+
+</app-sidebar>
 <app-search-modal *ngIf='showSearchModal' (outsideClicked)='closeSearchModal()'></app-search-modal>
 <app-commits-modal *ngIf='showChangelogModal' (outsideClicked)='closeChangelogModal()'></app-commits-modal>
 <app-options-modal *ngIf='showOptionsModal' (outsideClicked)='closeOptionsModal()'></app-options-modal>
@@ -5,7 +11,7 @@
 <div class='navbar-container'>
   <div class='navbar'>
     <div class='home'>
-      <app-icon-button iconType='featherIcon' iconName='featherMenu'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherMenu' (click)='displaySidebar()'></app-icon-button>
     </div>
 
     <div class='search' (click)='displaySearchModal($event)'>
@@ -32,3 +38,4 @@
 <!--  <div class='icon-container'>-->
 <!--    <div class='icon'></div>-->
 <!--  </div>-->
+

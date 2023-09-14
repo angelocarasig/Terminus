@@ -1,0 +1,13 @@
+.p-sidebar {
+  background: var(--sidebar-background);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.p-component-overlay {
+  background-color: #16161a; // Don't touch
+}
+
+.p-sidebar .p-sidebar-header .p-sidebar-close, .p-sidebar .p-sidebar-header .p-sidebar-icon {
+  color: var(--text-color);
+}

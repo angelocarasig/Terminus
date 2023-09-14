@@ -11,6 +11,7 @@ $light-theme: (
   // Common
   background: $white-color-background,
   card-background: $light-color-200,
+  card-background-hover: $light-color-300,
   border-color: $light-color-400,
   text-color: $dark-color-700,
   text-sub-color: $dark-color-500,
@@ -46,4 +47,14 @@ $light-theme: (
   modal-box-background-color: #bababa,
   modal-search-background-color: #bababa,
   modal-result-hover-background-color: $light-color-800,
+
+  // Tooltip
+  tooltip-border-color: $light-color-600,
+
+  // Menu
+  menu-hover-color: $light-primary-color-500,
+
+  // Sidebar
+  sidebar-background: $light-color-300,
+  sidebar-item-hover-background: $light-primary-color-400,
 );

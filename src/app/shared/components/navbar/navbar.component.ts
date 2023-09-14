@@ -11,16 +11,23 @@ import { ConfirmationService } from 'primeng/api';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  showSearchModal: boolean;
-  showChangelogModal: boolean;
-  showOptionsModal: boolean;
+  showSidebar = false;
+  showSearchModal = false;
+  showChangelogModal = false;
+  showOptionsModal = false;
 
-  constructor(private userService: UserService, private confirmationService: ConfirmationService, private renderer: Renderer2) {
+  constructor(public userService: UserService, private confirmationService: ConfirmationService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
-    this.showSearchModal = false;
-    this.showChangelogModal = false;
+  }
+
+  displaySidebar(): void {
+    this.showSidebar = true;
+  }
+
+  closeSidebar(): void {
+    this.showSidebar = false;
   }
 
   displaySearchModal(event: Event): void {

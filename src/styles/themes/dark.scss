@@ -4,6 +4,7 @@ $dark-theme: (
   // Common
   background: $black-color-background,
   card-background: $dark-color-500,
+  card-background-hover: $dark-color-600,
   border-color: $dark-color-700,
   text-color: $light-color-100,
   text-sub-color: $light-color-300,
@@ -40,4 +41,14 @@ $dark-theme: (
   modal-box-background-color: $dark-color-800,
   modal-search-background-color: $dark-color-800,
   modal-result-hover-background-color: $dark-color-700,
+
+  // Tooltip
+  tooltip-border-color: $dark-color-600,
+
+  // Menu
+  menu-hover-color: $dark-primary-color-500,
+
+  // Sidebar
+  sidebar-background: $dark-color-800,
+  sidebar-item-hover-background: $dark-primary-color-800,
 );

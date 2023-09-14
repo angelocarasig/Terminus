@@ -3,12 +3,35 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 import { AutoFocusModule } from 'primeng/autofocus';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { MenuModule } from 'primeng/menu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SidebarModule } from 'primeng/sidebar';
+import { SkeletonModule } from 'primeng/skeleton';
+import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { NgIconsModule } from '@ng-icons/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { featherGithub, featherHome, featherList, featherLogOut, featherMenu, featherSearch, featherSettings, featherX } from '@ng-icons/feather-icons';
+import {
+  featherBookOpen,
+  featherGithub,
+  featherHeart,
+  featherHome,
+  featherList,
+  featherLogOut,
+  featherMenu,
+  featherSearch,
+  featherSettings,
+  featherStar,
+  featherX
+} from '@ng-icons/feather-icons';
 import { IconHeartPlus, IconPlaylistAdd } from 'angular-tabler-icons/icons';
 
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
@@ -19,21 +42,16 @@ import { CommitsModalComponent } from './components/commits-modal/commits-modal.
 
 import { NgClickOutsideDirective } from 'ng-click-outside2';
 import { HeatmapComponent } from './components/heatmap/heatmap.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { MemoizePipe } from './pipes/memoize/memoize.pipe';
 import { OptionsModalComponent } from './components/options-modal/options-modal.component';
-import { ToastModule } from 'primeng/toast';
-import { MenuModule } from 'primeng/menu';
+import { BookImageComponent } from './components/book-image/book-image.component';
+
+
+import { MemoizePipe } from './pipes/memoize/memoize.pipe';
 import { NovelFilterPipe } from './pipes/novel-filter/novel-filter.pipe';
 import { NovelSortPipe } from './pipes/novel-sort/novel-sort.pipe';
 import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
-import { BookImageComponent } from './components/book-image/book-image.component';
-import { SkeletonModule } from 'primeng/skeleton';
-import { ConfirmationService } from 'primeng/api';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { TooltipModule } from 'primeng/tooltip';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +69,8 @@ import { ButtonModule } from 'primeng/button';
     MemoizePipe,
     NovelFilterPipe,
     NovelSortPipe,
-    HighestVotePipe
+    HighestVotePipe,
+    SidebarComponent
   ],
   imports: [
     // Angular Modules
@@ -60,7 +79,19 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
 
     // Icon Modules
-    NgIconsModule.withIcons({ featherSettings, featherSearch, featherList, featherGithub, featherHome, featherLogOut, featherMenu, featherX }),
+    NgIconsModule.withIcons({
+      featherSettings,
+      featherSearch,
+      featherList,
+      featherGithub,
+      featherHome,
+      featherLogOut,
+      featherMenu,
+      featherX,
+      featherBookOpen,
+      featherStar,
+      featherHeart
+    }),
     TablerIconsModule.pick({ IconHeartPlus, IconPlaylistAdd }),
 
     // External NPM Modules
@@ -76,7 +107,8 @@ import { ButtonModule } from 'primeng/button';
     TooltipModule,
     InputTextModule,
     ReactiveFormsModule,
-    ButtonModule
+    ButtonModule,
+    SidebarModule
   ],
   exports: [
     // Shared Components
