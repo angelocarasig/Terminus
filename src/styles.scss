@@ -12,6 +12,7 @@
 @import 'input';
 @import 'confirm';
 @import 'tooltip';
+@import 'menu';
 
 body {
   @include common();

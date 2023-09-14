@@ -49,6 +49,14 @@ export class UserService {
     return authToken ? this.createWithAuthToken(username, authToken) : this.createWithUsername(username);
   }
 
+  verifyUserToken(authToken: string): Observable<User | null> {
+    if (this.currentUserSubject.value == null) {
+      throw new Error('User is currently unset.');
+    }
+
+    return this.createWithAuthToken(this.currentUserSubject.value!.username, authToken);
+  }
+
   /**
    * Gets the current user subject's value.
    *
@@ -110,22 +118,23 @@ export class UserService {
           this.loadingIndicatorSubject.next(false);
           throw new Error('Username does not match the auth token provider');
         }
-        const newUser = this.createUserFromData(data.username, data.id, data.permissions);
+        const newUser = this.createUserFromData(data.username, data.id, data.permissions, authToken);
         this.updateUserWithParams(newUser);
         return of(newUser);
       }),
       catchError((error) => {
         console.error('Error creating user with auth token:', error);
         this.loadingIndicatorSubject.next(false);
-        return of(null);
+        throw new Error(error.error);
       })
     );
   }
 
-  private createUserFromData(username: string, id: string, permissions?: Array<string>): User {
+  private createUserFromData(username: string, id: string, permissions?: Array<string>, authToken?: string): User {
     return {
       username: username,
       uid: id,
+      authToken: authToken ?? undefined,
       permissions: permissions ?? new Array<string>()
     };
   }

@@ -1,4 +1,5 @@
 export enum OptionTabs {
   PROFILE = 'Profile',
-  APPEARANCE = 'Appearance'
+  APPEARANCE = 'Appearance',
+  BEHAVIOUR = 'Behaviour',
 }

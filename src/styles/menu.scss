@@ -1,0 +1,11 @@
+.p-menu {
+  background: var(--card-background);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+
+  .p-menuitem > .p-menuitem-content .p-menuitem-link {
+    .p-menuitem-text, .p-menuitem-icon {
+      color: var(--text-color);
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { MenuItem } from 'primeng/api';
 
 import { OptionTabs } from '../../models/options/optionTabs';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-options-modal',
@@ -21,11 +22,12 @@ import { OptionTabs } from '../../models/options/optionTabs';
 })
 export class OptionsModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();
+  authKey = '';
 
   activeTab: OptionTabs;
   items: MenuItem[];
 
-  constructor(private renderer: Renderer2) {
+  constructor(public userService: UserService, private renderer: Renderer2) {
     this.activeTab = OptionTabs.PROFILE;
 
     this.items = [
@@ -39,9 +41,17 @@ export class OptionsModalComponent implements OnInit {
       },
       {
         label: OptionTabs.APPEARANCE,
-        icon: 'pi pi-eye',
+        icon: 'pi pi-palette',
         command: (event) => {
           console.log('Appearance');
+          this.handleSwitchTab(event);
+        }
+      },
+      {
+        label: OptionTabs.BEHAVIOUR,
+        icon: 'pi pi-eye',
+        command: (event) => {
+          console.log('Behaviour');
           this.handleSwitchTab(event);
         }
       }
@@ -59,6 +69,14 @@ export class OptionsModalComponent implements OnInit {
     this.activeTab = newActiveTab.item.label;
   }
 
+  handleVerifyAuthKey(): void {
+    console.log(this.authKey);
+    this.userService.verifyUserToken(this.authKey).subscribe({
+      next: (res) => {console.log(res)},
+      error: err => {console.error(err)}
+    })
+  }
+
   openUrl(url: string): void {
     const link = this.renderer.createElement('a');
     this.renderer.setAttribute(link, 'href', url);
@@ -66,6 +84,5 @@ export class OptionsModalComponent implements OnInit {
     link.click();
   }
 
-  protected readonly Option = Option;
   protected readonly OptionTabs = OptionTabs;
 }

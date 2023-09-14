@@ -14,8 +14,6 @@ input::placeholder {
   appearance: none;
   border-radius: 0.5rem;
 
-
-
   &:enabled:hover, &:enabled:focus {
     box-shadow: 0 0 0 1px var(--input-active-border-color);
     border-color: var(--input-active-border-color);

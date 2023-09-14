@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AutoFocusModule } from 'primeng/autofocus';
@@ -32,6 +32,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,10 @@ import { TooltipModule } from 'primeng/tooltip';
     SkeletonModule,
     ConfirmDialogModule,
     NgOptimizedImage,
-    TooltipModule
+    TooltipModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    ButtonModule
   ],
   exports: [
     // Shared Components
