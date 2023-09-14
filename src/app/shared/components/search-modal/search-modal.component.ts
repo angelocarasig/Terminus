@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { animate, style, transition, trigger } from '@angular/animations';
 
@@ -27,7 +28,7 @@ export class SearchModalComponent implements OnInit {
   searchQuery: string;
   searchResultsLoaded: boolean;
 
-  constructor(public vndbService: VNDBService, private sanitizer: DomSanitizer, private renderer: Renderer2) {
+  constructor(public vndbService: VNDBService, private sanitizer: DomSanitizer, private renderer: Renderer2, private router: Router) {
   }
 
   ngOnInit() {
@@ -56,6 +57,10 @@ export class SearchModalComponent implements OnInit {
     this.renderer.setAttribute(link, 'href', url);
     this.renderer.setAttribute(link, 'target', '_blank');
     link.click();
+  }
+
+  openBook(event: VisualNovel): void {
+    this.router.navigate(['/vn'], { state: { novel: event } });
   }
 
   protected readonly console = console;

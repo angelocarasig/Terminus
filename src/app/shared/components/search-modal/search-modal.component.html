@@ -17,7 +17,7 @@
       </ng-container>
 
       <!--Otherwise results are present and just render them as normal-->
-      <div class='result-item' *ngFor='let result of searchResult.results | novelSort: sortByPopularity' (click)='console.log(result)'>
+      <div class='result-item' *ngFor='let result of searchResult.results | novelSort: sortByPopularity' (click)='openBook(result)'>
         <div class='cover'>
           <app-book-image [imageSource]='result.image.url' styleClass='list-view'></app-book-image>
         </div>

@@ -18,13 +18,15 @@ import { BookshelfComponent } from './components/bookshelf/bookshelf.component';
 import { BookComponent } from './components/book/book.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileNovelContainerComponent } from './components/profile-novel-container/profile-novel-container.component';
+import { OpenBookComponent } from './components/open-book/open-book.component';
 
 @NgModule({
   declarations: [
     BookshelfComponent,
     BookComponent,
     ProfileComponent,
-    ProfileNovelContainerComponent
+    ProfileNovelContainerComponent,
+    OpenBookComponent
   ],
   imports: [
     CommonModule,

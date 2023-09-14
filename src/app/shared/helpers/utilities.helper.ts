@@ -1,4 +1,4 @@
-import { SexualRating, ViolenceRating } from '../models/vn/visual-novel';
+import { SexualRating, ViolenceRating, VisualNovel } from '../models/vn/visual-novel';
 
 export const formattedDate = (inputDate: Date | string | number | undefined) => new Date(inputDate || new Date()).toLocaleString('en-US', {
   day: 'numeric',
@@ -20,3 +20,26 @@ export const replaceVNDBDescriptionLink = (input: string): string => (input.repl
 
 export const GetSexualRating = (input: number): SexualRating => input < 0.5 ? SexualRating.SAFE : input > 1.5 ? SexualRating.EXPLICIT : SexualRating.SUGGESTIVE;
 export const GetViolenceRating = (input: number): ViolenceRating => input < 0.5 ? ViolenceRating.TAME : input > 1.5 ? ViolenceRating.BRUTAL : ViolenceRating.VIOLENT;
+
+/**
+ * @param vn Visual Novel to set as the content.
+ * @return Returns a UserNovel with default parameters.
+ *
+ * The 'vn' property is set to the vn that's been passed in.
+ */
+export const GetSkeletonUserNovel = (vn: VisualNovel) => {
+  return {
+    added: -1,
+    addedFormatted: undefined,
+    finished: undefined,
+    id: '',
+    labels: [],
+    lastmod: -1,
+    lastmodFormatted: undefined,
+    notes: null,
+    started: undefined,
+    vn: vn,
+    vote: null,
+    voted: null
+  }
+};
