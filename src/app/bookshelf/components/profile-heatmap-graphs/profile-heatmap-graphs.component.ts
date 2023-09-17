@@ -51,7 +51,7 @@ export class ProfileHeatmapGraphsComponent {
 
           return this.isSameDay(added, date) || this.isSameDay(modified, date) || this.isSameDay(voted, date);
         });
-        return { date, novels: novelsForDay || [] };
+        return { date: date, novels: novelsForDay || [] };
       });
     });
   }

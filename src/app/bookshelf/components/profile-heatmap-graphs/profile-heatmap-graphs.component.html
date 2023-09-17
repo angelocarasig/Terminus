@@ -10,6 +10,8 @@
         <ng-template #tooltip>
           <ng-template *ngIf='cell.novels.length > 0; else empty'>
           </ng-template>
+          <span>On: </span>
+          <span>{{cell.date}}</span>
           <ng-container *ngFor='let novel of cell.novels'>
             {{novel.vn.title}}
             <br>
