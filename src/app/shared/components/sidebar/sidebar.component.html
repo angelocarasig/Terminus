@@ -1,10 +1,5 @@
 <p-sidebar [visible]='showSidebar' (onHide)='hideSidebar()'>
-  <ng-template pTemplate='header'>
-    <div class='icon-container'>
-      <div class='icon'></div>
-    </div>
-    <span class='sidebar-title'>Terminus</span>
-  </ng-template>
+
 
   <ng-template pTemplate='content'>
     <div class='sidebar-items'>
@@ -32,8 +27,6 @@
     </div>
 
   </ng-template>
-
-  <hr>
 
   <ng-template pTemplate='footer' *ngIf='userService.currentUser$ | async as currentUser'>
     <div class='sidebar-footer'>

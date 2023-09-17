@@ -3,8 +3,6 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgApexchartsModule } from 'ng-apexcharts';
-
 import { AutoFocusModule } from 'primeng/autofocus';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService } from 'primeng/api';
@@ -41,7 +39,6 @@ import { SearchModalComponent } from './components/search-modal/search-modal.com
 import { CommitsModalComponent } from './components/commits-modal/commits-modal.component';
 
 import { NgClickOutsideDirective } from 'ng-click-outside2';
-import { HeatmapComponent } from './components/heatmap/heatmap.component';
 import { OptionsModalComponent } from './components/options-modal/options-modal.component';
 import { BookImageComponent } from './components/book-image/book-image.component';
 
@@ -61,7 +58,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NavbarComponent,
     SearchModalComponent,
     CommitsModalComponent,
-    HeatmapComponent,
     OptionsModalComponent,
     BookImageComponent,
 
@@ -98,7 +94,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NgClickOutsideDirective,
     ProgressSpinnerModule,
     AutoFocusModule,
-    NgApexchartsModule,
     ToastModule,
     MenuModule,
     SkeletonModule,

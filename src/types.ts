@@ -1,11 +1,3 @@
-import {
-  ApexAxisChartSeries,
-  ApexTitleSubtitle,
-  ApexDataLabels,
-  ApexChart,
-  ApexPlotOptions, ApexTooltip
-} from 'ng-apexcharts';
-
 import { VisualNovel } from './app/shared/models/vn/visual-novel';
 import { UserNovel } from './app/shared/models/vn/user-novel';
 
@@ -24,16 +16,6 @@ export enum Theme {
   Light = 'light',
   Dark = 'dark'
 }
-
-export type ChartOptions = {
-  title: ApexTitleSubtitle;
-  chart: ApexChart;
-  series: ApexAxisChartSeries;
-  colors: Array<string>;
-  tooltip: ApexTooltip;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-};
 
 export type Month = typeof MONTHS[number];
 

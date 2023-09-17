@@ -19,6 +19,9 @@ import { BookComponent } from './components/book/book.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileNovelContainerComponent } from './components/profile-novel-container/profile-novel-container.component';
 import { OpenBookComponent } from './components/open-book/open-book.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { ProfilePieGraphsComponent } from './components/profile-pie-graphs/profile-pie-graphs.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { OpenBookComponent } from './components/open-book/open-book.component';
     BookComponent,
     ProfileComponent,
     ProfileNovelContainerComponent,
-    OpenBookComponent
+    OpenBookComponent,
+    ProfilePieGraphsComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +47,9 @@ import { OpenBookComponent } from './components/open-book/open-book.component';
     PaginatorModule,
     NgxPaginationModule,
     SkeletonModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    TooltipModule,
+    NgChartsModule
   ],
   exports: [
     BookshelfComponent

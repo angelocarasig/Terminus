@@ -1,9 +1,9 @@
-::ng-deep body {
-  overflow: scroll;
-}
-
 .open-book {
-  pre {
-    user-select: text;
+  overflow-y: scroll;
+
+  .book-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
   }
 }

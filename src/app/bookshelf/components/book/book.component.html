@@ -1,8 +1,8 @@
-<div class='book-container' (click)='openBook()'>
+<div class='book-container'>
   <div class='book-background'></div>
 
   <div class='book'>
-    <app-book-image [imageSource]='book.vn.image.url'></app-book-image>
+    <app-book-image [imageSource]='book.vn.image.url' (click)='openBook()'></app-book-image>
 
     <div class='book-info'>
       <div class='book-title'>
@@ -15,7 +15,7 @@
     </div>
 
     <div class='book-tools'>
-      <app-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink()'></app-icon-button>
+      <app-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink()' pTooltip="VNDB" tooltipPosition='bottom'></app-icon-button>
     </div>
   </div>
 </div>

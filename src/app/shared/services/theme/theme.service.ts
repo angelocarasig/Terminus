@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 
 import { Theme } from '../../../../types';
 import { LOCAL_STORAGE_KEYS } from '../../../../constants';
@@ -9,9 +10,11 @@ import { LOCAL_STORAGE_KEYS } from '../../../../constants';
 })
 export class ThemeService {
   private activeTheme: Theme;
+  private themeSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(this.initThemeFromLocalStorage() ?? this.initThemeFromBrowser());
+  theme$ = this.themeSubject.asObservable();
 
   constructor(@Inject(DOCUMENT) private document: Document) {
-    this.activeTheme = this.initThemeFromLocalStorage() ?? this.initThemeFromBrowser();
+    this.activeTheme = this.themeSubject.value;
     this.document.body.classList.add(this.activeTheme);
     localStorage.setItem(LOCAL_STORAGE_KEYS.theme, this.activeTheme);
   }
@@ -22,16 +25,11 @@ export class ThemeService {
 
   toggleTheme(): void {
     this.activeTheme = this.activeTheme === Theme.Light ? Theme.Dark : Theme.Light;
-
-    /* If support for multiple themes in future */
-    // for (const theme of Object.values(Theme)) {
-    //   this.document.body.classList.toggle(theme);
-    // }
-
     this.document.body.classList.remove(Theme.Light, Theme.Dark);
     this.document.body.classList.add(this.activeTheme);
-
     localStorage.setItem(LOCAL_STORAGE_KEYS.theme, this.activeTheme);
+
+    this.themeSubject.next(this.activeTheme);
   }
 
   private initThemeFromBrowser(): Theme {

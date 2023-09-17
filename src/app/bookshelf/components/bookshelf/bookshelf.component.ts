@@ -16,6 +16,7 @@ export class BookshelfComponent implements OnInit {
   userNovelList$: Observable<Array<UserNovel> | undefined>;
 
   constructor(private userService: UserService, private vndbService: VNDBService) {
+    console.log(this.userService.getUser()?.ulist);
   }
 
   ngOnInit(): void {

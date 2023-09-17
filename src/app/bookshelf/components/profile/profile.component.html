@@ -30,7 +30,7 @@
     </div>
     <div class='profile-charts'>
       <div class='pies'>
-        Pies
+        <app-profile-pie-graphs [ulist]='userService.getUserNovels() | async'></app-profile-pie-graphs>
       </div>
 
       <div class='heatmap'>Heatmap</div>
