@@ -33,7 +33,9 @@
         <app-profile-pie-graphs [ulist]='userService.getUserNovels() | async'></app-profile-pie-graphs>
       </div>
 
-      <div class='heatmap'>Heatmap</div>
+      <div class='heatmap'>
+        <app-profile-heatmap-graphs [ulist]='userService.getUserNovels() | async'></app-profile-heatmap-graphs>
+      </div>
 
       <div class='stats'>Stats</div>
     </div>

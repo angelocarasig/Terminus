@@ -22,6 +22,7 @@ import { OpenBookComponent } from './components/open-book/open-book.component';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProfilePieGraphsComponent } from './components/profile-pie-graphs/profile-pie-graphs.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ProfileHeatmapGraphsComponent } from './components/profile-heatmap-graphs/profile-heatmap-graphs.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { NgChartsModule } from 'ng2-charts';
     ProfileComponent,
     ProfileNovelContainerComponent,
     OpenBookComponent,
-    ProfilePieGraphsComponent
+    ProfilePieGraphsComponent,
+    ProfileHeatmapGraphsComponent,
+    ProfileHeatmapGraphsComponent
   ],
   imports: [
     CommonModule,

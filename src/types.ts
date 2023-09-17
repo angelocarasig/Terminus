@@ -19,9 +19,12 @@ export enum Theme {
 
 export type Month = typeof MONTHS[number];
 
+export type HeatmapAction = 'Added' | 'Modified' | 'Voted'
+
 export interface HeatmapEntry {
   name: Month;
-  data: Array<{ x: string; y: number }>; // x is the year as a string, y is the frequency
+  action: HeatmapAction;
+  data: UserNovel
 }
 
 export type ContentSensitivity = 'Everyone' | 'Questionable' | 'Explicit';

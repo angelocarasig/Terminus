@@ -3,7 +3,7 @@
  * This file serves as a pipe that will format each usernovel / visualnovel to remove reliance on separate components to transform data each time.
  */
 import { UserNovel } from '../models/vn/user-novel';
-import { formattedDate, GetSexualRating, GetViolenceRating } from './utilities.helper';
+import { GetSexualRating, GetViolenceRating, unixTimestampToDate } from './utilities.helper';
 import { Screenshot } from '../models/vn/screenshot';
 import { VisualNovel } from '../models/vn/visual-novel';
 
@@ -28,8 +28,9 @@ export class NovelDataFormatterHelper {
   }
 
   private formatUserNovelDates(userNovel: UserNovel): void {
-    userNovel.addedFormatted = new Date(formattedDate(userNovel.added));
-    userNovel.lastmodFormatted = new Date(formattedDate(userNovel.lastmod));
+    userNovel.addedFormatted = new Date(unixTimestampToDate(userNovel.added));
+    userNovel.lastmodFormatted = new Date(unixTimestampToDate(userNovel.lastmod));
+    userNovel.votedFormatted = userNovel.voted != null ? new Date(unixTimestampToDate(userNovel.voted)) : undefined;
   }
 
   private formatVisualNovelScreenshotResolution(visualNovel: VisualNovel): void {

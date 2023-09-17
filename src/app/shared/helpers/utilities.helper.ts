@@ -40,6 +40,6 @@ export const GetSkeletonUserNovel = (vn: VisualNovel) => {
     started: undefined,
     vn: vn,
     vote: null,
-    voted: null
+    voted: -1
   }
 };

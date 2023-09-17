@@ -6,7 +6,8 @@ export interface UserNovel {
   finished: any;
   started: any;
   vote: number | null;
-  voted: number | null;
+  voted: number;
+  votedFormatted?: Date;
   added: number;
   addedFormatted?: Date;
   lastmod: number;

@@ -1,0 +1,15 @@
+.table-container {
+  flex: 1;                 /* Allow it to grow and shrink, but you can adjust this */
+  min-height: 0;           /* This is necessary to allow it to shrink past its content size in some cases */
+  overflow: auto;
+}
+
+td {
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  resize: none;
+  box-sizing: border-box;
+}
