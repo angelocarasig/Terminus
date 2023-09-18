@@ -1,6 +1,15 @@
 .table-container {
-  flex: 1;                 /* Allow it to grow and shrink, but you can adjust this */
-  min-height: 0;           /* This is necessary to allow it to shrink past its content size in some cases */
+  min-width: 392px;
+  overflow: auto;
+}
+
+th {
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+}
+
+td:first-of-type {
+  border: none;
   overflow: auto;
 }
 
@@ -8,8 +17,15 @@ td {
   width: 1.5rem;
   height: 1.5rem;
   text-align: center;
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
   border-radius: 0.25rem;
   resize: none;
   box-sizing: border-box;
+}
+
+.current-date {
+}
+
+.unpassed-date {
+  display: none;
 }

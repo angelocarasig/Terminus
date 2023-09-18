@@ -23,6 +23,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ProfilePieGraphsComponent } from './components/profile-pie-graphs/profile-pie-graphs.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ProfileHeatmapGraphsComponent } from './components/profile-heatmap-graphs/profile-heatmap-graphs.component';
+import { ProfileStatsGraphsComponent } from './components/profile-stats-graphs/profile-stats-graphs.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProfileHeatmapGraphsComponent } from './components/profile-heatmap-grap
     OpenBookComponent,
     ProfilePieGraphsComponent,
     ProfileHeatmapGraphsComponent,
-    ProfileHeatmapGraphsComponent
+    ProfileHeatmapGraphsComponent,
+    ProfileStatsGraphsComponent
   ],
   imports: [
     CommonModule,

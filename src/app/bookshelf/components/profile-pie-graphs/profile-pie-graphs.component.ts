@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ThemeService } from '../../../shared/services/theme/theme.service';
+
 import { LabelType } from '../../../shared/models/vn/label';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
+
 import { Theme } from '../../../../types';
-import { ThemeService } from '../../../shared/services/theme/theme.service';
 
 @Component({
   selector: 'app-profile-pie-graphs',
@@ -11,6 +13,7 @@ import { ThemeService } from '../../../shared/services/theme/theme.service';
 })
 export class ProfilePieGraphsComponent implements OnInit {
   @Input() ulist: Array<UserNovel> | null;
+
   data: any;
   options: any;
 
@@ -79,6 +82,8 @@ export class ProfilePieGraphsComponent implements OnInit {
     this.options = {
       plugins: {
         legend: {
+          position: 'left',
+          align: 'middle',
           labels: {
             usePointStyle: true,
             color: `${theme === Theme.Dark ? 'white' : 'black'}`

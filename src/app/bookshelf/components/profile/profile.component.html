@@ -37,7 +37,9 @@
         <app-profile-heatmap-graphs [ulist]='userService.getUserNovels() | async'></app-profile-heatmap-graphs>
       </div>
 
-      <div class='stats'>Stats</div>
+      <div class='stats'>
+        <app-profile-stats-graphs [ulist]='userService.getUserNovels() | async'></app-profile-stats-graphs>
+      </div>
     </div>
   </div>
 </div>

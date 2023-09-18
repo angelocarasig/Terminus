@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
+import { weekdayDate } from '../../../shared/helpers/utilities.helper';
 
 @Component({
   selector: 'app-profile-heatmap-graphs',
   templateUrl: './profile-heatmap-graphs.component.html',
-  styleUrls: ['./profile-heatmap-graphs.component.scss']
+  styleUrls: ['./profile-heatmap-graphs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileHeatmapGraphsComponent {
   @Input() ulist: UserNovel[] | null;
@@ -16,22 +18,19 @@ export class ProfileHeatmapGraphsComponent {
     this.getHeatmapData();
   }
 
-  getLast15WeekDates(): Date[][] {
-    const dates = [];
-    const currentDate = new Date();
-    currentDate.setHours(0, 0, 0, 0); // Set to start of day
+  getLast15WeeksDates(): Date[][] {
+    const today = new Date();
+    today.setDate(today.getDate() + 7);
+    return Array.from({ length: 7 }, (_, dayOfWeek) => {
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() - (today.getDay() - 1) - (7 - dayOfWeek));
 
-    for (let i = 0; i < 7; i++) {
-      const weekDates = [];
-      for (let j = 0; j < 15; j++) {
-        weekDates.push(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() - 7);
-      }
-      dates.push(weekDates.reverse());
-      currentDate.setDate(currentDate.getDate() + 105 - 1);
-    }
-
-    return dates;
+      return Array.from({ length: 15 }, (_, week) => {
+        const date = new Date(startDate);
+        date.setDate(startDate.getDate() - (week * 7));
+        return date;
+      }).reverse();
+    });
   }
 
   isSameDay(d1: Date, d2: Date): boolean {
@@ -41,7 +40,7 @@ export class ProfileHeatmapGraphsComponent {
   }
 
   getHeatmapData(): void {
-    const dates = this.getLast15WeekDates();
+    const dates = this.getLast15WeeksDates();
     this.heatmapData = dates.map(week => {
       return week.map(date => {
         const novelsForDay = this.ulist?.filter(novel => {
@@ -54,10 +53,40 @@ export class ProfileHeatmapGraphsComponent {
         return { date: date, novels: novelsForDay || [] };
       });
     });
+
+    console.log(this.heatmapData);
   }
 
   getColorLevel(length: number): string {
     if (length > 900) return `var(--green-900)`;
     return `var(--green-${length}00)`;
   }
+
+  getCurrentWeekStyling(date: Date): string {
+    const currentDate = new Date();
+
+    if (this.isSameDay(currentDate, date)) {
+      return 'current-date';
+    }
+
+    return currentDate > date ? '' : 'unpassed-date';
+  }
+
+  getWeekdayLabel(dayIndex: number): string {
+    if (dayIndex % 2 !== 0) return '';
+    const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    return weekdays[dayIndex];
+  }
+
+  getWeekLabel(weekIndex: number): string {
+    for (let rowIndex = 0; rowIndex < this.heatmapData.length; rowIndex++) {
+      const date = this.heatmapData[rowIndex][weekIndex].date;
+      if (date.getDate() === 7) {
+        return date.toLocaleString('default', { month: 'short' });
+      }
+    }
+    return '';
+  }
+
+  protected readonly weekdayDate = weekdayDate;
 }
