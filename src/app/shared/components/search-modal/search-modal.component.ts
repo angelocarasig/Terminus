@@ -1,13 +1,11 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import { VNDBService } from '../../services/vndb/vndb.service';
-
-import { replaceVNDBDescriptionLink } from '../../helpers/utilities.helper';
 import { sortByPopularity } from '../../pipes/novel-sort/novel-sort.helper';
 import { VisualNovel } from '../../models/vn/visual-novel';
+import { openUrlInNewTab } from '../../helpers/utilities.helper';
 
 @Component({
   selector: 'app-search-modal',
@@ -28,7 +26,7 @@ export class SearchModalComponent implements OnInit {
   searchQuery: string;
   searchResultsLoaded: boolean;
 
-  constructor(public vndbService: VNDBService, private sanitizer: DomSanitizer, private renderer: Renderer2, private router: Router) {
+  constructor(public vndbService: VNDBService, private renderer: Renderer2, private router: Router) {
   }
 
   ngOnInit() {
@@ -45,18 +43,37 @@ export class SearchModalComponent implements OnInit {
     this.outsideClicked.emit();
   }
 
-  getDescription(description: string): SafeHtml {
-    return !description || description === ''
-      ? 'No Description Provided.'
-      : this.sanitizer.bypassSecurityTrustHtml(replaceVNDBDescriptionLink(description));
+  getDescription(description: string): string {
+    try {
+      let output = description;
+      let startIndex = output.indexOf('[url=');
+
+      while (startIndex !== -1) {
+        const equalIndex = output.indexOf(']', startIndex);
+        const link = output.substring(startIndex + 5, equalIndex);
+
+        if (link) {
+          const endTagStart = output.indexOf('[/url]', equalIndex);
+          if (endTagStart !== -1) {
+            const linkText = output.substring(equalIndex + 1, endTagStart);
+            const aTag = `<a href='${link}' target='_blank'>${linkText}</a>`;
+
+            output = output.substring(0, startIndex) + aTag + output.substring(endTagStart + 6);
+          }
+        }
+
+        startIndex = output.indexOf('[url=', startIndex + 1);
+      }
+
+      return output;
+
+    } catch (e) {
+      return 'No Description Provided.';
+    }
   }
 
   openVNLink(book: VisualNovel): void {
-    const url = `https://vndb.org/${book.id}`;
-    const link = this.renderer.createElement('a');
-    this.renderer.setAttribute(link, 'href', url);
-    this.renderer.setAttribute(link, 'target', '_blank');
-    link.click();
+    openUrlInNewTab(`https://vndb.org/${book.id}`);
   }
 
   openBook(event: VisualNovel): void {

@@ -29,10 +29,7 @@ export class ProfileComponent implements OnInit {
 
   openProfileInVNDB(): void {
     const url = `https://vndb.org/${this.userService.getUser()?.uid}`;
-    const link = this.renderer.createElement('a');
-    this.renderer.setAttribute(link, 'href', url);
-    this.renderer.setAttribute(link, 'target', '_blank');
-    link.click();
+    window.open(url, '_blank');
   }
 
   getBackgroundImage(userNovel: UserNovel): string {

@@ -58,7 +58,7 @@ export class ProfileHeatmapGraphsComponent {
   }
 
   getColorLevel(length: number): string {
-    if (length > 900) return `var(--green-900)`;
+    if (length > 400) return `var(--green-400)`;
     return `var(--green-${length}00)`;
   }
 

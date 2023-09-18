@@ -1,6 +1,7 @@
-import { Component, Input, Renderer2 } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { Router } from '@angular/router';
+import { openUrlInNewTab } from '../../../shared/helpers/utilities.helper';
 
 @Component({
   selector: 'app-book',
@@ -11,7 +12,7 @@ export class BookComponent {
   @Input() book: UserNovel;
   imageLoaded: boolean = false;
 
-  constructor(private renderer: Renderer2, private router: Router) {
+  constructor(private router: Router) {
   }
 
   openBook(): void {
@@ -25,11 +26,7 @@ export class BookComponent {
   }
 
   openVNLink(): void {
-    const url = `https://vndb.org/${this.book.id}`;
-    const link = this.renderer.createElement('a');
-    this.renderer.setAttribute(link, 'href', url);
-    this.renderer.setAttribute(link, 'target', '_blank');
-    link.click();
+    openUrlInNewTab(`https://vndb.org/${this.book.id}`);
   }
 
   onImageLoad() {

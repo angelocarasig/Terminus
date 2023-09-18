@@ -1,6 +1,15 @@
 .table-container {
-  min-width: 392px;
+  min-width: 465px;
   overflow: auto;
+
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .table-container {
+    scale: 0.85;
+  }
 }
 
 th {
@@ -17,7 +26,7 @@ td {
   width: 1.5rem;
   height: 1.5rem;
   text-align: center;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--text-sub-color);
   border-radius: 0.25rem;
   resize: none;
   box-sizing: border-box;

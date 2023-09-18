@@ -25,6 +25,10 @@ export class ProfilePieGraphsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.data = null;
+    this.options = null;
+
     this.updateGraphData(this.themeService.currentTheme);
     this.updateGraphOptions(this.themeService.currentTheme);
   }
@@ -72,10 +76,12 @@ export class ProfilePieGraphsComponent implements OnInit {
             'rgba(101,98,101,0.9)'
           ],
           borderWidth: 1,
-          borderColor: `${theme === Theme.Dark ? 'rgb(255,255,255)' : 'rgb(0,0,0)'}`
+          borderColor: `${theme === Theme.Dark ? 'lightgray' : 'darkgray'}`
         }
       ]
     };
+
+    console.log("Updated graph data...");
   }
 
   updateGraphOptions(theme: Theme) {
@@ -91,5 +97,6 @@ export class ProfilePieGraphsComponent implements OnInit {
         }
       }
     };
+    console.log("Updated graph options...");
   }
 }
