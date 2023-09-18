@@ -92,6 +92,7 @@ export class UserService {
    * Removes the current user.
    */
   removeCurrentUser(): void {
+    localStorage.removeItem(this.currentUserSubject.value!.username);
     this.currentUserSubject.next(null);
     localStorage.setItem(LOCAL_STORAGE_KEYS.currentUser, 'null');
   }
