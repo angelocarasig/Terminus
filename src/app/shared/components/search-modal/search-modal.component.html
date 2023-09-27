@@ -1,6 +1,6 @@
-<div class='modal' [@fadeAnimation]>
+<div class='modal' [@fadeAnimation]=''>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
-    <app-icon-button iconType='featherIcon' iconName='featherX' cssClass='exit-modal' (click)='handleClickOutside()'></app-icon-button>
+    <shared-icon-button iconType='featherIcon' iconName='featherX' cssClass='exit-modal' (click)='handleClickOutside()'></shared-icon-button>
     <div class='input-field'>
       <ng-icon class='search-icon' name='featherSearch'></ng-icon>
       <input pAutoFocus [autofocus]='true' class='search-field' placeholder='Search' [(ngModel)]='searchQuery' (ngModelChange)='onSearchQueryChange()'>
@@ -19,7 +19,12 @@
       <!--Otherwise results are present and just render them as normal-->
       <div class='result-item' *ngFor='let result of searchResult.results | novelSort: sortByPopularity' (click)='openBook(result)'>
         <div class='cover'>
-          <app-book-image [imageSource]='result.image.url' styleClass='list-view'></app-book-image>
+          <ng-container *ngIf='result.image != null; else placeholderImage'>
+            <shared-book-image [imageSource]='result.image.url' styleClass='list-view'></shared-book-image>
+          </ng-container>
+          <ng-template #placeholderImage>
+            No Image for this novel.
+          </ng-template>
         </div>
 
         <div class='details'>
@@ -39,9 +44,9 @@
         </div>
 
         <div class='links'>
-          <app-icon-button iconType='featherIcon' iconName='featherMoreVertical'></app-icon-button>
-          <app-icon-button iconType='tablerIcon' iconName='playlist-add'></app-icon-button>
-          <app-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink(result)'></app-icon-button>
+          <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
+          <shared-icon-button iconType='tablerIcon' iconName='playlist-add'></shared-icon-button>
+          <shared-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink(result)'></shared-icon-button>
         </div>
       </div>
     </div>

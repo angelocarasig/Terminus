@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import { VNDBService } from '../../services/vndb/vndb.service';
+
 import { sortByPopularity } from '../../pipes/novel-sort/novel-sort.helper';
-import { VisualNovel } from '../../models/vn/visual-novel';
 import { openUrlInNewTab } from '../../helpers/utilities.helper';
+import { VisualNovel } from '../../models/vn/visual-novel';
 
 @Component({
-  selector: 'app-search-modal',
+  selector: 'shared-search-modal',
   templateUrl: './search-modal.component.html',
   styleUrls: ['./search-modal.component.scss'],
   animations: [

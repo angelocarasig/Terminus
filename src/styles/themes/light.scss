@@ -58,5 +58,17 @@ $light-theme: (
   sidebar-background: $light-color-300,
   sidebar-item-hover-background: $light-primary-color-400,
 
+  // Paginator
+  paginator-color: $dark-color-700,
+  paginator-active-background: $light-secondary-color-500,
+  paginator-hover-color: $light-secondary-color-300,
+  paginator-hover-disabled: $light-color-400,
+
+  // Dropdown
+  dropdown-border: $light-color-200,
+  dropdown-hover-border: $light-color-400,
+  dropdown-hover-background: $light-color-300,
+  dropdown-hover-dark-background: $light-color-400,
+
   green-000: #dbdbdb,
 );

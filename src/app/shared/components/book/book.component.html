@@ -1,0 +1,21 @@
+<div class='book-container'>
+  <div class='book-background'></div>
+
+  <div class='book'>
+    <shared-book-image [imageSource]='book.vn.image.url' (click)='openBook()'></shared-book-image>
+
+    <div class='book-info'>
+      <div class='book-title'>
+        <span class='book-heading'> {{book.vn.title}} </span>
+        <span class='book-subheading'> {{book.vn.developers[0].name}} </span>
+      </div>
+      <div class='book-more'>
+        <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
+      </div>
+    </div>
+
+    <div class='book-tools'>
+      <shared-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink()' pTooltip="VNDB" tooltipPosition='bottom'></shared-icon-button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Container, Engine } from 'tsparticles-engine';
+import { Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
 
 import { getParticleOptions } from '../../helpers/particles.helper';
@@ -40,13 +40,7 @@ export class LandingComponent implements OnInit {
     }, 4000);
   }
 
-  particlesLoaded(container: Container): void {
-    console.log(container);
-  }
-
   async particlesInit(engine: Engine): Promise<void> {
-    console.log(engine);
-
     await loadSlim(engine);
   }
 }

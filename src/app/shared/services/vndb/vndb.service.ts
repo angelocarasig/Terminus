@@ -63,7 +63,8 @@ export class VNDBService {
       }),
       catchError(error => {
         this.loadingIndicatorSubject.next(false);
-        throw new Error(`Failed to retrieve user novels: ${error}`);
+        console.error(error);
+        throw new Error(`Failed to retrieve user novels:`);
       })
     );
   }

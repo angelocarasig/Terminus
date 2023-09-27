@@ -6,8 +6,10 @@
   object-fit: cover;
   aspect-ratio: 12/16;
   width: 13rem !important;
+  height: auto;
   border-radius: 1rem;
   position: relative;
+  cursor: pointer;
 
   &:hover {
     scale: 1.02;

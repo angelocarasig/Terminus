@@ -1,6 +1,6 @@
-<div class='modal' [@fadeAnimation]>
+<div class='modal' [@fadeAnimation]=''>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
-    <app-icon-button iconType='featherIcon' iconName='featherX' cssClass='exit-modal' (click)='handleClickOutside()'></app-icon-button>
+    <shared-icon-button iconType='featherIcon' iconName='featherX' cssClass='exit-modal' (click)='handleClickOutside()'></shared-icon-button>
     <h3>Options</h3>
     <div class='options-container'>
       <p-menu [model]='items'></p-menu>

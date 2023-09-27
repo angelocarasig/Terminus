@@ -5,8 +5,8 @@ export interface Image {
   votecount: number;
   url: string;
   id: string;
-  sexual: number;
+  sexual?: number;
   sexualFormatted: SexualRating;
-  violence: number;
+  violence?: number;
   violenceFormatted: ViolenceRating;
 }

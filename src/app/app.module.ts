@@ -7,9 +7,9 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { LandingModule } from './landing/landing.module';
-import { BookshelfModule } from './bookshelf/bookshelf.module';
 
 import { AppComponent } from './app.component';
+import { LibraryModule } from './library/library.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { AppComponent } from './app.component';
     // Modules
     SharedModule,
     LandingModule,
-    BookshelfModule
+    LibraryModule
   ],
   providers: [{ provide: 'environment', useValue: environment }],
   exports: [],

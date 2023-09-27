@@ -1,0 +1,41 @@
+<div class='table-container'>
+  <table class='heatmap'>
+    <thead>
+    <tr>
+      <th *ngFor='let _ of heatmapData[0]; let rowIndex = index'>
+        {{ getWeekLabel(rowIndex) }}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor='let week of heatmapData; let rowIndex = index'>
+      <td>
+        {{ getWeekdayLabel(rowIndex) }}
+      </td>
+      <td *ngFor='let cell of week'
+          class='cell-content'
+          [ngClass]='getCurrentWeekStyling(cell.date)'
+          [style.background-color]='getColorLevel(cell.novels.length)'
+          [pTooltip]='tooltip'
+          pTooltipPosition='top'>
+        <ng-template #tooltip>
+          <span>On {{weekdayDate(cell.date)}}</span>
+          <br>
+
+          <ng-template *ngIf='cell.novels.length > 0; else empty'>
+          </ng-template>
+
+          <ng-container *ngFor='let novel of cell.novels'>
+            {{novel.vn.title}}
+            <br>
+          </ng-container>
+        </ng-template>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #empty>
+  None for this day!
+</ng-template>

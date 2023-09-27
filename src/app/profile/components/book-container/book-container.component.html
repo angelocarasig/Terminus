@@ -1,0 +1,26 @@
+<span>{{title}} </span>
+<span>{{'(' + novels!.length + ' novels)'}}</span>
+
+<p-paginator
+  (onPageChange)="handlePageChange($event)"
+  [first]="first"
+  [rows]="rows"
+  [alwaysShow]='novels?.length! > rowsPerPageOptions[0]'
+  [showFirstLastIcon]='false'
+  [rowsPerPageOptions]='rowsPerPageOptions'
+  [totalRecords]="novels?.length!">
+</p-paginator>
+
+<div class='book-container'>
+  <shared-book *ngFor='let book of visibleNovels' [book]='book'></shared-book>
+</div>
+
+<p-paginator
+  (onPageChange)="handlePageChange($event)"
+  [first]="first"
+  [rows]="rows"
+  [alwaysShow]='false'
+  [showFirstLastIcon]='false'
+  [rowsPerPageOptions]='[10, 25, 50]'
+  [totalRecords]="novels?.length!">
+</p-paginator>

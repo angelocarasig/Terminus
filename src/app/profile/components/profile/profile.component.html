@@ -1,0 +1,79 @@
+<div class='profile-container'>
+  <div class='profile'>
+    <div class='profile-banner'>
+      <ng-container
+        *ngFor='let userNovel of userService.getUserNovels() | async |
+        highestVote: "vote"'
+      >
+        <div
+          class='image-entry'
+          [style.background-image]='(getBackgroundImage | memoize:userNovel)'>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class='profile-details'>
+      <div class='info'>
+        <img class='profile-icon' src='/assets/base-profile-icon.jpg' alt='profile-icon'>
+        <div class='text'>
+          <span class='username' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.username}}</span>
+          <span class='uid' (click)='openProfileInVNDB()'>{{this.userService.getUser()?.uid}}</span>
+        </div>
+        <div class='refresh' (click)='doRefreshNovels()'>
+          <div class='refresh-text'>
+            <span class='updated'>Updated:</span>
+            <span class='updated-at'>{{formattedDate(this.userService.getUser()?.updatedAt)}}</span>
+          </div>
+          <shared-icon-button [ngClass]='refreshing ? "rotate" : ""' cssClass='refresh-icon' iconName='featherRefreshCw' iconType='featherIcon'></shared-icon-button>
+        </div>
+      </div>
+    </div>
+    <div class='profile-charts'>
+      <div class='pies'>
+        <profile-pie [ulist]='userService.getUserNovels() | async'></profile-pie>
+      </div>
+
+      <div class='heatmap'>
+        <profile-heatmap [ulist]='userService.getUserNovels() | async'></profile-heatmap>
+      </div>
+
+      <div class='stats'>
+        <profile-stats [ulist]='userService.getUserNovels() | async'></profile-stats>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='columns-container'>
+  <div class='columns'>
+    <div class='recent'>
+      <profile-book-container
+        title='Recently Updated (30 days)'
+        [novels]='userService.getUserNovels() | async |
+        novelSort: sortByRecentlyModified |
+        novelFilter: filterModByLastThirtyDays'
+      >
+      </profile-book-container>
+    </div>
+
+    <div class='playing'>
+      <profile-book-container
+        title='Playing'
+        [novels]='userService.getUserNovels() | async |
+        novelSort: sortByPopularity |
+        novelFilter: isPlaying'
+      >
+      </profile-book-container>
+    </div>
+
+    <div class='favorites'>
+      <profile-book-container
+        title='Favourites'
+        [novels]='userService.getUserNovels() | async |
+        novelSort: sortByVoteScore |
+        novelFilter: isFinished'
+      >
+      </profile-book-container>
+    </div>
+  </div>
+</div>

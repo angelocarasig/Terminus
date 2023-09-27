@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.userService.currentUser$ !== null) {
-      this.router.navigate(['/bookshelf']).then();
+      this.router.navigate(['/library']).then();
     }
   }
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.userService.createUser(usernameValue, authTokenValue).subscribe({
       next: () => {
-        this.router.navigate(['/bookshelf']).then();
+        this.router.navigate(['/library']).then();
       },
       error: (error) => {
         this.submitted = true;

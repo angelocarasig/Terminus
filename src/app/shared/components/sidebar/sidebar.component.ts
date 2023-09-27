@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { UserService } from '../../services/user/user.service';
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'shared-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })

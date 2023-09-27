@@ -29,7 +29,6 @@ $dark-theme: (
   heading-color: $light-color-100,
   carett-color: $light-color-100,
 
-
   // Book
   book-background-color: #50555966,
 
@@ -52,6 +51,17 @@ $dark-theme: (
   sidebar-background: $dark-color-800,
   sidebar-item-hover-background: $dark-primary-color-800,
 
-  green-000: #2a2a2a,
+  // Paginator
+  paginator-color: $light-color-100,
+  paginator-border-color: none,
+  paginator-active-background: $dark-secondary-color-500,
+  paginator-hover-color: $dark-secondary-color-300,
 
+  // Dropdown
+  dropdown-border: $dark-color-600,
+  dropdown-hover-border: $dark-color-300,
+  dropdown-hover-background: $dark-color-500,
+  dropdown-hover-dark-background: $dark-color-800,
+
+  green-000: #2a2a2a,
 );

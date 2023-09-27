@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-book-image',
+  selector: 'shared-book-image',
   templateUrl: './book-image.component.html',
   styleUrls: ['./book-image.component.scss']
 })

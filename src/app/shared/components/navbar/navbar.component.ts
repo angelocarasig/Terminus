@@ -1,12 +1,12 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 
+import { ConfirmationService } from 'primeng/api';
 import { UserService } from '../../services/user/user.service';
 
 import { REPOSITORY } from '../../../../constants';
-import { ConfirmationService } from 'primeng/api';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'shared-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })

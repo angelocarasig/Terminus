@@ -1,17 +1,17 @@
-<app-sidebar
+<shared-sidebar
   [showSidebar]='showSidebar'
   (handleHome)='goToHome($event)'
   (handleHideSidebar)='closeSidebar()'>
 
-</app-sidebar>
-<app-search-modal *ngIf='showSearchModal' (outsideClicked)='closeSearchModal()'></app-search-modal>
-<app-commits-modal *ngIf='showChangelogModal' (outsideClicked)='closeChangelogModal()'></app-commits-modal>
-<app-options-modal *ngIf='showOptionsModal' (outsideClicked)='closeOptionsModal()'></app-options-modal>
+</shared-sidebar>
+<shared-search-modal *ngIf='showSearchModal' (outsideClicked)='closeSearchModal()'></shared-search-modal>
+<shared-commits-modal *ngIf='showChangelogModal' (outsideClicked)='closeChangelogModal()'></shared-commits-modal>
+<shared-options-modal *ngIf='showOptionsModal' (outsideClicked)='closeOptionsModal()'></shared-options-modal>
 
 <div class='navbar-container'>
   <div class='navbar'>
     <div class='home'>
-      <app-icon-button iconType='featherIcon' iconName='featherMenu' (click)='displaySidebar()'></app-icon-button>
+      <shared-icon-button iconType='featherIcon' iconName='featherMenu' (click)='displaySidebar()'></shared-icon-button>
     </div>
 
     <div class='search' (click)='displaySearchModal($event)'>
@@ -21,13 +21,13 @@
     </div>
 
     <div class='settings'>
-      <app-theme-switch class='theme-switch height-adjust'></app-theme-switch>
-      <app-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()' cssClass='external-link-icon' pTooltip="GitHub" tooltipPosition='bottom'></app-icon-button>
-      <app-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)' pTooltip="Changelog" tooltipPosition='bottom'></app-icon-button>
-      <app-icon-button iconType='featherIcon' iconName='featherSettings' (click)='displayOptionsModal($event)' pTooltip="Settings" tooltipPosition='bottom'></app-icon-button>
+      <shared-theme-switch class='theme-switch height-adjust'></shared-theme-switch>
+      <shared-icon-button iconType='featherIcon' iconName='featherGithub' (click)='goToGithub()' cssClass='external-link-icon' pTooltip="GitHub" tooltipPosition='bottom'></shared-icon-button>
+      <shared-icon-button iconType='featherIcon' iconName='featherList' (click)='displayChangelogModal($event)' pTooltip="Changelog" tooltipPosition='bottom'></shared-icon-button>
+      <shared-icon-button iconType='featherIcon' iconName='featherSettings' (click)='displayOptionsModal($event)' pTooltip="Settings" tooltipPosition='bottom'></shared-icon-button>
 
       <p-confirmDialog header='Logout' [style]="{width: '50vw'}" acceptButtonStyleClass='p-dialog-accept' rejectButtonStyleClass='p-dialog-cancel'></p-confirmDialog>
-      <app-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)' pTooltip="Logout" tooltipPosition='bottom'></app-icon-button>
+      <shared-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)' pTooltip="Logout" tooltipPosition='bottom'></shared-icon-button>
     </div>
   </div>
 </div>

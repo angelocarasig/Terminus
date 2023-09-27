@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserGuard } from './shared/guards/user/user.guard';
 
 import { LandingComponent } from './landing/components/landing/landing.component';
-import { BookshelfComponent } from './bookshelf/components/bookshelf/bookshelf.component';
-import { OpenBookComponent } from './bookshelf/components/open-book/open-book.component';
+import { LibraryComponent } from './library/components/library/library.component';
+import { PageComponent } from './library/components/page/page.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'bookshelf', component: BookshelfComponent, canActivate: [UserGuard] },
-  { path: 'vn', component: OpenBookComponent, canActivate: [UserGuard] }
+  { path: 'library', component: LibraryComponent, canActivate: [UserGuard] },
+  { path: 'vn', component: PageComponent, canActivate: [UserGuard] }
 ];
 
 @NgModule({

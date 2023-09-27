@@ -3,11 +3,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 import { MenuItem } from 'primeng/api';
 
-import { OptionTabs } from '../../models/options/optionTabs';
+import { OptionTabs } from '../../models/options/option-tabs';
 import { UserService } from '../../services/user/user.service';
 
 @Component({
-  selector: 'app-options-modal',
+  selector: 'shared-options-modal',
   templateUrl: './options-modal.component.html',
   styleUrls: ['./options-modal.component.scss'],
   animations: [

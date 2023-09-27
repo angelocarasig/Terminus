@@ -60,5 +60,3 @@ export const ULIST_PROPS: Array<string> = [
 
   ...VN_PROPS,
 ];
-
-export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

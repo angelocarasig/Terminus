@@ -14,6 +14,8 @@
 @import 'tooltip';
 @import 'menu';
 @import 'sidebar';
+@import 'paginator';
+@import 'dropdown';
 
 body {
   @include common();

@@ -1,0 +1,61 @@
+.p-dropdown {
+  background: transparent;
+  border: 2px solid var(--dropdown-border);
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  border-radius: 0.5rem;
+
+  &:not(.p-disabled):hover {
+    border-color: var(--dropdown-hover-border);
+  }
+
+  .p-dropdown-label {
+    font-size: inherit;
+  }
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  box-shadow: none;
+  border-color: var(--dropdown-hover-background);
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  color: var(--text-color);
+  background: var(--dropdown-hover-background);
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+  color: var(--text-color);
+  background: var(--dropdown-hover-dark-background);
+  border-radius: 0.5rem;
+  transition: 0.15s;
+}
+
+.p-dropdown-panel {
+  background: var(--background);
+  color: var(--text-color);
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  margin: 0;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  color: var(--text-color);
+  background: inherit;
+  transition: box-shadow 0.15s;
+  border-radius: 0.5rem;
+}
+
+.p-dropdown-panel {
+  border: 2px solid var(--dropdown-hover-background);
+}
+
+.p-dropdown .p-dropdown-trigger {
+  color: var(--text-color);
+}
+
+.p-dropdown-panel .p-dropdown-items {
+  padding: 0.15rem;
+}

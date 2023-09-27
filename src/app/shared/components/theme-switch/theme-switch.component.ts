@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
-  selector: 'app-theme-switch',
+  selector: 'shared-theme-switch',
   templateUrl: './theme-switch.component.html',
   styleUrls: ['./theme-switch.component.scss']
 })

@@ -48,6 +48,7 @@ import { NovelFilterPipe } from './pipes/novel-filter/novel-filter.pipe';
 import { NovelSortPipe } from './pipes/novel-sort/novel-sort.pipe';
 import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { BookComponent } from './components/book/book.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CommitsModalComponent,
     OptionsModalComponent,
     BookImageComponent,
+    BookComponent,
 
     // Pipes
     MemoizePipe,
@@ -110,6 +112,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ThemeSwitchComponent,
     IconButtonComponent,
     NavbarComponent,
+    BookComponent,
 
     // Pipes
     MemoizePipe,

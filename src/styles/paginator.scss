@@ -1,0 +1,43 @@
+.p-paginator {
+  background: none;
+  color: var(--paginator-color);
+  border: none;
+  padding: 0;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+// Arrows
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+  color: var(--paginator-color);
+  border: 1px solid var(--paginator-border-color);
+  border-radius: 0.25rem;
+  transition: all 0.25s;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: var(--paginator-active-background);
+  border: 1px solid var(--paginator-border-color);
+  border-radius: 0.25rem;
+  color: var(--paginator-color);
+  transition: all 0.25s;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+  border: 1px solid var(--paginator-border-color);
+  border-radius: 0.25rem;
+  color: var(--text-color);
+  transition: all 0.25s;
+}
+
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+  background: var(--paginator-hover-color);
+  border: 1px solid var(--paginator-border-color);
+  border-radius: 0.25rem;
+  color: var(--text-color);
+}
+
+.p-link:disabled {
+  transition: all 0.25s;
+}

@@ -1,0 +1,11 @@
+<ng-template #loadingIndicator>
+  <div class='spinner'>
+    <p-progressSpinner></p-progressSpinner>
+    <span>Loading Collection...</span>
+  </div>
+</ng-template>
+
+<div class='bookshelf-container' *ngIf='(userNovelList$ | async); else loadingIndicator'>
+  <shared-navbar></shared-navbar>
+  <profile-shell (refreshNovelsTrigger)='triggerRefreshUserNovels()'></profile-shell>
+</div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
+
 import { Observable } from 'rxjs';
 
 import { GithubService } from '../../services/github/github.service';
@@ -8,7 +9,7 @@ import { GitHubCommit } from '../../models/github-commit/github-commit';
 import { formattedDate } from '../../helpers/utilities.helper';
 
 @Component({
-  selector: 'app-commits-modal',
+  selector: 'shared-commits-modal',
   templateUrl: './commits-modal.component.html',
   styleUrls: ['./commits-modal.component.scss'],
   animations: [

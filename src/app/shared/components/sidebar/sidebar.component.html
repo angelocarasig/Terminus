@@ -3,22 +3,22 @@
 
   <ng-template pTemplate='content'>
     <div class='sidebar-items'>
-      <div class='sidebar-item' routerLink='/bookshelf'>
+      <div class='sidebar-item' routerLink='/library'>
         <ng-icon name='featherHome' style='--ng-icon__size: 1.5rem;'></ng-icon>
         <span class='sidebar-item-title'>Home</span>
       </div>
 
-      <div class='sidebar-item' routerLink='/bookshelf'>
+      <div class='sidebar-item' routerLink='/library'>
         <ng-icon name='featherBookOpen' style='--ng-icon__size: 1.5rem;'></ng-icon>
         <span class='sidebar-item-title'>My List</span>
       </div>
 
-      <div class='sidebar-item' routerLink='/bookshelf'>
+      <div class='sidebar-item' routerLink='/library'>
         <ng-icon name='featherStar' style='--ng-icon__size: 1.5rem;'></ng-icon>
         <span class='sidebar-item-title'>My Votes</span>
       </div>
 
-      <div class='sidebar-item' routerLink='/bookshelf'>
+      <div class='sidebar-item' routerLink='/library'>
         <ng-icon name='featherHeart' style='--ng-icon__size: 1.5rem;'></ng-icon>
         <span class='sidebar-item-title'>My Wishlist</span>
       </div>
@@ -31,7 +31,7 @@
   <ng-template pTemplate='footer' *ngIf='userService.currentUser$ | async as currentUser'>
     <div class='sidebar-footer'>
       <span class='sidebar-heading'>{{currentUser.username}}</span>
-      <app-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)' pTooltip='Logout' tooltipPosition='bottom'></app-icon-button>
+      <shared-icon-button iconType='featherIcon' iconName='featherLogOut' (click)='goToHome($event)' pTooltip='Logout' tooltipPosition='bottom'></shared-icon-button>
     </div>
   </ng-template>
 </p-sidebar>
