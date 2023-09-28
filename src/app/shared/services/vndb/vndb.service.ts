@@ -15,6 +15,7 @@ import { UserNovel } from '../../models/vn/user-novel';
 import { UListResponseType, VNResponseType } from '../../../../types';
 import { VisualNovel } from '../../models/vn/visual-novel';
 import { ULIST_PROPS, VN_PROPS } from '../../../../constants';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class VNDBService {
 
   private vnDataTransformer: NovelDataFormatterHelper;
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.vnDataTransformer = new NovelDataFormatterHelper();
+  constructor(private http: HttpClient, private userService: UserService, private messageService: MessageService) {
+    this.vnDataTransformer = new NovelDataFormatterHelper(messageService);
   }
 
   searchResult$: Observable<VNResponseType | null> = this.searchQuerySubject.pipe(

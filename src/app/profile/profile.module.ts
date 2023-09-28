@@ -10,6 +10,8 @@ import { BookContainerComponent } from './components/book-container/book-contain
 import { ChartModule } from 'primeng/chart';
 import { PaginatorModule } from 'primeng/paginator';
 import { TooltipModule } from 'primeng/tooltip';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,13 @@ import { TooltipModule } from 'primeng/tooltip';
     ChartModule,
     PaginatorModule,
     TooltipModule,
+    ToastModule
   ],
   exports: [
     ProfileComponent,
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class ProfileModule { }

@@ -4,12 +4,14 @@
  */
 import { GetSexualRating, GetViolenceRating, unixTimestampToDate } from './utilities.helper';
 
+import { MessageService } from 'primeng/api';
+
 import { UserNovel } from '../models/vn/user-novel';
 import { Screenshot } from '../models/vn/screenshot';
 import { VisualNovel } from '../models/vn/visual-novel';
 
 export class NovelDataFormatterHelper {
-  constructor() {
+  constructor(private messageService: MessageService) {
   }
 
   transformUserNovel(userNovel: UserNovel): UserNovel {
@@ -41,12 +43,12 @@ export class NovelDataFormatterHelper {
 
   private formatVisualNovelRatingDistribution(visualNovel: VisualNovel): void {
     if (visualNovel.image == null) {
-      console.warn(`Visual Novel ${visualNovel.title} is missing its image property. Skipping image transformation...`);
+      this.displayToasterMessage(`Visual Novel ${visualNovel.title} is missing its image property. \n\nSkipping image transformation...`);
       return;
     }
 
     if (visualNovel.image.sexual == null || visualNovel.image.violence == null) {
-      console.warn(`Visual Novel ${visualNovel.title} is missing sexual or violence attributes. Continuing with assumption of safe and non-violent image.`);
+      this.displayToasterMessage(`Visual Novel ${visualNovel.title} is missing sexual or violence attributes. \n\nContinuing with assumption of safe and non-violent image.`);
 
       visualNovel.image.sexual = 0;
       visualNovel.image.violence = 0;
@@ -57,7 +59,8 @@ export class NovelDataFormatterHelper {
 
     visualNovel.screenshots.forEach((screenshot: Screenshot, index: number) => {
       if (screenshot.sexual == null || screenshot.violence == null) {
-        console.warn(`Screenshot for VN ${visualNovel.title} is missing sexual or violence attributes. Continuing with assumption of safe and non-violent image.`);
+        this.displayToasterMessage(`Screenshot for VN ${visualNovel.title} is missing sexual or violence attributes. \n\nContinuing with assumption of safe and non-violent image.`);
+
         visualNovel.screenshots[index].sexual = 0;
         visualNovel.screenshots[index].violence = 0;
       }
@@ -65,5 +68,9 @@ export class NovelDataFormatterHelper {
       screenshot.sexualFormatted = GetSexualRating(screenshot.sexual!);
       screenshot.violenceFormatted = GetViolenceRating(screenshot.violence!);
     });
+  }
+
+  private displayToasterMessage(msg: string): void {
+    this.messageService.add({ severity: 'warn', summary: 'Warning', detail: msg });
   }
 }

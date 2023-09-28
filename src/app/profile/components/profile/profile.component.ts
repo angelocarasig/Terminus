@@ -8,6 +8,7 @@ import { sortByPopularity, sortByRecentlyModified, sortByVoteScore } from '../..
 
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { SexualRating, ViolenceRating } from '../../../shared/models/vn/visual-novel';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'profile-shell',
@@ -18,13 +19,14 @@ export class ProfileComponent implements OnInit {
   @Output() refreshNovelsTrigger = new EventEmitter<void>();
   refreshing = false;
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, private messageService: MessageService) {
   }
 
   ngOnInit() {
     this.userService.getUserNovels().subscribe({
       next: () => {
         this.refreshing = false;
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'List updated!'});
       }
     });
   }
@@ -55,6 +57,7 @@ export class ProfileComponent implements OnInit {
   doRefreshNovels(): void {
     this.refreshing = true;
     this.refreshNovelsTrigger.emit();
+    this.messageService.add({severity: 'info', summary: 'Info', detail: 'Refreshing novel list...'})
   }
 
   protected readonly formattedDate = formattedDate;

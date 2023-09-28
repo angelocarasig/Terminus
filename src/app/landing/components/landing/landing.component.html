@@ -4,6 +4,8 @@
   [particlesInit]='particlesInit'>
 </ng-particles>
 
+<p-toast position="bottom-right"></p-toast>
+
 <div class='landing-container'>
   <div class='landing-hero'>
     <span class='landing-heading'>Terminus.</span>
@@ -13,5 +15,5 @@
       </span>
     </div>
   </div>
-  <app-login class='footer'></app-login>
+  <app-login class='footer' (errorMessageEmitter)='errorMessageHandler($event)'></app-login>
 </div>

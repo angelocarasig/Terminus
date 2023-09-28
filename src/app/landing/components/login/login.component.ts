@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,6 +10,8 @@ import { UserService } from '../../../shared/services/user/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @Output() errorMessageEmitter = new EventEmitter<string>();
+
   form: FormGroup;
   submitted = false;
   errorMessage = 'Username is required.';
@@ -40,6 +42,8 @@ export class LoginComponent implements OnInit {
       error: (error) => {
         this.submitted = true;
         this.errorMessage = error.message;
+
+        this.errorMessageEmitter.emit(error.message);
       }
     });
   }

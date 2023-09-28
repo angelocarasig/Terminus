@@ -4,6 +4,7 @@ import { Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
 
 import { getParticleOptions } from '../../helpers/particles.helper';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-landing',
@@ -28,6 +29,8 @@ export class LandingComponent implements OnInit {
   currentTextIndex: number = 0;
   currentText: string = this.subheadingTexts[0];
 
+  constructor(private messageService: MessageService) {}
+
   ngOnInit() {
     this.particles = {
       id: 'tsparticles',
@@ -42,5 +45,9 @@ export class LandingComponent implements OnInit {
 
   async particlesInit(engine: Engine): Promise<void> {
     await loadSlim(engine);
+  }
+
+  errorMessageHandler(msg: string): void {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: msg });
   }
 }

@@ -27,7 +27,7 @@ export class SearchModalComponent implements OnInit {
   searchQuery: string;
   searchResultsLoaded: boolean;
 
-  constructor(public vndbService: VNDBService, private renderer: Renderer2, private router: Router) {
+  constructor(public vndbService: VNDBService, private router: Router) {
   }
 
   ngOnInit() {

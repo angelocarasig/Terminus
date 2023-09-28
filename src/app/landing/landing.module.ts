@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { NgParticlesModule } from 'ng-particles';
 import { SpinnerModule } from 'primeng/spinner';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,14 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     SharedModule,
     NgParticlesModule,
     SpinnerModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToastModule
   ],
   exports: [
     LandingComponent
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class LandingModule {
