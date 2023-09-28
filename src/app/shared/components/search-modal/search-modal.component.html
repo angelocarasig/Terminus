@@ -1,4 +1,4 @@
-<p-toast position="bottom-right"></p-toast>
+<p-toast position='bottom-right'></p-toast>
 
 <div class='modal' [@fadeAnimation]=''>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
@@ -11,44 +11,57 @@
       </div>
     </div>
 
-    <div class='result-field' *ngIf='vndbService.searchResult$ | async as searchResult; else noResult'>
-
+    <div class='result-container' *ngIf='searchResults.length !== 0; else noResult'>
       <!--2nd failsafe to render if service had no results-->
-      <ng-container *ngIf='searchResult.results.length === 0'>
+      <ng-container *ngIf='searchResults.length === 0'>
         <ng-container *ngTemplateOutlet='noResult'></ng-container>
       </ng-container>
 
-      <!--Otherwise results are present and just render them as normal-->
-      <div class='result-item' *ngFor='let result of searchResult.results | novelSort: sortByPopularity' (click)='openBook(result)'>
-        <div class='cover'>
-          <ng-container *ngIf='result.image != null; else placeholderImage'>
-            <shared-book-image [imageSource]='result.image.url' styleClass='list-view'></shared-book-image>
-          </ng-container>
-          <ng-template #placeholderImage>
-            No Image for this novel.
-          </ng-template>
-        </div>
+      <p-paginator
+        *ngIf='searchResults.length !== 0'
+        (onPageChange)='handlePageChange($event)'
+        [first]='paginateProperties.first'
+        [rows]='paginateProperties.rows'
+        [alwaysShow]='true'
+        [showFirstLastIcon]='false'
+        [rowsPerPageOptions]='paginateProperties.rowsPerPageOptions'
+        [showCurrentPageReport]='true'
+        currentPageReportTemplate='{first} - {last} of {totalRecords}'
+        [totalRecords]='searchResults.length'>
+      </p-paginator>
 
-        <div class='details'>
-          <div class='title'>
-            <div class='heading'>
-              <span class='result-title'>{{result.title}}</span>
-              <span class='result-date'>{{result.released}}</span>
+      <div class='result-field'>
+        <div class='result-item' *ngFor='let result of paginatedResults$ | async | novelSort: sortByPopularity' (click)='openBook(result)'>
+          <div class='cover'>
+            <ng-container *ngIf='result.image != null; else placeholderImage'>
+              <shared-book-image [imageSource]='result.image.url' styleClass='list-view'></shared-book-image>
+            </ng-container>
+            <ng-template #placeholderImage>
+              No Image for this novel.
+            </ng-template>
+          </div>
+
+          <div class='details'>
+            <div class='title'>
+              <div class='heading'>
+                <span class='result-title'>{{result.title}}</span>
+                <span class='result-date'>{{result.released}}</span>
+              </div>
+              <div class='subheading'>
+                <span>{{result.developers[0]?.name}}</span>
+              </div>
             </div>
-            <div class='subheading'>
-              <span>{{result.developers[0]?.name}}</span>
+
+            <div class='description'>
+              <span [innerHTML]='getDescription(result.description)'></span>
             </div>
           </div>
 
-          <div class='description'>
-            <span [innerHTML]='getDescription(result.description)'></span>
+          <div class='links'>
+            <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
+            <shared-icon-button iconType='tablerIcon' iconName='playlist-add'></shared-icon-button>
+            <shared-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink(result)'></shared-icon-button>
           </div>
-        </div>
-
-        <div class='links'>
-          <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
-          <shared-icon-button iconType='tablerIcon' iconName='playlist-add'></shared-icon-button>
-          <shared-icon-button iconType='featherIcon' iconName='featherExternalLink' (click)='openVNLink(result)'></shared-icon-button>
         </div>
       </div>
     </div>

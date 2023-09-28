@@ -41,3 +41,9 @@
 .p-link:disabled {
   transition: all 0.25s;
 }
+
+.p-paginator .p-paginator-current {
+  border: 1px solid var(--paginator-border-color);
+  color: var(--text-color);
+  cursor: default;
+}

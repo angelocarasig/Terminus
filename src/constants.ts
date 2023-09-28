@@ -60,3 +60,5 @@ export const ULIST_PROPS: Array<string> = [
 
   ...VN_PROPS,
 ];
+
+export const MAX_SEARCH_PAGES = 10;

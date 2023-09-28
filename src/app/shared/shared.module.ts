@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AutoFocusModule } from 'primeng/autofocus';
 import { ButtonModule } from 'primeng/button';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
@@ -42,14 +42,13 @@ import { NgClickOutsideDirective } from 'ng-click-outside2';
 import { OptionsModalComponent } from './components/options-modal/options-modal.component';
 import { BookImageComponent } from './components/book-image/book-image.component';
 
-
 import { MemoizePipe } from './pipes/memoize/memoize.pipe';
 import { NovelFilterPipe } from './pipes/novel-filter/novel-filter.pipe';
 import { NovelSortPipe } from './pipes/novel-sort/novel-sort.pipe';
 import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BookComponent } from './components/book/book.component';
-
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -105,7 +104,9 @@ import { BookComponent } from './components/book/book.component';
     InputTextModule,
     ReactiveFormsModule,
     ButtonModule,
-    SidebarModule
+    SidebarModule,
+    ToastModule,
+    PaginatorModule
   ],
   exports: [
     // Shared Components
@@ -121,7 +122,7 @@ import { BookComponent } from './components/book/book.component';
     HighestVotePipe,
     BookImageComponent
   ],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, MessageService]
 })
 export class SharedModule {
 }

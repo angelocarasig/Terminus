@@ -1,12 +1,19 @@
-import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 import { VNDBService } from '../../services/vndb/vndb.service';
+
+import { PaginatorState } from 'primeng/paginator';
 
 import { sortByPopularity } from '../../pipes/novel-sort/novel-sort.helper';
 import { openUrlInNewTab } from '../../helpers/utilities.helper';
 import { VisualNovel } from '../../models/vn/visual-novel';
+import { VNResponseType } from '../../../../types';
 
 @Component({
   selector: 'shared-search-modal',
@@ -27,12 +34,40 @@ export class SearchModalComponent implements OnInit {
   searchQuery: string;
   searchResultsLoaded: boolean;
 
+  searchResults: Array<VisualNovel>;
+  paginatedResults$: Observable<Array<VisualNovel>>;
+
+
+  paginateProperties = {
+    first: 0,
+    rows: 10,
+    rowsPerPageOptions: [10, 25, 50]
+  }
+
   constructor(public vndbService: VNDBService, private router: Router) {
+    this.vndbService.searchResult$
+      .pipe(takeUntilDestroyed())
+      .subscribe({
+      next: (searchResults: VNResponseType | null) => {
+        if (searchResults == null) {
+          this.searchResults = [];
+          return;
+        }
+
+        this.paginatedResults$ = of(searchResults.results).pipe(
+          map(data => data.slice(0, this.paginateProperties.rows))
+        )
+
+        this.searchResults = searchResults.results;
+      }
+    })
   }
 
   ngOnInit() {
     this.searchQuery = '';
     this.searchResultsLoaded = true;
+
+    this.searchResults = [];
   }
 
   onSearchQueryChange(): void {
@@ -42,6 +77,19 @@ export class SearchModalComponent implements OnInit {
 
   handleClickOutside(): void {
     this.outsideClicked.emit();
+  }
+
+  handlePageChange(paginatorState: PaginatorState): void {
+    this.paginateProperties.first = paginatorState.first!;
+    this.paginateProperties.rows = paginatorState.rows!;
+
+    this.updateNovelsDisplayed();
+  }
+
+  updateNovelsDisplayed() {
+    this.paginatedResults$ = of(this.searchResults).pipe(
+      map(data => data.slice(this.paginateProperties.first, this.paginateProperties.first + this.paginateProperties.rows))
+    )
   }
 
   getDescription(description: string): string {
@@ -81,6 +129,5 @@ export class SearchModalComponent implements OnInit {
     this.router.navigate(['/vn'], { state: { novel: event } });
   }
 
-  protected readonly console = console;
   protected readonly sortByPopularity = sortByPopularity;
 }

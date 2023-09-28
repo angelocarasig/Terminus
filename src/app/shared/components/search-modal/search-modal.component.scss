@@ -8,10 +8,12 @@
 @media (max-width: 900px) {
   ::ng-deep .exit-modal {
     display: flex !important;
+    border: 1px solid var(--input-placeholder-color);
   }
 
   .modal-box {
     width: 100% !important;
+    max-height: 100% !important;
     margin: 1rem 0 !important;
     transition: all 0.5s;
   }
@@ -68,6 +70,11 @@
         font-weight: 400;
         background-color: var(--modal-search-background-color);
       }
+    }
+
+    .result-container {
+      padding: 1.25rem 0;
+      overflow: auto;
     }
 
     .result-field {
