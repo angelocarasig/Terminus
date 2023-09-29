@@ -1,6 +1,6 @@
 @import '../../../../styles/mixins';
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .profile-icon {
     width: 4rem !important;
     height: 4rem !important;
@@ -191,6 +191,7 @@
     vertical-align: middle;
     border-radius: 1rem;
     padding: 1rem;
+    overflow: hidden;
   }
 }
 
@@ -210,3 +211,46 @@
     transform: rotate(360deg); /* Rotate 360 degrees */
   }
 }
+
+.profile-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  margin: 1rem 2.5rem;
+  border: 1px solid var(--profile-background-color);
+  border-radius: 0.5rem;
+
+  & > * {
+  }
+
+  .toolbar-buttons {
+    display: flex;
+
+    & > * {
+      padding: 0.5rem;
+      border: 1px solid var(--profile-background-color);
+    }
+
+    .toolbar-button {
+      border-radius: 0.5rem;
+      transition: background-color 0.25s;
+
+      ::ng-deep .terminus-icon-button {
+        pointer-events: none !important;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: var(--icon-button-hover);
+      }
+    }
+  }
+
+  .toolbar-slider {
+    min-width: 10vw;
+  }
+}
+

@@ -18,6 +18,7 @@ import { MessageService } from 'primeng/api';
 export class ProfileComponent implements OnInit {
   @Output() refreshNovelsTrigger = new EventEmitter<void>();
   refreshing = false;
+  bookScaleValue = 1;
 
   constructor(public userService: UserService, private messageService: MessageService) {
   }
@@ -58,6 +59,10 @@ export class ProfileComponent implements OnInit {
     this.refreshing = true;
     this.refreshNovelsTrigger.emit();
     this.messageService.add({severity: 'info', summary: 'Info', detail: 'Refreshing novel list...'})
+  }
+
+  getSliderTooltip(): string {
+    return `Scale: ${this.bookScaleValue}`;
   }
 
   protected readonly formattedDate = formattedDate;

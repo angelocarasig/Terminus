@@ -70,5 +70,11 @@ $light-theme: (
   dropdown-hover-background: $light-color-300,
   dropdown-hover-dark-background: $light-color-400,
 
+  // Slider
+  slider: $light-color-300,
+  slider-range: $light-primary-color-700,
+  slider-handle: $light-primary-color-500,
+  slider-handle-hover: $light-primary-color-600,
+
   green-000: #dbdbdb,
 );

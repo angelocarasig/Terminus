@@ -63,5 +63,11 @@ $dark-theme: (
   dropdown-hover-background: $dark-color-500,
   dropdown-hover-dark-background: $dark-color-800,
 
+  // Slider
+  slider: $dark-color-700,
+  slider-range: $dark-primary-color-800,
+  slider-handle: $dark-primary-color-500,
+  slider-handle-hover: $dark-primary-color-700,
+
   green-000: #2a2a2a,
 );

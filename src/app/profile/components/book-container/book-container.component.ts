@@ -12,6 +12,7 @@ import { UserNovel } from '../../../shared/models/vn/user-novel';
 export class BookContainerComponent implements OnInit {
   @Input() title: string;
   @Input() novels: Array<UserNovel> | null;
+  @Input() novelScale: number;
 
   visibleNovels: Array<UserNovel>;
   rowsPerPageOptions: Array<number> = [10, 25, 50];
@@ -33,5 +34,25 @@ export class BookContainerComponent implements OnInit {
 
   updateNovelsDisplayed() {
     this.visibleNovels = this.novels!.slice(this.first, this.first + this.rows);
+  }
+
+  setNovelScale(): string {
+    return `scale(${this.novelScale})`;
+  }
+
+  setNovelWidth(): number {
+    return this.novelScale * 15;
+  }
+
+  setNovelHeight(): number {
+    return this.novelScale * 20;
+  }
+
+  getGapFromScale(): string {
+    return `${this.novelScale * 6.9}rem ${this.novelScale * 3}rem`;
+  }
+
+  getMarginTop(): string {
+    return `${this.novelScale * 2.5}rem`;
   }
 }

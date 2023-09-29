@@ -46,11 +46,32 @@
   </div>
 </div>
 
+<div class='profile-toolbar'>
+  <div class='toolbar-buttons'>
+    <shared-icon-button
+      class='toolbar-button' iconType='featherIcon' iconName='featherGrid'
+      pTooltip='Grid' tooltipPosition='bottom'>
+    </shared-icon-button>
+
+    <shared-icon-button
+      class='toolbar-button' iconType='featherIcon' iconName='featherMenu'
+      pTooltip='List' tooltipPosition='bottom'>
+    </shared-icon-button>
+  </div>
+  <div class='toolbar-slider'>
+    <p-slider
+      class='slider' [(ngModel)]='bookScaleValue' [min]='0.5' [max]='1.2' [step]='0.01'
+      [pTooltip]='getSliderTooltip()' tooltipPosition='bottom'>
+    </p-slider>
+  </div>
+</div>
+
 <div class='columns-container'>
   <div class='columns'>
     <div class='recent'>
       <profile-book-container
         title='Recently Updated (30 days)'
+        [novelScale]='bookScaleValue'
         [novels]='userService.getUserNovels() | async |
         novelSort: sortByRecentlyModified |
         novelFilter: filterModByLastThirtyDays'
@@ -61,6 +82,7 @@
     <div class='playing'>
       <profile-book-container
         title='Playing'
+        [novelScale]='bookScaleValue'
         [novels]='userService.getUserNovels() | async |
         novelSort: sortByPopularity |
         novelFilter: isPlaying'
@@ -71,6 +93,7 @@
     <div class='favorites'>
       <profile-book-container
         title='Favourites'
+        [novelScale]='bookScaleValue'
         [novels]='userService.getUserNovels() | async |
         novelSort: sortByVoteScore |
         novelFilter: isFinished'

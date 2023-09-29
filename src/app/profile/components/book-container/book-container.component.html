@@ -2,25 +2,31 @@
 <span>{{'(' + novels!.length + ' novels)'}}</span>
 
 <p-paginator
-  (onPageChange)="handlePageChange($event)"
-  [first]="first"
-  [rows]="rows"
+  (onPageChange)='handlePageChange($event)'
+  [first]='first'
+  [rows]='rows'
   [alwaysShow]='novels?.length! > rowsPerPageOptions[0]'
   [showFirstLastIcon]='false'
   [rowsPerPageOptions]='rowsPerPageOptions'
-  [totalRecords]="novels?.length!">
+  [totalRecords]='novels?.length!'>
 </p-paginator>
 
-<div class='book-container'>
-  <shared-book *ngFor='let book of visibleNovels' [book]='book'></shared-book>
+<div
+  class='book-container'
+  [ngStyle]="{'gap': getGapFromScale(), 'margin-top': getMarginTop()}">
+  <shared-book
+    *ngFor='let book of visibleNovels'
+    [ngStyle]="{'width': setNovelWidth() + 'rem', 'height': setNovelHeight() + 'rem', 'transform': setNovelScale()}"
+    [book]='book'>
+  </shared-book>
 </div>
 
 <p-paginator
-  (onPageChange)="handlePageChange($event)"
-  [first]="first"
-  [rows]="rows"
+  (onPageChange)='handlePageChange($event)'
+  [first]='first'
+  [rows]='rows'
   [alwaysShow]='false'
   [showFirstLastIcon]='false'
   [rowsPerPageOptions]='[10, 25, 50]'
-  [totalRecords]="novels?.length!">
+  [totalRecords]='novels?.length!'>
 </p-paginator>

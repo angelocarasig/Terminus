@@ -16,6 +16,7 @@
 @import 'sidebar';
 @import 'paginator';
 @import 'dropdown';
+@import 'slider';
 
 body {
   @include common();

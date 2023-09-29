@@ -1,0 +1,29 @@
+.p-slider .p-slider-handle {
+  background: var(--slider-handle);
+  border: 2px solid var(--slider-handle-hover);
+}
+
+.p-slider:not(.p-disabled) .p-slider-handle:hover {
+  background: var(--slider-handle-hover);
+  border-color: var(--slider-handle-hover);
+}
+
+.p-slider .p-slider-range {
+  background: var(--slider-range);
+}
+
+.p-slider .p-slider-handle:focus {
+  box-shadow: none;
+}
+
+.p-slider {
+  background: var(--slider);
+}
+
+.p-slider.p-slider-horizontal {
+  cursor: pointer;
+}
+
+.p-slider .p-slider-handle {
+  border-radius: 1rem;
+}

@@ -5,6 +5,9 @@ import { PieComponent } from './components/pie/pie.component';
 import { HeatmapComponent } from './components/heatmap/heatmap.component';
 import { StatsComponent } from './components/stats/stats.component';
 
+import { NgIconsModule } from '@ng-icons/core';
+import { featherGrid, featherMenu } from '@ng-icons/feather-icons';
+
 import { SharedModule } from '../shared/shared.module';
 import { BookContainerComponent } from './components/book-container/book-container.component';
 import { ChartModule } from 'primeng/chart';
@@ -12,6 +15,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { SliderModule } from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -26,10 +30,16 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     SharedModule,
 
+    NgIconsModule.withIcons({
+      featherGrid,
+      featherMenu
+    }),
+
     ChartModule,
     PaginatorModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
+    SliderModule
   ],
   exports: [
     ProfileComponent,
