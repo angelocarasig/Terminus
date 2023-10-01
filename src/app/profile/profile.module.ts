@@ -6,7 +6,7 @@ import { HeatmapComponent } from './components/heatmap/heatmap.component';
 import { StatsComponent } from './components/stats/stats.component';
 
 import { NgIconsModule } from '@ng-icons/core';
-import { featherGrid, featherMenu } from '@ng-icons/feather-icons';
+import { featherGrid, featherMenu, featherMoreVertical } from '@ng-icons/feather-icons';
 
 import { SharedModule } from '../shared/shared.module';
 import { BookContainerComponent } from './components/book-container/book-container.component';
@@ -16,6 +16,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { SliderModule } from 'primeng/slider';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -32,14 +33,16 @@ import { SliderModule } from 'primeng/slider';
 
     NgIconsModule.withIcons({
       featherGrid,
-      featherMenu
+      featherMenu,
+      featherMoreVertical
     }),
 
     ChartModule,
     PaginatorModule,
     TooltipModule,
     ToastModule,
-    SliderModule
+    SliderModule,
+    OverlayPanelModule
   ],
   exports: [
     ProfileComponent,

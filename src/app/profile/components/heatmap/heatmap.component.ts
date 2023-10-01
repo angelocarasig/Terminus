@@ -3,6 +3,18 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { weekdayDate } from '../../../shared/helpers/utilities.helper';
 
+interface dayModifyStat {
+  voted: Array<UserNovel>;
+  added: Array<UserNovel>;
+  modified: Array<UserNovel>;
+}
+
+interface heatmapObject {
+  date: Date,
+  novels?: Array<UserNovel>,
+  dayStats: dayModifyStat
+}
+
 @Component({
   selector: 'profile-heatmap',
   templateUrl: './heatmap.component.html',
@@ -12,6 +24,8 @@ import { weekdayDate } from '../../../shared/helpers/utilities.helper';
 export class HeatmapComponent {
   @Input() ulist: UserNovel[] | null;
   heatmapData: Array<any>;
+
+  currentCell: any;
 
   ngOnInit() {
     if (this.ulist == null) return;
@@ -42,16 +56,38 @@ export class HeatmapComponent {
 
   getHeatmapData(): void {
     const dates = this.getLast15WeeksDates();
+
     this.heatmapData = dates.map(week => {
       return week.map(date => {
+        let dayStats: dayModifyStat = { voted: [], added: [], modified: [] };
+
         const novelsForDay = this.ulist?.filter(novel => {
           const added = new Date(novel.addedFormatted || '');
           const modified = new Date(novel.lastmodFormatted || '');
           const voted = new Date(novel.votedFormatted || '');
 
-          return this.isSameDay(added, date) || this.isSameDay(modified, date) || this.isSameDay(voted, date);
+          const addedSameDay = this.isSameDay(added, date);
+          const modifiedSameDay = this.isSameDay(modified, date);
+          const votedSameDay = this.isSameDay(voted, date);
+
+          let addedOrVoted = false;
+
+          if (addedSameDay) {
+            dayStats.added.push(novel);
+            addedOrVoted = true;
+          }
+
+          if (votedSameDay) {
+            dayStats.voted.push(novel);
+            addedOrVoted = true;
+          }
+
+          if (modifiedSameDay && !addedOrVoted) dayStats.modified.push(novel);
+
+          return addedSameDay || modifiedSameDay || votedSameDay;
         });
-        return { date: date, novels: novelsForDay || [] };
+
+        return { date: date, novels: novelsForDay || [], dayStats: dayStats };
       });
     });
   }
@@ -85,6 +121,10 @@ export class HeatmapComponent {
       }
     }
     return '';
+  }
+
+  toggleCurrentHeatmapCell(cell: any): void {
+    this.currentCell = cell;
   }
 
   protected readonly weekdayDate = weekdayDate;

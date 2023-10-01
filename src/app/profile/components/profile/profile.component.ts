@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
+import { MessageService } from 'primeng/api';
 import { UserService } from '../../../shared/services/user/user.service';
 
 import { formattedDate } from '../../../shared/helpers/utilities.helper';
@@ -8,7 +9,6 @@ import { sortByPopularity, sortByRecentlyModified, sortByVoteScore } from '../..
 
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { SexualRating, ViolenceRating } from '../../../shared/models/vn/visual-novel';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'profile-shell',
