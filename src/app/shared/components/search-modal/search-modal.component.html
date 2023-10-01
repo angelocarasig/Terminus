@@ -18,6 +18,7 @@
       </ng-container>
 
       <p-paginator
+        class='search-paginator'
         *ngIf='searchResults.length !== 0'
         (onPageChange)='handlePageChange($event)'
         [first]='paginateProperties.first'

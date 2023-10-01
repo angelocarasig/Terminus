@@ -1,19 +1,23 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserNovel } from '../../../shared/models/vn/user-novel';
 import { weekdayDate } from '../../../shared/helpers/utilities.helper';
 
 interface dayModifyStat {
+  [key: string]: Array<UserNovel>;
   voted: Array<UserNovel>;
   added: Array<UserNovel>;
   modified: Array<UserNovel>;
 }
 
-interface heatmapObject {
-  date: Date,
-  novels?: Array<UserNovel>,
-  dayStats: dayModifyStat
+interface heatmapCell {
+  novels: Array<UserNovel>;
+  dayStats: dayModifyStat;
+  date: Date;
 }
+
+type StatusKeys = 'added' | 'voted' | 'modified';
 
 @Component({
   selector: 'profile-heatmap',
@@ -23,17 +27,30 @@ interface heatmapObject {
 })
 export class HeatmapComponent {
   @Input() ulist: UserNovel[] | null;
-  heatmapData: Array<any>;
+  heatmapData: Array<Array<heatmapCell>>;
 
-  currentCell: any;
+  currentCell: heatmapCell;
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
     if (this.ulist == null) return;
 
+    this.currentCell = {
+      novels: [],
+      dayStats: {
+        voted: [],
+        added: [],
+        modified: [],
+      },
+      date: new Date()
+    }
+
     this.getHeatmapData();
   }
 
-  getLast15WeeksDates(): Date[][] {
+  private getLast15WeeksDates(): Date[][] {
     const today = new Date();
     today.setDate(today.getDate() + 7);
     return Array.from({ length: 7 }, (_, dayOfWeek) => {
@@ -48,13 +65,13 @@ export class HeatmapComponent {
     });
   }
 
-  isSameDay(d1: Date, d2: Date): boolean {
+  private isSameDay(d1: Date, d2: Date): boolean {
     return d1.getDate() === d2.getDate() &&
       d1.getMonth() === d2.getMonth() &&
       d1.getFullYear() === d2.getFullYear();
   }
 
-  getHeatmapData(): void {
+  private getHeatmapData(): void {
     const dates = this.getLast15WeeksDates();
 
     this.heatmapData = dates.map(week => {
@@ -97,14 +114,8 @@ export class HeatmapComponent {
     return `var(--green-${length}00)`;
   }
 
-  getCurrentWeekStyling(date: Date): string {
-    const currentDate = new Date();
-
-    if (this.isSameDay(currentDate, date)) {
-      return 'current-date';
-    }
-
-    return currentDate > date ? '' : 'unpassed-date';
+  getCurrentWeekStyling(date: Date): boolean {
+    return new Date() < date;
   }
 
   getWeekdayLabel(dayIndex: number): string {
@@ -123,8 +134,28 @@ export class HeatmapComponent {
     return '';
   }
 
-  toggleCurrentHeatmapCell(cell: any): void {
+  toggleCurrentHeatmapCell(cell: heatmapCell): void {
     this.currentCell = cell;
+  }
+
+  getNovelHeatmapStatus(novel: UserNovel): string {
+    const statusMap: Record<StatusKeys, string> = {
+      added: "Added",
+      voted: "Voted",
+      modified: "Modified"
+    };
+
+    for (const status in statusMap) {
+      if (statusMap.hasOwnProperty(status) && this.currentCell.dayStats[status as StatusKeys].includes(novel)) {
+        return statusMap[status as StatusKeys];
+      }
+    }
+
+    throw new Error(`Could not find where novel ${novel.vn.title} belongs to.`);
+  }
+
+  goToPage(novel: UserNovel): void {
+    this.router.navigate(['/vn'], { state: { novel: novel } });
   }
 
   protected readonly weekdayDate = weekdayDate;

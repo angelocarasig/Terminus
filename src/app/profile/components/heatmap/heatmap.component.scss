@@ -17,12 +17,12 @@ th {
   max-width: 1.5rem;
 }
 
-td:first-of-type {
+td.cell-content:first-of-type {
   border: none;
   overflow: auto;
 }
 
-td {
+td.cell-content {
   width: 1.5rem;
   height: 1.5rem;
   text-align: center;
@@ -40,7 +40,41 @@ td {
   display: none;
 }
 
-.novels-container {
-  display: flex;
-  flex-direction: row;
+.empty-date {
+  cursor: not-allowed;
+
+  &:active {
+    pointer-events: none;
+  }
+}
+
+table.novels-container {
+  border-collapse: collapse;
+  border-spacing: 0.5rem;
+
+  thead {
+    border-bottom: 1px solid var(--text-color);
+  }
+
+  tbody tr td {
+    &:first-of-type {
+      padding-right: 1rem;
+      border-right: 1px solid var(--text-color);
+    }
+
+    &:nth-of-type(2) {
+      padding: 0 1rem;
+    }
+  }
+
+  .novel-title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .novel-toolbar {
+    ::ng-deep .terminus-icon-button {
+      padding: 0;
+    }
+  }
 }

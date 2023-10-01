@@ -15,12 +15,13 @@
       <td *ngFor='let cell of week'
           class='cell-content'
           (click)='op.toggle($event);toggleCurrentHeatmapCell(cell)'
-          [ngClass]='getCurrentWeekStyling(cell.date)'
+          [ngClass]='{"unpassed-date": getCurrentWeekStyling(cell.date), "empty-date": cell.novels.length === 0}'
           [style.background-color]='getColorLevel(cell.novels.length)'
           [pTooltip]='tooltip'
           pTooltipPosition='top'>
         <ng-template #tooltip>
           <span>On {{weekdayDate(cell.date)}}</span>
+          <br>
           <br>
 
           <ng-container *ngIf='cell.novels.length <= 0'>
@@ -51,41 +52,26 @@
 </div>
 
 <p-overlayPanel #op>
-  <ng-container *ngIf='currentCell != null'>
-    <div class='novels-container' *ngFor='let novel of currentCell.dayStats.added'>
-      <span>Added: </span>
-      <br>
+    <table class='novels-container' *ngIf='currentCell.novels.length > 0'>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Title</th>
+        </tr>
+      </thead>
 
-      <div class='novel-title'>
-        <span>{{novel.vn.title}}</span>
-      </div>
-      <div class='novel-toolbar'>
-        <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
-      </div>
-    </div>
-
-    <div class='novels-container' *ngFor='let novel of currentCell.dayStats.voted'>
-      <span>Voted: </span>
-      <br>
-
-      <div class='novel-title'>
-        <span>{{novel.vn.title}}</span>
-      </div>
-      <div class='novel-toolbar'>
-        <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
-      </div>
-    </div>
-
-    <div class='novels-container' *ngFor='let novel of currentCell.dayStats.modified'>
-      <span>Modified: </span>
-      <br>
-
-      <div class='novel-title'>
-        <span>{{novel.vn.title}}</span>
-      </div>
-      <div class='novel-toolbar'>
-        <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
-      </div>
-    </div>
-  </ng-container>
+      <tbody>
+      <tr *ngFor='let novel of currentCell.novels'>
+        <td>
+          <span>{{getNovelHeatmapStatus(novel)}}</span>
+        </td>
+        <td class='novel-title'>
+          <span (click)='goToPage(novel)'>{{novel.vn.title}}</span>
+        </td>
+        <td class='novel-toolbar'>
+          <shared-icon-button iconType='featherIcon' iconName='featherMoreVertical'></shared-icon-button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 </p-overlayPanel>

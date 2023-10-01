@@ -9,6 +9,8 @@
   ::ng-deep .exit-modal {
     display: flex !important;
     border: 1px solid var(--input-placeholder-color);
+    top: 1.5rem;
+    right: 0.5rem;
   }
 
   .modal-box {
@@ -168,5 +170,11 @@
         }
       }
     }
+  }
+}
+
+.search-paginator {
+  ::ng-deep .p-paginator {
+    background-color: transparent;
   }
 }
