@@ -1,5 +1,6 @@
-import { ContentSensitivity } from '../../../../types';
+import { SexualRating, ViolenceRating } from '../vn/visual-novel';
 
 export interface Options {
-  contentSensitivity: ContentSensitivity;
+  imageSexualSensitivity: SexualRating;
+  imageViolenceSensitivity: ViolenceRating;
 }

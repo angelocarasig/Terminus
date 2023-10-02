@@ -14,5 +14,3 @@ export enum Theme {
   Light = 'light',
   Dark = 'dark'
 }
-
-export type ContentSensitivity = 'Everyone' | 'Questionable' | 'Explicit';

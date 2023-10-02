@@ -5,6 +5,7 @@
     [ngClass]="{
       'book-image--loading': !imageLoaded,
       'list-view': styleClass === 'list-view',
+      'blur': blurImage,
     }"
     [ngSrc]='imageSource'
     (load)='onImageLoad()'

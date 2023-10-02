@@ -35,7 +35,7 @@
         <div class='result-item' *ngFor='let result of paginatedResults$ | async | novelSort: sortByPopularity' (click)='openBook(result)'>
           <div class='cover'>
             <ng-container *ngIf='result.image != null; else placeholderImage'>
-              <shared-book-image [imageSource]='result.image.url' styleClass='list-view'></shared-book-image>
+              <shared-book-image [imageSource]='result.image.url' styleClass='list-view' [sexualRating]='result.image.sexualFormatted' [violenceRating]='result.image.violenceFormatted'></shared-book-image>
             </ng-container>
             <ng-template #placeholderImage>
               No Image for this novel.

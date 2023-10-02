@@ -1,9 +1,11 @@
+<p-toast position='bottom-right'></p-toast>
+
 <div class='modal' [@fadeAnimation]=''>
   <div class='modal-box' (clickOutside)='handleClickOutside()'>
     <shared-icon-button iconType='featherIcon' iconName='featherX' cssClass='exit-modal' (click)='handleClickOutside()'></shared-icon-button>
     <h3>Options</h3>
     <div class='options-container'>
-      <p-menu [model]='items'></p-menu>
+      <p-menu [model]='tabOptions'></p-menu>
       <ng-container [ngSwitch]='activeTab'>
         <ng-template [ngSwitchCase]='OptionTabs.PROFILE'>
           <ng-container *ngTemplateOutlet='profile'></ng-container>
@@ -29,16 +31,16 @@
         {{currentUser.permissions}}
       </div>
       <ng-template #addAuthKey>
-          <span>Add your auth key to modify your list!</span>
+        <span>Add your auth key to modify your list!</span>
 
-          <input
-            pInputText
-            type='text'
-            id='authToken'
-            placeholder='Auth Token (Optional)'
-            [(ngModel)]='authKey'
-          />
-        <p-button label="Submit" [loading]='(userService.loadingIndicator$ | async) ?? false' (onClick)="handleVerifyAuthKey()"></p-button>
+        <input
+          pInputText
+          type='text'
+          id='authToken'
+          placeholder='Auth Token (Optional)'
+          [(ngModel)]='authKey'
+        />
+        <p-button label='Submit' [loading]='(userService.loadingIndicator$ | async) ?? false' (onClick)='handleVerifyAuthKey()'></p-button>
       </ng-template>
     </div>
     <div>
@@ -59,9 +61,29 @@
 
 <ng-template #behaviour>
   <div class='option-panel'>
-    <span>Text1</span>
-    <span>Text1</span>
-    <span>Text1</span>
-    <span>Text1</span>
+    <div class='options-panel--behaviour'>
+      <span class='option-heading'>Filter</span>
+      <div class='option-item'>
+        <div class='option-title'><span>Sexual Image Sensitivity</span></div>
+        <div class='option-button'>
+          <p-selectButton
+            [options]='sexualImageFilterOptions'
+            [(ngModel)]='imageFilterSelections.imageSexualSensitivity'
+            (onChange)='onImageFilterSelectionChange()'>
+          </p-selectButton>
+        </div>
+      </div>
+
+      <div class='option-item'>
+        <div class='option-title'><span>Violent Image Sensitivity</span></div>
+        <div class='option-button'>
+          <p-selectButton
+            [options]='violenceImageFilterOptions'
+            [(ngModel)]='imageFilterSelections.imageViolenceSensitivity'
+            (onChange)='onImageFilterSelectionChange()'>
+          </p-selectButton>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-template>

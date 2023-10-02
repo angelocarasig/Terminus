@@ -49,6 +49,7 @@ import { HighestVotePipe } from './pipes/highest-vote/highest-vote.pipe';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BookComponent } from './components/book/book.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { PaginatorModule } from 'primeng/paginator';
     ButtonModule,
     SidebarModule,
     ToastModule,
-    PaginatorModule
+    PaginatorModule,
+    SelectButtonModule
   ],
   exports: [
     // Shared Components

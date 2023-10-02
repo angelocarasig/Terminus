@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ThemeService } from './shared/services/theme/theme.service';
+import { OptionsService } from './shared/services/options/options.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import { ThemeService } from './shared/services/theme/theme.service';
 })
 export class AppComponent {
   // noinspection JSUnusedLocalSymbols
-  constructor(private themeService: ThemeService) {  }
+  constructor(private themeService: ThemeService, private optionsService: OptionsService) {  }
 }

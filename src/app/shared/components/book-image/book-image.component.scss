@@ -10,9 +10,14 @@
   border-radius: 1rem;
   position: relative;
   cursor: pointer;
+  overflow: hidden;
 
   &:hover {
     scale: 1.02;
+  }
+
+  .blur {
+    filter: blur(2rem);
   }
 }
 

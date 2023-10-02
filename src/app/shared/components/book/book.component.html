@@ -2,7 +2,7 @@
   <div class='book-background'></div>
 
   <div class='book'>
-    <shared-book-image [imageSource]='book.vn.image.url' (click)='openBook()'></shared-book-image>
+    <shared-book-image [imageSource]='book.vn.image.url' (click)='openBook()' [sexualRating]='book.vn.image.sexualFormatted' [violenceRating]='book.vn.image.violenceFormatted'></shared-book-image>
 
     <div class='book-info'>
       <div class='book-title'>
