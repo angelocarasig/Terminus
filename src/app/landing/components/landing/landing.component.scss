@@ -1,3 +1,28 @@
+@media (max-width: 1250px) {
+  .landing-hero, .particles {
+  }
+
+  .landing-container {
+    flex-direction: column;
+    height: 100vh;
+    width: 100% !important;
+    padding: 5vh  0 0 0 !important;
+
+    .landing-hero {
+      padding-left: 2rem !important;
+      width: 100% !important;
+      align-items: center;
+    }
+
+    ::ng-deep .login-container {
+      width: 100vw !important;
+      height: 50vh !important;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+    }
+  }
+}
+
 .landing-container {
   display: flex;
   justify-content: space-between;
