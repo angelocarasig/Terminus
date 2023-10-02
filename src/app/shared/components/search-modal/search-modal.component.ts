@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 
@@ -31,6 +31,8 @@ import { VNResponseType } from '../../../../types';
 })
 export class SearchModalComponent implements OnInit {
   @Output() outsideClicked = new EventEmitter<void>();
+  @ViewChild('resultContainer') resultContainer: ElementRef;
+
   searchQuery: string;
   searchResultsLoaded: boolean;
 
@@ -127,6 +129,10 @@ export class SearchModalComponent implements OnInit {
 
   openBook(event: VisualNovel): void {
     this.router.navigate(['/vn'], { state: { novel: event } });
+  }
+
+  scrollToTop(): void {
+    this.resultContainer.nativeElement.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   protected readonly sortByPopularity = sortByPopularity;

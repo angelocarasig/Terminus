@@ -38,6 +38,7 @@ export class VNDBService {
     switchMap(query => query.trim() === '' ? of(null) : this.searchVisualNovelByQuery(query)),
     catchError(error => {
       console.error(error);
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Failed to fetch visual novels." });
       return of(null);
     })
   );
@@ -62,10 +63,9 @@ export class VNDBService {
         this.loadingIndicatorSubject.next(false);
         return { results: results, more: false };
       }),
-      catchError(error => {
+      catchError(() => {
         this.loadingIndicatorSubject.next(false);
-        console.error(error);
-        throw new Error(`Failed to search visual novels by query:`);
+        throw new Error(`Failed to search visual novels by query.`);
       })
     );
   }

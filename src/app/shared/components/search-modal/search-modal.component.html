@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class='result-container' *ngIf='searchResults.length !== 0; else noResult'>
+    <div #resultContainer class='result-container' *ngIf='searchResults.length !== 0; else noResult'>
       <!--2nd failsafe to render if service had no results-->
       <ng-container *ngIf='searchResults.length === 0'>
         <ng-container *ngTemplateOutlet='noResult'></ng-container>
@@ -65,6 +65,21 @@
           </div>
         </div>
       </div>
+
+      <p-paginator
+        class='search-paginator'
+        *ngIf='searchResults.length !== 0'
+        (onPageChange)='handlePageChange($event);scrollToTop()'
+        [first]='paginateProperties.first'
+        [rows]='paginateProperties.rows'
+        [alwaysShow]='true'
+        [showFirstLastIcon]='false'
+        [rowsPerPageOptions]='paginateProperties.rowsPerPageOptions'
+        [showCurrentPageReport]='true'
+        currentPageReportTemplate='{first} - {last} of {totalRecords}'
+        [totalRecords]='searchResults.length'>
+      </p-paginator>
+
     </div>
   </div>
 </div>
